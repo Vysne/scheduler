@@ -15,7 +15,7 @@
     <body>
 
         <div>
-            <h1>Testing SASS</h1>
+            <h1>Testing GIT</h1>
         </div>
 
     </body>
