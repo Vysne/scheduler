@@ -13,10 +13,13 @@
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    @vite(['resources/sass/navbar.scss', 'resources/js/navbar.js'])
+    @vite(['resources/sass/navbar.scss', 'resources/js/navbar.js', 'resources/sass/sidebar.scss', 'resources/js/sidebar.js'])
 
 </head>
 <body>
-    <x-navbar-layout></x-navbar-layout>
+    <div style="display: flex;">
+        <x-sidebar-layout></x-sidebar-layout>
+        <x-navbar-layout></x-navbar-layout>
+    </div>
 </body>
-</html>
+

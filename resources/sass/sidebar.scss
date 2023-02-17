@@ -1,0 +1,194 @@
+.sidebar-wrap {
+    width: 15%;
+}
+.sidebar-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #4e73df;
+    margin-top: 0;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+    background-image: linear-gradient(180deg,#4e73df 10%,#224abe 100%);
+    background-size: cover;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+}
+.sidebar-logo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center!important;
+    align-items: center!important;
+    height: 4.375rem;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 800;
+    padding: 1.5rem 1rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: .05rem;
+    z-index: 1;
+    color: #d2d7f2;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    & img {
+        width: 15%;
+        height: 30%;
+    }
+    & img:last-child {
+        width: 50%;
+        height: 15%;
+    }
+    &:hover {
+        & img {
+            filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(306deg) brightness(200%) contrast(103%);
+        }
+        color: #ffffff;
+    }
+}
+.sidebar-local-time {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1rem 1rem 1rem;
+    font-size: 1.2rem;
+    color: #d2d7f2;
+    transition: color .15s ease-in-out,font-size .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    & div:not(:last-child) {
+        padding-bottom: 1rem;
+    }
+    & .date-and-time {
+        display: flex;
+        & div:not(:last-child) {
+            padding-right: .5rem;
+        }
+    }
+}
+.sidebar-item {
+    position: relative;
+}
+.sidebar-heading {
+    padding: 0 1rem;
+    font-weight: 800;
+    font-size: 1rem;
+    color: rgba(255,255,255,.4);
+    text-transform: uppercase!important;
+    text-align: left;
+}
+.sidebar-divider {
+    margin: 0 1rem 1rem;
+    margin-bottom: 0!important;
+    border: 1px solid #6685e1;
+}
+.sidebar-item-link {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 1rem;
+    color: rgba(255,255,255,.8);
+    text-decoration: none;
+    background-color: transparent;
+    cursor: pointer;
+    & i {
+        color: #7f9ae8;
+        padding-right: 5%;
+        font-size: 1.2rem;
+    }
+    & span {
+        display: inline;
+        font-size: 1rem;
+        color: #d2d7f2;
+    }
+    &:hover {
+        & i {
+            color: #ffffff;
+        }
+        & span {
+            color: #ffffff;
+        }
+    }
+}
+.sidebar-button {
+    display: inline!important;
+    text-align: center!important;
+}
+.rounded-button {
+    width: 3.5rem;
+    height: 3.5rem;
+    text-align: center;
+    margin-top: 1rem;
+    cursor: pointer;
+    background-color: rgba(255,255,255,.2);
+    border: 0!important;
+    border-radius: 50%!important;
+    text-transform: none;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    &:after {
+        content: '\003c';
+        font-weight: 600;
+        font-size: 2rem;
+        margin-right: 0.1rem;
+        margin-left: 0.1rem;
+        color: rgba(255,255,255,.5);
+    }
+    &:hover {
+        background-color: #7390e1;
+    }
+}
+.disabled {
+    display: none!important;
+}
+.shrink-sidebar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    & .sidebar-item-link {
+        display: flex;
+        justify-content: center;
+        width: 50%;
+        font-size: 2rem;
+        & i {
+            font-size: 2rem;
+        }
+    }
+}
+.shrink-sidebar-logo {
+    display: flex;
+    justify-content: center;
+    width: 70%!important;
+    height: 50%!important;
+}
+.shrink-sidebar-logo-anchor-tag {
+    padding: .5rem 1rem .5rem 1rem;
+}
+.shrink-sidebar-button {
+    &:after {
+        content: '\003e';
+        font-weight: 600;
+        font-size: 2rem;
+        margin-right: 0.1rem;
+        color: rgba(255,255,255,.5);
+    }
+}
+.shrink-sidebar-heading {
+    display: flex;
+    justify-content: center;
+    padding-top: 1rem;
+    font-size: .7rem;
+}
+body {
+    width: 100%;
+    margin: 0;
+    font-family: Poppins;
+}
+
+@media(max-width: 1536px) {
+    .sidebar-wrap {
+        width: 20%;
+    }
+    .shrink-sidebar-logo {
+        width: 80%!important;
+    }
+}
