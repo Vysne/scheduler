@@ -21,10 +21,6 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::get('/login', function () {
-    return view('login');
-})->name('login');
+Auth::routes();
 
-Route::get('/register', function () {
-    return view('register');
-})->name('register');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
