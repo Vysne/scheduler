@@ -1,3 +1,4 @@
+@auth
 <div class="sidebar-wrap">
     <ul class="sidebar-container">
         <a href="#" class="sidebar-logo" title="Home">
@@ -53,3 +54,4 @@
         </div>
     </ul>
 </div>
+@endauth

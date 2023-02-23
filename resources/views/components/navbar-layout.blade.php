@@ -11,6 +11,7 @@
                     </div>
                 </div>
             </form>
+            @auth
             <ul class="navbar-menu">
                 <li class="navbar-menu-item">
                     <a role="button" id="alertsDropdown" data-toggle="dropdown" class="item-link" aria-haspopup="true" aria-expanded="false">
@@ -57,6 +58,7 @@
                     </div>
                 </li>
             </ul>
+            @endauth
         </nav>
     </div>
 </div>
