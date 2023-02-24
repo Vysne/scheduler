@@ -1,5 +1,5 @@
 .login-wrap {
-    padding-top: 10%;
+    padding-top: 5%;
     font-family: Poppins;
 }
 .login-container {
@@ -81,6 +81,10 @@
     padding: 0;
     font-size: 1em;
 }
+.form-button {
+    display: flex;
+    justify-content: center;
+}
 .form-submit {
     display: inline-block;
     background: #6dabe4;
@@ -107,6 +111,7 @@ body {
 }
 h2 {
     font-size: 3rem;
+    margin-bottom: 3rem;
 }
 figure {
     margin-bottom: 50px;

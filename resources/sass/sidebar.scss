@@ -26,19 +26,29 @@
     font-size: 1rem;
     font-weight: 800;
     padding: 1.5rem 1rem;
+    margin-top: 5%;
     text-align: center;
     text-transform: uppercase;
     letter-spacing: .05rem;
     z-index: 1;
     color: #d2d7f2;
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    &.guest-logo {
+        height: unset;
+        &:hover {
+            & img {
+                filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(306deg) brightness(200%) contrast(103%);
+            }
+            color: #0a58ca;
+        }
+    }
     & img {
         width: 15%;
-        height: 30%;
+        height: 100%;
     }
     & img:last-child {
         width: 50%;
-        height: 15%;
+        height: 50%;
     }
     &:hover {
         & img {
@@ -52,7 +62,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 0 1rem 1rem 1rem;
+    padding: 1rem;
     font-size: 1.2rem;
     color: #d2d7f2;
     transition: color .15s ease-in-out,font-size .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;

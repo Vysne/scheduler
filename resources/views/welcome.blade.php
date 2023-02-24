@@ -7,13 +7,20 @@
     <title>Laravel</title>
 
     <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
 
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    @vite(['resources/sass/navbar.scss', 'resources/js/navbar.js'])
+    @vite([
+    'resources/sass/app.scss', 'resources/js/app.js',
+    'resources/sass/navbar.scss', 'resources/js/navbar.js',
+    'resources/sass/sidebar.scss', 'resources/js/sidebar.js',
+    'resources/sass/login.scss', 'resources/js/login.js'
+    ])
 
 </head>
 <body>
