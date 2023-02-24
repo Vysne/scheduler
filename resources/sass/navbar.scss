@@ -35,11 +35,13 @@ body {
     width: 25rem;
     max-width: 100%!important;
     margin-top: 0!important;
+    &.guest-search {
+        padding: 1.5rem 1rem;
+    }
 }
 .input-group {
     position: relative;
     display: flex;
-    flex-wrap: wrap;
     align-items: stretch;
 }
 .search-field {
@@ -98,6 +100,7 @@ body {
     margin-right: 0.25rem!important;
     margin-left: 0.25rem!important;
     & a {
+        transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
         text-decoration: none;
     }
 }
@@ -106,7 +109,7 @@ body {
     align-items: center;
     height: 4.375rem;
     padding: 0 1rem;
-    color: #d1d3e2;
+    color: #d2d7f2;
     cursor: pointer;
     & i {
         font-weight: 900;
@@ -120,9 +123,6 @@ body {
         margin-top: -2rem;
         margin-left: 1rem;
         cursor: pointer;
-    }
-    & i:hover {
-        color: #b7b9cc;
     }
 }
 .item-badge {
@@ -175,7 +175,7 @@ body {
 }
 .dropdown-item {
     display: block;
-    width: 75%;
+    width: 100%;
     padding: 0.25rem 1.5rem;
     clear: both;
     font-weight: 400;
@@ -226,7 +226,7 @@ body {
 }
 .dropdown-list-item {
     display: block;
-    width: 85%;
+    width: 100%;
     padding: 0.25rem 1.5rem;
     clear: both;
     font-weight: 400;
