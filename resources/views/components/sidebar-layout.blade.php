@@ -1,7 +1,7 @@
 @auth
 <div class="sidebar-wrap">
     <ul class="sidebar-container">
-        <a href="{{ route('home') }}" class="sidebar-logo" title="Home">
+        <a href="{{ route('dashboard') }}" class="sidebar-logo" title="Home">
             <img src="{{asset('/img/scheduler-logo-top.png')}}">
             Just Course It !
             <img src="{{asset('/img/scheduler-logo-bottom.png')}}">
