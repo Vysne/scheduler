@@ -1,13 +1,14 @@
-<div class="catalog-wrap">
-    <div class="catalog-container">
+{{--<div class="catalog-wrap">--}}
+    <div class="catalog-container" style="flex-direction: column;">
         <nav class="catalog-navbar">
             <div style="display: inline-flex;">
                 @guest
-                    <a href="#" class="sidebar-logo guest-logo" title="Home">
+                    <a href="/" class="sidebar-logo guest-logo" title="Home">
                         <img src="{{asset('/img/scheduler-logo-top.png')}}">
                         Just Course It !
                         <img src="{{asset('/img/scheduler-logo-bottom.png')}}">
                     </a>
+                    <div class="navbar-divider"></div>
                 @endguest
                 <form class="navbar-search @guest guest-search @endguest">
                     <div class="input-group">
@@ -84,4 +85,4 @@
             </ul>
         </nav>
     </div>
-</div>
+{{--</div>--}}

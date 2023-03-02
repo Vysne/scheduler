@@ -7,6 +7,10 @@
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
 
+.app {
+    display: flex;
+}
+
 main {
     display: flex;
     justify-content: center;

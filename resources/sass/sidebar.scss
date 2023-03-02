@@ -5,7 +5,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    min-height: 100vh;
+    min-height: 100%;
     background-color: #4e73df;
     margin-top: 0;
     padding-left: 0;
@@ -35,6 +35,7 @@
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
     &.guest-logo {
         height: unset;
+        margin-top: unset;
         &:hover {
             & img {
                 filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(306deg) brightness(200%) contrast(103%);

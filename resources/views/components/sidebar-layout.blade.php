@@ -1,7 +1,7 @@
 @auth
 <div class="sidebar-wrap">
     <ul class="sidebar-container">
-        <a href="#" class="sidebar-logo" title="Home">
+        <a href="{{ route('home') }}" class="sidebar-logo" title="Home">
             <img src="{{asset('/img/scheduler-logo-top.png')}}">
             Just Course It !
             <img src="{{asset('/img/scheduler-logo-bottom.png')}}">
@@ -14,38 +14,47 @@
             </div>
         </div>
         <hr class="sidebar-divider">
+        <div class="sidebar-heading">Catalog</div>
+        <li class="sidebar-item">
+            <a class="sidebar-item-link" title="Courses">
+                <i class="fa fa-folder" aria-hidden="true"></i>
+                <span class="sidebar-item-title">Courses</span>
+            </a>
+        </li>
+        <hr class="sidebar-divider">
+        <div class="sidebar-heading">User</div>
         <li class="sidebar-item">
             <a class="sidebar-item-link" title="Dashboard">
                 <i class="fa fa-tachometer" aria-hidden="true"></i>
                 <span class="sidebar-item-title">Dashboard</span>
             </a>
         </li>
-        <hr class="sidebar-divider">
-        <div class="sidebar-heading">Interface</div>
         <li class="sidebar-item">
-            <a class="sidebar-item-link" title="Components">
-                <i class="fa fa-cog" aria-hidden="true"></i>
-                <span class="sidebar-item-title">Components</span>
-            </a>
-        </li>
-        <li class="sidebar-item">
-            <a class="sidebar-item-link" title="Utilities">
-                <i class="fa fa-wrench" aria-hidden="true"></i>
-                <span class="sidebar-item-title">Utilities</span>
-            </a>
-        </li>
-        <hr class="sidebar-divider">
-        <div class="sidebar-heading">Addons</div>
-        <li class="sidebar-item">
-            <a class="sidebar-item-link" title="Pages">
-                <i class="fa fa-folder" aria-hidden="true"></i>
-                <span class="sidebar-item-title">Pages</span>
-            </a>
-        </li>
-        <li class="sidebar-item" title="Charts">
-            <a class="sidebar-item-link">
+            <a class="sidebar-item-link" title="Calendar">
                 <i class="fa fa-table" aria-hidden="true"></i>
-                <span class="sidebar-item-title">Charts</span>
+                <span class="sidebar-item-title">Calendar</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
+            <a class="sidebar-item-link" title="Achievements">
+                <i class="fa fa-certificate" aria-hidden="true"></i>
+                <span class="sidebar-item-title">Achievements</span>
+            </a>
+        </li>
+        <hr class="sidebar-divider">
+        <div class="sidebar-heading">Actions</div>
+        <li class="sidebar-item">
+            <a class="sidebar-item-link" title="Freelancer application">
+                <i class="fa fa-list-alt" aria-hidden="true"></i>
+                <span class="sidebar-item-title">Freelancer application</span>
+            </a>
+        </li>
+        <hr class="sidebar-divider">
+        <div class="sidebar-heading">Settings</div>
+        <li class="sidebar-item" title="Dark mode">
+            <a class="sidebar-item-link">
+                <i class="fa fa-cog" aria-hidden="true"></i>
+                <span class="sidebar-item-title">Dark mode</span>
             </a>
         </li>
         <hr class="sidebar-divider">

@@ -23,17 +23,29 @@
     'resources/sass/app.scss', 'resources/js/app.js',
     'resources/sass/navbar.scss', 'resources/js/navbar.js',
     'resources/sass/sidebar.scss', 'resources/js/sidebar.js',
-    'resources/sass/login.scss', 'resources/js/login.js'
+    'resources/sass/login.scss', 'resources/js/login.js',
+    'resources/sass/content.scss', 'resources/js/content.js',
+    'resources/sass/page-title.scss',
+    'resources/sass/filter.scss', 'resources/js/filter.js'
     ])
 
 </head>
 <body>
-    <div style="display: flex;">
+    <div class="app">
         <x-sidebar-layout></x-sidebar-layout>
-        <x-navbar-layout></x-navbar-layout>
+        <div class="catalog-wrap">
+            <x-navbar-layout></x-navbar-layout>
+            @if (Request::segment(1) != 'login' && Request::segment(1) != 'register')
+                <x-page-title-layout></x-page-title-layout>
+                <x-content-filter-layout></x-content-filter-layout>
+                <x-content-layout></x-content-layout>
+            @endif
+            @guest
+                <main>
+                    @yield('content')
+                </main>
+            @endguest
+        </div>
     </div>
-    <main>
-        @yield('content')
-    </main>
 </body>
 </html>

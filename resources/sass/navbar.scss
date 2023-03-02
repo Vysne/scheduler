@@ -11,13 +11,13 @@ body {
 }
 .catalog-wrap {
     display: flex;
+    flex-direction: column;
     width: 100%;
 }
 .catalog-container {
     display: flex!important;
     flex-direction: column!important;
     width: 100%;
-    overflow-x: hidden;
 }
 .catalog-navbar {
     justify-content: space-between;
