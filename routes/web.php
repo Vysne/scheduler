@@ -24,3 +24,5 @@ Route::get('/dashboard', function () {
 Auth::routes();
 
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
+
+Route::get('/courses', [App\Http\Controllers\CatalogController::class, 'index'])->name('courses');

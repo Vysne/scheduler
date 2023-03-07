@@ -19,14 +19,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Scripts -->
+{{--    TODO Fix unused JS and CSS files - sidebar, navbar--}}
     @vite([
     'resources/sass/app.scss', 'resources/js/app.js',
     'resources/sass/navbar.scss', 'resources/js/navbar.js',
     'resources/sass/sidebar.scss', 'resources/js/sidebar.js',
     'resources/sass/login.scss', 'resources/js/login.js',
-    'resources/sass/content.scss', 'resources/js/content.js',
-    'resources/sass/page-title.scss',
-    'resources/sass/filter.scss', 'resources/js/filter.js'
     ])
 
 </head>
@@ -35,11 +33,6 @@
         <x-sidebar-layout></x-sidebar-layout>
         <div class="catalog-wrap">
             <x-navbar-layout></x-navbar-layout>
-            @if (Request::segment(1) != 'login' && Request::segment(1) != 'register')
-                <x-page-title-layout></x-page-title-layout>
-                <x-content-filter-layout></x-content-filter-layout>
-                <x-content-layout></x-content-layout>
-            @endif
             @guest
                 <main>
                     @yield('content')

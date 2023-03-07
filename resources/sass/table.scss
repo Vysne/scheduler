@@ -1,0 +1,56 @@
+.user-course-table {
+    padding-right: 4rem;
+    padding-left: 2rem;
+}
+.table-wrapper {
+    padding: 1rem;
+}
+table {
+    & .notifier-button {
+        margin-top: unset;
+    }
+    & a {
+        display: flex;
+        justify-content: center;
+        width: 40%;
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 1.5rem;
+        & i {
+            padding-top: .4rem;
+            padding-right: 5%;
+            color: #ffffff;
+            font-size: 1.5rem;
+        }
+        & span {
+            color: #ffffff;
+            font-size: 1.5rem;
+        }
+    }
+    & tr {
+        & td:last-child {
+            display: flex;
+            justify-content: center;
+        }
+    }
+    & .progress-bar-wrapper {
+        display: flex;
+        justify-content: space-evenly;
+        flex-direction: row;
+        & .progress {
+            display: flex;
+            height: 2rem;
+            width: 70%;
+            & .progress-bar-animated {
+                animation: 1s linear infinite progress-bar-stripes;
+            }
+        }
+    }
+}
+.progress-bar-modal {
+    display: none;
+}
+.bdr {
+    border-radius: 6px;
+    overflow: hidden;
+}

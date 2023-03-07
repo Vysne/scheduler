@@ -96,5 +96,23 @@ function expandSidebar(sidebarButton)
     });
 }
 
+function currentPageMarkUp()
+{
+    let currentPage = document.querySelector('.page-title').firstElementChild.innerHTML;
+    let sidebarBtn = document.querySelector(`.sidebar-item-link[title="${currentPage}"]`);
 
-window.onload = [localTime(), sidebarInteraction()];
+    sidebarBtn.classList.add('selected');
+}
+
+function scrollablePageSidebar()
+{
+    let sidebarElem = document.querySelector('.sidebar-container');
+    if (document.body.scrollHeight > window.innerHeight) {
+        sidebarElem.classList.remove('not-scrollable')
+    } else {
+        sidebarElem.classList.add('not-scrollable')
+    }
+}
+
+
+window.onload = [localTime(), sidebarInteraction(), currentPageMarkUp(), scrollablePageSidebar()];

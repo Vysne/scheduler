@@ -1,0 +1,113 @@
+.notifiers-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+.notifier-box {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    list-style: none;
+    margin-top: 2rem;
+    & li {
+        display: flex;
+        width: 100%;
+        padding: 1rem;
+    }
+}
+.notifier-wrapper {
+    border-radius: 15px;
+    box-shadow: 0px 4px 4px 2px rgba(58, 59, 69, 0.15);
+    padding: 1rem;
+    width: 80%;
+    height: 80%;
+    &#upcoming-course {
+        border-left: 5px solid #4E73DF;
+        & .notifier-title,
+        .notifier-course-title,
+        .notifier-time,
+        .notifier-button {
+            display: flex;
+            justify-content: center;
+        }
+        & .notifier-title {
+            color: #4E73DF;
+        }
+    }
+    &#latest-task-deadline {
+        border-left: 5px solid #F6C23E;
+        & .notifier-title,
+        .notifier-course-title,
+        .notifier-time,
+        .notifier-button {
+            display: flex;
+            justify-content: center;
+        }
+        & .notifier-title {
+            color: #F6C23E;
+        }
+    }
+    &#latest-task-result {
+        border-left: 5px solid #1CC88A;
+        & .notifier-title,
+        .notifier-course-title,
+        .notifier-time,
+        .notifier-button {
+            display: flex;
+            justify-content: center;
+        }
+        & .notifier-title {
+            color: #1CC88A;
+        }
+    }
+    &#latest-achievement {
+        border-left: 5px solid #36B9CC;
+        & .notifier-title,
+        .notifier-course-title,
+        .notifier-time,
+        .notifier-button {
+            display: flex;
+            justify-content: center;
+        }
+        & .notifier-title {
+            color: #36B9CC;
+        }
+    }
+}
+.notifier-title {
+    & h2 {
+        font-size: 1.5rem;
+    }
+}
+.notifier-button {
+    height: 20%;
+    margin-top: 1rem;
+    border-radius: 0.35rem;
+    background-color: #858796;
+    border-color: #858796;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out, border-color 0.3s ease-in-out, box-shadow 0.13s ease-in-out;
+    & a {
+        display: flex;
+        flex-direction: row;
+        text-decoration: none;
+        & i {
+            padding-top: .4rem;
+            padding-right: 5%;
+            color: #ffffff;
+            font-size: 1.5rem;
+        }
+        & span {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            padding-bottom: 1rem;
+            color: #ffffff;
+            font-size: 1.5rem;
+        }
+    }
+    &:hover {
+        background-color: #4e73df;
+    }
+}

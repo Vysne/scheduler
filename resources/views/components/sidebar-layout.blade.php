@@ -16,7 +16,7 @@
         <hr class="sidebar-divider">
         <div class="sidebar-heading">Catalog</div>
         <li class="sidebar-item">
-            <a class="sidebar-item-link" title="Courses">
+            <a href="{{ route('courses') }}" class="sidebar-item-link" title="Courses">
                 <i class="fa fa-folder" aria-hidden="true"></i>
                 <span class="sidebar-item-title">Courses</span>
             </a>
@@ -24,7 +24,7 @@
         <hr class="sidebar-divider">
         <div class="sidebar-heading">User</div>
         <li class="sidebar-item">
-            <a class="sidebar-item-link" title="Dashboard">
+            <a href="{{ route('dashboard') }}" class="sidebar-item-link" title="Dashboard">
                 <i class="fa fa-tachometer" aria-hidden="true"></i>
                 <span class="sidebar-item-title">Dashboard</span>
             </a>
