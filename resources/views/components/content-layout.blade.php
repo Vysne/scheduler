@@ -3,7 +3,7 @@
         <ul class="course-box">
             <li>
                 <div class="course-card">
-                    <a href="#">
+                    <a href="{{ route('course-single') }}">
                         <div class="course-image">
                             <img src="https://balduturgus.lt/wp-content/uploads/2022/05/KALIFORNIJA-sofa-lova-AKROPOL-08-300x300.jpg">
                         </div>

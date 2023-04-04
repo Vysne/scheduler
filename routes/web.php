@@ -26,3 +26,5 @@ Auth::routes();
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
 
 Route::get('/courses', [App\Http\Controllers\CatalogController::class, 'index'])->name('courses');
+
+Route::get('/course-single', [App\Http\Controllers\CourseSingleController::class, 'index'])->name('course-single');

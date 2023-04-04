@@ -14,13 +14,17 @@ export default defineConfig({
                 'resources/sass/page-title.scss',
                 'resources/sass/filter.scss',
                 'resources/sass/table.scss',
+                'resources/sass/course.scss',
+                'resources/sass/map.scss',
                 'resources/js/app.js',
                 'resources/js/login.js',
                 'resources/js/navbar.js',
                 'resources/js/sidebar.js',
                 'resources/js/content.js',
                 'resources/js/filter.js',
-                'resources/js/table.js'
+                'resources/js/table.js',
+                'resources/js/course.js',
+                'resources/js/map.js'
             ],
             refresh: true,
         }),

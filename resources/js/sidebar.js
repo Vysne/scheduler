@@ -96,20 +96,25 @@ function expandSidebar(sidebarButton)
     });
 }
 
+// TODO SOLVE THE ISSUE WITH CURRENT PAGE MARKUP IN SIDEBAR
 function currentPageMarkUp()
 {
-    let currentPage = document.querySelector('.page-title').firstElementChild.innerHTML;
-    let sidebarBtn = document.querySelector(`.sidebar-item-link[title="${currentPage}"]`);
-
-    sidebarBtn.classList.add('selected');
+    let currentPageDom = document.querySelector('.page-title');
+    if (currentPageDom != null) {
+        let currentPage = currentPageDom.firstElementChild.innerHTML;
+        let sidebarBtn = document.querySelector(`.sidebar-item-link[title="${currentPage}"]`);
+        sidebarBtn.classList.add('selected');
+    }
 }
 
 function scrollablePageSidebar()
 {
     let sidebarElem = document.querySelector('.sidebar-container');
     if (document.body.scrollHeight > window.innerHeight) {
+        console.log('scrollable');
         sidebarElem.classList.remove('not-scrollable')
     } else {
+        console.log('not scrollable');
         sidebarElem.classList.add('not-scrollable')
     }
 }

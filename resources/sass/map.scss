@@ -1,0 +1,13 @@
+.map {
+    display: flex;
+    flex-direction: column-reverse;
+    width: 40%;
+    height: 40vh;
+}
+
+.location {
+    padding-bottom: .5rem;
+    & h1 {
+        font-size: 1.5rem;
+    }
+}
