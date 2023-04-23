@@ -1,0 +1,288 @@
+.about-course-container {
+    & .about-course-form {
+        margin-bottom: 1rem;
+    }
+}
+.time-and-location-content {
+    & .time-content {
+        width: 40%;
+        & .add-condition {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            & #add-time {
+                width: 20%;
+                height: 100%;
+                transition: 0.15s;
+                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+                border-radius: 1rem;
+                margin-right: 1rem;
+                &:hover {
+                    background-color: #eaecf4;
+                }
+            }
+        }
+    }
+    & #time-input-container {
+        display: flex;
+        flex-direction: row;
+        padding-bottom: 1rem;
+        & .day-select, .add-condition, .apply-condition {
+            padding: 0 1rem 0 0;
+        }
+        & .time-input {
+            padding: 0 3rem 0 0;
+        }
+        & .remove-condition {
+            display: flex;
+            flex-direction: row;
+            & #remove-time {
+                border-radius: 1rem;
+                & i {
+                    width: 20%;
+                    height: 20%;
+                    transition: 0.15s;
+                    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+                    margin-right: 1rem;
+                }
+                &:hover {
+                    background-color: #eaecf4;
+                }
+            }
+        }
+    }
+}
+.skills-container {
+    & .skills-content {
+        margin-bottom: 1rem;
+        & .skills-card {
+            display: flex;
+            flex-direction: row-reverse;
+            width: 20%;
+            border: unset;
+            padding: unset;
+            &:hover {
+                background: unset;
+            }
+            & .remove-condition {
+                display: flex;
+                justify-content: end;
+                & i {
+                    font-size: 2rem;
+                    padding: 3px 0 3px 0;
+                }
+                & i:before {
+                    cursor: pointer;
+                    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+                }
+                & i:hover:before {
+                    color: #4e73df;
+                }
+            }
+            & input {
+                width: 100%;
+                border: 1px solid black;
+                padding: 6px 3px 6px 3px;
+                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            }
+        }
+    }
+}
+.instructor-container {
+    & .instructor-content {
+        display: block;
+        & .instructor-card {
+            width: 100%;
+            height: 100%;
+            margin-bottom: 1rem;
+            & .instructor-image {
+                width: 20%;
+                margin-right: 3rem;
+                & img {
+                    margin-bottom: 1rem;
+                }
+                & #display-image {
+                    width: 253px;
+                    height: 253px;
+                    border-radius: 50%;
+                    margin-bottom: 1rem;
+                    background-size: cover;
+                    background-position: center;
+                    border: 1px solid black;
+                }
+                & .upload-container {
+                    display: flex;
+                    justify-content: center;
+                    overflow: hidden;
+                    & input {
+                        display: block;
+                        position: absolute;
+                        cursor: pointer;
+                        opacity: 0;
+                        z-index: 1;
+                        max-width: 100%;
+                        height: 100%;
+                        &:hover {
+                            padding: 8px 20px;
+                            background: #2e6da4;
+                            color: #fff;
+                        }
+                    }
+                    & i {
+                        padding: 8px 20px;
+                        background: #337ab7;
+                        border: 1px solid #2e6da4;
+                        color: #fff;
+                        z-index: 0;
+                        &:hover {
+                            padding: 8px 20px;
+                            background: #2e6da4;
+                            color: #fff;
+                        }
+                    }
+                    & input {
+                        display: flex;
+                        max-width: 1%;
+                        height: 5%;
+                    }
+                }
+            }
+            & .about-instructor {
+                height: 50%;
+                & .socials {
+                    width: 100%;
+                    margin-top: 1rem;
+                    & input {
+                        padding: 6px 3px 6px 3px;
+                    }
+                }
+            }
+            & .remove-condition {
+                & i {
+                    font-size: 1.5rem;
+                }
+                & i:before {
+                    cursor: pointer;
+                    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+                }
+                & i:hover:before {
+                    color: #4e73df;
+                }
+            }
+        }
+    }
+}
+.syllabus-container {
+    & .syllabus-content {
+        margin-bottom: 1rem;
+        & .panel {
+            height: 100%;
+            & .syllabus-type {
+                display: flex;
+                justify-content: center;
+                margin-top: 1rem;
+                margin-bottom: 1rem;
+                & button {
+                    margin-right: 1rem;
+                }
+            }
+            & .video-upload-container {
+                background-color: #ffffff;
+                width: 90%;
+                max-width: 34.37em;
+                position: relative;
+                margin: 3.12em auto;
+                padding: 3.12em 1.25em;
+                border-radius: 0.43em;
+                box-shadow: 0 1.25em 2.18em rgb(1, 28, 71, 0.3);
+                & input[type="file"] {
+                    display: none;
+                }
+                & label {
+                    display: block;
+                    position: relative;
+                    background-color: #025bee;
+                    color: #ffffff;
+                    font-size: 1.5rem;
+                    text-align: center;
+                    width: 18.75em;
+                    padding: 1.12em 0;
+                    margin: auto;
+                    border-radius: 0.31em;
+                    cursor: pointer;
+                }
+                & #num-of-files {
+                    font-size: 1rem;
+                    text-align: center;
+                    margin: 1.25em 0 1.87em 0;
+                }
+                & ul {
+                    list-style-type: none;
+                    padding: unset;
+                    & li {
+                        display: flex;
+                        justify-content: space-between;
+                        background-color: #eff5ff;
+                        color: #025bee;
+                        margin-bottom: 1em;
+                        padding: 1.1em 1em;
+                        border-radius: 0.3em;
+                    }
+                }
+            }
+        }
+        & .controls {
+            display: flex;
+            justify-content: end;
+            margin-top: 1rem;
+            & i {
+                font-size: 1.5rem;
+            }
+            & i:before {
+                cursor: pointer;
+                transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+            }
+            & i:hover:before {
+                color: #4e73df;
+            }
+        }
+    }
+}
+.add-condition {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 1rem;
+    & #add-skill, #add-instructor, #add-section {
+        width: 10%;
+        height: 100%;
+        transition: 0.15s;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        border-radius: 1rem;
+        &:hover {
+            background-color: #eaecf4;
+        }
+    }
+}
+.ql-container {
+    height: calc(100% - 42px); /* 100% - height of 'ql-toolbar' */
+}
+.text-editor {
+    display: flex;
+    justify-content: end;
+}
+.disabled-container {
+    pointer-events: none;
+}
+.disabled-input {
+    background: #eaecf4 !important;
+}
+.hidden {
+    display: none !important;
+}
+input[type=time] {
+    border-radius: 1rem;
+}
+
+
+

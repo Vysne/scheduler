@@ -1,0 +1,10 @@
+.time-input {
+    & input {
+        height: 100%;
+        border: unset;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    }
+    & input:focus {
+        border: unset;
+    }
+}

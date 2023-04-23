@@ -43,12 +43,21 @@
         </li>
         <hr class="sidebar-divider">
         <div class="sidebar-heading">Actions</div>
+        <?php $user = auth()->user(); if ($user['status'] != 'user') : ?>
+        <li class="sidebar-item">
+            <a href="{{ route('create-course') }}" class="sidebar-item-link" title="Create a course">
+                <i class="fa fa-list-alt" aria-hidden="true"></i>
+                <span class="sidebar-item-title">Create a course</span>
+            </a>
+        </li>
+        <?php else : ?>
         <li class="sidebar-item">
             <a class="sidebar-item-link" title="Freelancer application">
-                <i class="fa fa-list-alt" aria-hidden="true"></i>
+                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                 <span class="sidebar-item-title">Freelancer application</span>
             </a>
         </li>
+        <?php endif; ?>
         <hr class="sidebar-divider">
         <div class="sidebar-heading">Settings</div>
         <li class="sidebar-item" title="Dark mode">

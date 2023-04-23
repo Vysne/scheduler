@@ -15,4 +15,4 @@ function accordion() {
     }
 }
 
-window.onload = accordion;
+window.onload = accordion();

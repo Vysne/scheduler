@@ -1,3 +1,20 @@
+// import {Feature, Map, Overlay, View} from 'ol/index.js';
+// import {OSM, Vector as VectorSource} from 'ol/source.js';
+// import {Point} from 'ol/geom.js';
+// import {Tile as TileLayer, Vector as VectorLayer} from 'ol/layer.js';
+import Map from 'ol/Map.js';
+import Overlay from 'ol/Overlay.js';
+import TileLayer from 'ol/layer/Tile.js';
+import View from 'ol/View.js';
+import XYZ from 'ol/source/XYZ.js';
+import {toLonLat} from 'ol/proj.js';
+import {toStringHDMS} from 'ol/coordinate.js';
+
+// import {toLonLat, useGeographic} from 'ol/proj.js';
+// import {toStringHDMS} from "ol/coordinate";
+
+// useGeographic();
+
 function initMap() {
     const key = 'IxMPj55LDxu47ASU0B8D';
     const source = new ol.source.TileJSON({
@@ -10,42 +27,96 @@ function initMap() {
         collapsible: false,
     });
 
+    const content = document.getElementById('popup-content');
+    const container = document.getElementById('popup');
+    const closer = document.getElementById('popup-closer');
+
+    var overlay = new ol.Overlay({
+        element: container,
+        autoPan: {
+            animation: {
+                duration: 250,
+            },
+        },
+    });
+
+    closer.onclick = function () {
+        overlay.setPosition(undefined);
+        closer.blur();
+        return false;
+    };
+
     const map = new ol.Map({
         layers: [
             new ol.layer.Tile({
-                source: source
-            })
+                source: source,
+            }),
         ],
         controls: ol.control.defaults.defaults({attribution: false}).extend([attribution]),
+        overlays: [overlay],
         target: 'map',
         view: new ol.View({
             constrainResolution: true,
-            // center: ol.proj.fromLonLat([23.90, 54.90]),
-            center: ol.proj.fromLonLat([54.88, 24.0]),
-            zoom: 16
+            center: ol.proj.fromLonLat([23.90, 54.90]),
+            zoom: 10
         })
     });
 
-    const marker = new ol.layer.Vector({
-        source: new ol.source.Vector({
-            features: [
-                new ol.Feature({
-                    geometry: new ol.geom.Point(
-                        // ol.proj.fromLonLat([23.90, 54.90])
-                        ol.proj.fromLonLat([54.88, 24.0])
-                    )
+    map.on('click', function (event) {
+        const feature = map.forEachFeatureAtPixel(event.pixel, function (feature) {
+            return feature;
+        });
+        if (feature) {
+            enabledPopup(event);
+        } else {
+            var point = map.getCoordinateFromPixel(event.pixel);
+            var lonLat = ol.proj.toLonLat(point);
+
+            const marker = new ol.layer.Vector({
+                source: new ol.source.Vector({
+                    features: [
+                        new ol.Feature({
+                            geometry: new ol.geom.Point(
+                                ol.proj.fromLonLat(lonLat),
+                            )
+                        })
+                    ],
+                }),
+                style: new ol.style.Style({
+                    image: new ol.style.Icon({
+                        src: 'https://docs.maptiler.com/openlayers/default-marker/marker-icon.png',
+                        anchor: [0.5, 1],
+                    })
                 })
-            ],
-        }),
-        style: new ol.style.Style({
-            image: new ol.style.Icon({
-                src: 'https://docs.maptiler.com/openlayers/default-marker/marker-icon.png',
-                anchor: [0.5, 1],
-            })
-        })
+            });
+
+            map.addLayer(marker);
+            deleteMarker(marker);
+        }
     });
 
-    map.addLayer(marker);
+    function enabledPopup(evt) {
+        const feature = map.forEachFeatureAtPixel(evt.pixel, function (feature) {
+            return feature;
+        });
+
+        if (feature) {
+            const markerCordinates = evt.coordinate;
+            const hdms = toStringHDMS(toLonLat(markerCordinates));
+
+            const coordinates = feature.getGeometry().getCoordinates();
+            content.innerHTML = '<p>You clicked here:</p><code>' + hdms + '</code>';
+            overlay.setPosition(coordinates);
+        }
+        // deleteMarker(evt);
+    }
+
+    function deleteMarker(evt) {
+        let button = document.getElementById('popup-remove');
+        button.addEventListener('click', function () {
+            evt.removeLayer();
+        });
+    }
 }
 
 window.onload = initMap();

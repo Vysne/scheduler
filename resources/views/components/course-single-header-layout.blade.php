@@ -1,3 +1,5 @@
+{{--TODO POSSIBLE CONFLICT DUE TO DOUBLE @auth function--}}
+@auth
 <div class="course-navbar-container">
     <ul class="course-navbar-menu">
         <div class="navbar-button">
@@ -25,6 +27,7 @@
             <a href="#syllabus-part" class="header-item-link">Syllabus</a>
         </li>
     </ul>
+    <?php $currentUrl = Route::current()->getName(); if (!in_array($currentUrl, ['create-course', 'edit-course'])) : ?>
     <div class="enrollment-container">
         <div class="enrollment-button-container">
             <button type="submit" class="enrollment-button">
@@ -35,7 +38,17 @@
             <h5>Already enrolled: 100 users</h5>
         </div>
     </div>
+    <?php else : ?>
+    <div class="enrollment-container">
+        <div class="enrollment-button-container">
+            <button type="submit" class="enrollment-button">
+                <span>Submit</span>
+            </button>
+        </div>
+    </div>
+    <?php endif; ?>
 </div>
+@endauth
 
 
 
