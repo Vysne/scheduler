@@ -91,10 +91,10 @@ function uniqueId(editor, section) {
         let value = sectionEditors.length;
 
         setTimeout(function () {
-            editor.setAttribute('id', 'instructor-desc' + value);
+            editor.setAttribute('id', 'instructor-descr' + value);
             let editorInput = editor.nextElementSibling;
-            editorInput.setAttribute('id', 'syllabus-descr-body' + value);
-            editorInput.setAttribute('name', 'syllabus-descr-body' + value);
+            editorInput.setAttribute('id', 'instructor-descr' + value);
+            editorInput.setAttribute('name', 'instructor[condition' + value + ']' + '[instructor-descr-body]');
 
             editors.push('#' + editor.getAttribute('id'));
 
@@ -109,8 +109,8 @@ function uniqueId(editor, section) {
         setTimeout(function () {
             editor.setAttribute('id', 'syllabus-descr' + value);
             let editorInput = editor.nextElementSibling;
-            editorInput.setAttribute('id', 'instructor-descr-body' + value);
-            editorInput.setAttribute('name', 'instructor-descr-body' + value);
+            editorInput.setAttribute('id', 'syllabus-descr' + value);
+            editorInput.setAttribute('name', 'syllabus[condition' + value + ']' + '[syllabus-descr-body]');
 
             editors.push('#' + editor.getAttribute('id'));
 
@@ -191,11 +191,11 @@ function addTime() {
 
             let daySelect = clone.firstElementChild;
             let dayInput = daySelect.querySelector('input');
-            dayInput.setAttribute('name', 'day' + sectionInputs.length)
+            dayInput.setAttribute('name', 'date[condition' + sectionInputs.length + ']' + '[day]');
 
             let timeSelect = clone.lastElementChild;
             let timeInput = timeSelect.querySelector('input');
-            timeInput.setAttribute('name', 'time' + sectionInputs.length)
+            timeInput.setAttribute('name', 'date[condition' + sectionInputs.length + ']' + '[time]');
 
             let removeDiv = document.createElement('div');
             removeDiv.setAttribute('class', 'remove-condition');
@@ -283,7 +283,7 @@ function addSkill() {
         removeDiv.setAttribute('class', 'remove-condition');
         removeDiv.innerHTML = '<i class="fa fa-times" aria-hidden="true"></i>';
         inputField.setAttribute('type', 'text');
-        inputField.setAttribute('name', 'skill' + skillInptus.length);
+        inputField.setAttribute('name', 'skill[condition' + skillInptus.length + ']');
         inputField.setAttribute('required', '');
 
         container.append(inputClone);
@@ -307,7 +307,7 @@ function addInstructor() {
 
            let containerCloneEditor = containerClone.querySelector('.ql-container');
            let instructorImg = containerClone.querySelector('.upload-container input');
-           instructorImg.setAttribute('name', 'img' + instructorImageInputs.length);
+           instructorImg.setAttribute('name', 'instructor[condition' + instructorImageInputs.length + ']' + '[img]');
            uniqueId(containerCloneEditor, content);
 
            let removeDiv = document.createElement('div');
@@ -339,7 +339,7 @@ function addSection() {
        let containerClone = content.cloneNode(true);
        let containerCloneEditor = containerClone.querySelector('.ql-container');
        let syllabusNameInput = containerClone.querySelector('input');
-       syllabusNameInput.setAttribute('name', 'syllabus-name' + syllabusInputs.length);
+       syllabusNameInput.setAttribute('name', 'syllabus[condition' + syllabusInputs.length + ']' + '[syllabus-name]');
        uniqueId(containerCloneEditor, container);
 
        let controlsDiv = containerClone.firstElementChild;

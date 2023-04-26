@@ -10,8 +10,13 @@ class CourseInformation extends Model
     use HasFactory;
 
     protected $fillable = [
-        'course_id',
-        'source',
+        'id',
+        'key',
+        'text',
+        'day',
+        'time',
+        'skill',
+        'image',
         'visible'
     ];
 

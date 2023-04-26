@@ -67,7 +67,7 @@
         </div>
         <div class="skills-content">
             <div class="skills-card">
-                <input type="text" name="skill" required>
+                <input type="text" name="skill[condition]" required>
             </div>
         </div>
         <div class="add-condition">
@@ -84,12 +84,12 @@
                     <div id="display-image"></div>
                     <div class="upload-container">
                         <i class="fa fa-upload" aria-hidden="true"></i>
-                        <input onclick="uploadImg(this)" type="file" id="file-input" name="img" accept="image/*">
+                        <input onclick="uploadImg(this)" type="file" id="file-input" name="instructor[condition][img]" accept="image/*">
                     </div>
                 </div>
                 <div class="about-instructor">
                     <div id="instructor-descr"></div>
-                    <input type="hidden" id="instructor-descr" name="instructor-descr-body"/>
+                    <input type="hidden" id="instructor-descr" name="instructor[condition][instructor-descr-body]"/>
 {{--                    <div class="text-editor">--}}
 {{--                        <input name="box" type="hidden">--}}
 {{--                        <div id="editor-container"></div>--}}
@@ -109,7 +109,7 @@
         <div class="syllabuses">
             <div class="syllabus-content">
                 <div class="controls"></div>
-                <button type="button" onclick="accordion()" class="accordion"><input type="text" name="syllabus-name" required>Give the section a name.</button>
+                <button type="button" onclick="accordion()" class="accordion"><input type="text" name="syllabus[condition][syllabus-name]" required>Give the section a name.</button>
                 <div class="panel">
                     <div class="syllabus-type">
                         <button type="button" class="syllabus-type-button" data-type="video">Video</button>
@@ -127,7 +127,7 @@
                     </div>
                     <div class="text-upload-container" hidden>
                         <div id="syllabus-descr"></div>
-                        <input type="hidden" id="syllabus-descr" name="syllabus-descr-body"/>
+                        <input type="hidden" id="syllabus-descr" name="syllabus[condition][syllabus-descr-body]"/>
 {{--                        <div class="text-editor">--}}
 {{--                            <input name="box" type="hidden">--}}
 {{--                            <div id="editor-container"></div>--}}
