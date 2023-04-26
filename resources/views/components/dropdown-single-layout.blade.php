@@ -1,6 +1,6 @@
 <div class="day-select">
     <div class="dropdown" onclick="dropdownActive(this)">
-        <input type="text" class="textBox" placeholder="Select a day" value="" readonly required>
+        <input type="text" class="textBox" placeholder="Select a day" value="" name="day" readonly required>
         <div class="option">
             <div onclick="show(this)">Monday</div>
             <div onclick="show(this)">Tuesday</div>

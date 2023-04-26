@@ -1,6 +1,9 @@
 <div class="course-single-wrapper">
     <div class="course-single-container">
-        <x-course-single-header-layout></x-course-single-header-layout>
-        <x-course-content-form-layout></x-course-content-form-layout>
+        <form action="{{ route('create') }}" method="POST">
+            @csrf
+            <x-course-single-header-layout></x-course-single-header-layout>
+            <x-course-content-form-layout></x-course-content-form-layout>
+        </form>
     </div>
 </div>

@@ -2,6 +2,8 @@ var Delta = Quill.import('delta');
 let Break = Quill.import('blots/break');
 let Embed = Quill.import('blots/embed');
 
+var editors = ['#course-descr', '#instructor-descr', '#syllabus-descr'];
+
 var toolbarOptions = [
     [{ 'font': [] }, { 'size': ['small', false, 'large', 'huge'] }],
 
@@ -33,90 +35,146 @@ function loadEditor() {
     //         }
     //     });
     // });
-    var editors = ['#course-descr', '#instructor-descr', '#syllabus-descr'];
-    var quil;
+    var quill;
+    var modules;
+
+    if (editors.length > 3) {
+        var modules = {
+            toolbar: false,
+        }
+    } else {
+        var modules = {
+            toolbar: toolbarOptions,
+        }
+    }
     editors.forEach(function (editor) {
-        quil = new Quill(editor,{
-            modules: {
-                toolbar: toolbarOptions,
-                // counter: {
-                //     container: ['#counter', '#counter-2'],
-                //     unit: 'character'
-                // }
-            },
+        quill = new Quill(editor, {
+            modules,
             theme: 'snow'
+        });
+        // quill = new Quill(editor, {
+        //     modules: {
+        //         toolbar: toolbarOptions,
+        //         // counter: {
+        //         //     container: ['#counter', '#counter-2'],
+        //         //     unit: 'character'
+        //         // }
+        //     },
+        //     theme: 'snow'
+        // });
+
+        quill.on('text-change', function () {
+            getEditorHTML(editors);
         });
     });
 
-    // var quill = new Quill('#editor', {
-    //     modules: {
-    //         toolbar: toolbarOptions,
-    //         counter: {
-    //             container: '#counter',
-    //             unit: 'character'
-    //         }
-    //     },
-    //     theme: 'snow' }),
-    //     editor = document.getElementById('editor-2');
-    // var quill2 = new Quill('#editor-2', {
-    //         modules: {
-    //             toolbar: toolbarOptions,
-    //             counter: {
-    //                 container: '#counter-2',
-    //                 unit: 'character'
-    //             }
-    //         },
-    //         theme: 'snow' }),
-    //     editor = document.getElementById('editor-2');
-
-    var form = document.querySelector('form');
-    form.onsubmit = function() {
-        // Populate hidden form on submit
-        var about = document.querySelector('input[name=box]');
-        about.value = JSON.stringify(quill.getContents());
-
-        return false;
-    }
+    // var form = document.querySelector('.course-single-container form');
+    //
+    // form.onsubmit = function() {
+    //     // Populate hidden form on submit
+    //     var about = document.querySelector('input[name=course-descr-body]');
+    //     console.log(about);
+    //     about.value = JSON.stringify(quill.getContents());
+    //     console.log(about.value);
+    //
+    //     return true;
+    // }
 }
 
-function updateLink() {
-    lastLinkRange = null;
-    var selection = quill.getSelection(),
-        selectionChanged = false;
-    if (selection === null) {
-        var tooltip = quill.theme.tooltip;
-        if (tooltip.hasOwnProperty('linkRange')) {
-            // user started to edit a link
-            lastLinkRange = tooltip.linkRange;
-            return;
-        } else {
-            // user finished editing a link
-            var format = quill.getFormat(lastLinkRange),
-                link = format.link;
-            quill.setSelection(lastLinkRange.index, lastLinkRange.length, 'silent');
-            selectionChanged = true;
-        }
+function uniqueId(editor, section) {
+    AmagiLoader.show();
+    let sectionEditors;
+
+    if (section.getAttribute('class') === 'instructor-content') {
+        sectionEditors = section.querySelectorAll('.about-instructor');
+
+        let value = sectionEditors.length;
+
+        setTimeout(function () {
+            editor.setAttribute('id', 'instructor-desc' + value);
+            let editorInput = editor.nextElementSibling;
+            editorInput.setAttribute('id', 'syllabus-descr-body' + value);
+            editorInput.setAttribute('name', 'syllabus-descr-body' + value);
+
+            editors.push('#' + editor.getAttribute('id'));
+
+            loadEditor();
+            AmagiLoader.hide();
+        }, 3000 );
     } else {
-        var format = quill.getFormat();
-        if (!format.hasOwnProperty('link')) {
-            return; // not a link after all
-        }
-        var link = format.link;
-    }
-    // add protocol if not there yet
-    if (!/^https?:/.test(link)) {
-        link = 'http:' + link;
-        quill.format('link', link);
-        // reset selection if we changed it
-        if (selectionChanged) {
-            if (selection === null) {
-                quill.setSelection(selection, 0, 'silent');
-            } else {
-                quill.setSelection(selection.index, selection.length, 'silent');
-            }
-        }
+        sectionEditors = section.querySelectorAll('.panel');
+
+        let value = sectionEditors.length;
+
+        setTimeout(function () {
+            editor.setAttribute('id', 'syllabus-descr' + value);
+            let editorInput = editor.nextElementSibling;
+            editorInput.setAttribute('id', 'instructor-descr-body' + value);
+            editorInput.setAttribute('name', 'instructor-descr-body' + value);
+
+            editors.push('#' + editor.getAttribute('id'));
+
+            loadEditor();
+            AmagiLoader.hide();
+        }, 3000 );
     }
 }
+
+function getEditorHTML(editors) {
+    console.log(editors);
+    var editorHTML = [];
+    for (var i = 0; i < editors.length; i++) {
+        console.log(editors[i]);
+        var html = document.querySelector(editors[i] + ' .ql-editor').innerHTML;
+
+        console.log(editors[i].substring(1));
+        let input = document.querySelector(`input[id="${editors[i].substring(1)}"]`);
+        console.log(input);
+        input.value = html;
+
+        editorHTML.push(html);
+    }
+    console.log(editorHTML);
+}
+
+// function updateLink() {
+//     lastLinkRange = null;
+//     var selection = quill.getSelection(),
+//         selectionChanged = false;
+//     if (selection === null) {
+//         var tooltip = quill.theme.tooltip;
+//         if (tooltip.hasOwnProperty('linkRange')) {
+//             // user started to edit a link
+//             lastLinkRange = tooltip.linkRange;
+//             return;
+//         } else {
+//             // user finished editing a link
+//             var format = quill.getFormat(lastLinkRange),
+//                 link = format.link;
+//             quill.setSelection(lastLinkRange.index, lastLinkRange.length, 'silent');
+//             selectionChanged = true;
+//         }
+//     } else {
+//         var format = quill.getFormat();
+//         if (!format.hasOwnProperty('link')) {
+//             return; // not a link after all
+//         }
+//         var link = format.link;
+//     }
+//     // add protocol if not there yet
+//     if (!/^https?:/.test(link)) {
+//         link = 'http:' + link;
+//         quill.format('link', link);
+//         // reset selection if we changed it
+//         if (selectionChanged) {
+//             if (selection === null) {
+//                 quill.setSelection(selection, 0, 'silent');
+//             } else {
+//                 quill.setSelection(selection.index, selection.length, 'silent');
+//             }
+//         }
+//     }
+// }
 
 function addTime() {
     let button = document.getElementById('add-time');
@@ -124,11 +182,20 @@ function addTime() {
     let marker = document.getElementById('marker');
 
     button.addEventListener('click', function () {
+        let sectionInputs = document.querySelectorAll('#time-input-container');
         let validation = validator(condition);
         let max = maxConditions();
         if (validation !== 'false' && max !== true) {
             let elem = document.querySelector('#time-input-container');
             let clone = elem.cloneNode(true);
+
+            let daySelect = clone.firstElementChild;
+            let dayInput = daySelect.querySelector('input');
+            dayInput.setAttribute('name', 'day' + sectionInputs.length)
+
+            let timeSelect = clone.lastElementChild;
+            let timeInput = timeSelect.querySelector('input');
+            timeInput.setAttribute('name', 'time' + sectionInputs.length)
 
             let removeDiv = document.createElement('div');
             removeDiv.setAttribute('class', 'remove-condition');
@@ -171,20 +238,20 @@ function validator(condition) {
     return enteredValues;
 }
 
-function quilValidator(condition) {
-    let filledValues = '';
-    let textDiv = condition.querySelector('.text-editor');
-    let counter = textDiv.lastElementChild;
-    let img = condition.querySelector('#display-image');
-
-    if (counter.innerHTML !== '0 characters' && img.getAttribute('style')) {
-        filledValues = 'true';
-    } else {
-        filledValues = 'false';
-    }
-
-    return filledValues;
-}
+// function quilValidator(condition) {
+//     let filledValues = '';
+//     let textDiv = condition.querySelector('.text-editor');
+//     let counter = textDiv.lastElementChild;
+//     let img = condition.querySelector('#display-image');
+//
+//     if (counter.innerHTML !== '0 characters' && img.getAttribute('style')) {
+//         filledValues = 'true';
+//     } else {
+//         filledValues = 'false';
+//     }
+//
+//     return filledValues;
+// }
 
 function maxConditions() {
     let conditions = document.querySelectorAll('#time-input-container');
@@ -206,6 +273,7 @@ function addSkill() {
     let button = document.getElementById('add-skill');
 
     button.addEventListener('click', function () {
+        let skillInptus = document.querySelectorAll('.skills-card');
         let container = document.querySelector('.skills-content');
         let input = document.querySelector('.skills-card');
         let inputClone = input.cloneNode(false);
@@ -215,6 +283,7 @@ function addSkill() {
         removeDiv.setAttribute('class', 'remove-condition');
         removeDiv.innerHTML = '<i class="fa fa-times" aria-hidden="true"></i>';
         inputField.setAttribute('type', 'text');
+        inputField.setAttribute('name', 'skill' + skillInptus.length);
         inputField.setAttribute('required', '');
 
         container.append(inputClone);
@@ -229,11 +298,17 @@ function addInstructor() {
     let button = document.getElementById('add-instructor');
 
     button.addEventListener('click', function () {
+       let instructorImageInputs = document.querySelectorAll('.instructor-image');
        let content = document.querySelector('.instructor-content');
        let container = document.querySelector('.instructor-card');
 
        // if (quilValidator(container) !== 'false') {
            let containerClone = container.cloneNode(true);
+
+           let containerCloneEditor = containerClone.querySelector('.ql-container');
+           let instructorImg = containerClone.querySelector('.upload-container input');
+           instructorImg.setAttribute('name', 'img' + instructorImageInputs.length);
+           uniqueId(containerCloneEditor, content);
 
            let removeDiv = document.createElement('div');
            removeDiv.setAttribute('class', 'remove-condition');
@@ -257,10 +332,16 @@ function addSection() {
     let button = document.getElementById('add-section');
 
     button.addEventListener('click', function () {
+       let syllabusInputs = document.querySelectorAll('.syllabus-content');
        let container = document.querySelector('.syllabuses');
        let content = document.querySelector('.syllabus-content');
 
        let containerClone = content.cloneNode(true);
+       let containerCloneEditor = containerClone.querySelector('.ql-container');
+       let syllabusNameInput = containerClone.querySelector('input');
+       syllabusNameInput.setAttribute('name', 'syllabus-name' + syllabusInputs.length);
+       uniqueId(containerCloneEditor, container);
+
        let controlsDiv = containerClone.firstElementChild;
        let panels = containerClone.querySelectorAll(['.video-upload-container', '.text-upload-container']);
        panels.forEach(function (panel) {

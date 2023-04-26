@@ -19,9 +19,6 @@
     <!-- Quil textarea -->
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 
-    <!-- RichText editor -->
-{{--    <link rel="stylesheet" href="richtexteditor/rte_theme_default.css" />--}}
-
     @vite([
     'resources/sass/app.scss', 'resources/js/app.js',
     'resources/sass/navbar.scss', 'resources/js/navbar.js',
@@ -51,9 +48,7 @@
 <!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/ol@v7.2.2/dist/ol.js"></script>
 <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
-
-{{--<script type="text/javascript" src="vendor/richtexteditor/richtexteditor/rte.js"></script>--}}
-{{--<script type="text/javascript" src='vendor/richtexteditor/plugins/all_plugins.js'></script>--}}
+<script src="https://cdn.jsdelivr.net/gh/AmagiTech/JSLoader/amagiloader.js"></script>
 {{--TODO MOVE FUNCTION TO DROPDOWN.JS--}}
 <script>
     function show(elemValue) {

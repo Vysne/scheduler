@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Course;
+use App\Models\CourseInformation;
 
 class CourseController extends Controller
 {
@@ -11,9 +13,11 @@ class CourseController extends Controller
         return view('course-create-page');
     }
 
-    public function create()
+    public function create(Request $request)
     {
-        return;
+//        $course = new Course;
+//        $course->name = $request->
+        dd($request->all());
     }
 
     public function update()

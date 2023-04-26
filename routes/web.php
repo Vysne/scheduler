@@ -28,5 +28,6 @@ Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])-
 Route::get('/courses', [App\Http\Controllers\CatalogController::class, 'index'])->name('courses');
 
 Route::get('/create-course', [App\Http\Controllers\CourseController::class, 'index'])->name('create-course');
+Route::post('/create', [App\Http\Controllers\CourseController::class, 'create'])->name('create');
 
 Route::get('/course-single', [App\Http\Controllers\CourseSingleController::class, 'index'])->name('course-single');

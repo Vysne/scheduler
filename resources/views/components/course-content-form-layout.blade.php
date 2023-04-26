@@ -4,8 +4,28 @@
             <h2 id="about-course-part">About course</h2>
         </div>
         <div class="about-course-form">
+            <div class="course-card-info">
+                <div class="course-image-wrap">
+                    <div id="display-image"></div>
+                    <div class="upload-container">
+                        <i class="fa fa-upload" aria-hidden="true"></i>
+                        <input onclick="uploadImg(this)" type="file" id="file-input" name="course-img" accept="image/*">
+                    </div>
+                </div>
+                <div class="course-name-and-type-container">
+                    <div class="course-name-wrap">
+                        <span>Course title</span>
+                        <input type="text" id="course-title" name="course-name">
+                    </div>
+                    <div class="course-type-wrap">
+                        <span>Course type</span>
+                        <x-course-type-dropdown-content-layout></x-course-type-dropdown-content-layout>
+                    </div>
+                </div>
+            </div>
             <div class="course-description">
                 <div id="course-descr"></div>
+                <input type="hidden" id="course-descr" name="course-descr-body"/>
 {{--                <div class="text-editor">--}}
 {{--                    <input name="box" type="hidden">--}}
 {{--                    <div id="editor-container"></div>--}}
@@ -26,7 +46,7 @@
                 </div>
                 <div id="marker" hidden></div>
                 <div class="add-condition">
-                    <button id="add-time">Add</button>
+                    <button type="button" id="add-time">Add</button>
                 </div>
             </div>
             <div id="map" class="map">
@@ -47,11 +67,11 @@
         </div>
         <div class="skills-content">
             <div class="skills-card">
-                <input type="text" required>
+                <input type="text" name="skill" required>
             </div>
         </div>
         <div class="add-condition">
-            <button id="add-skill">Add</button>
+            <button type="button" id="add-skill">Add</button>
         </div>
     </div>
     <div class="instructor-container">
@@ -69,24 +89,17 @@
                 </div>
                 <div class="about-instructor">
                     <div id="instructor-descr"></div>
+                    <input type="hidden" id="instructor-descr" name="instructor-descr-body"/>
 {{--                    <div class="text-editor">--}}
 {{--                        <input name="box" type="hidden">--}}
 {{--                        <div id="editor-container"></div>--}}
 {{--                        <div id="counter-2">0 characters</div>--}}
 {{--                    </div>--}}
-                    <div class="socials">
-                        <a class="fa fa-facebook"><input type="text"></a>
-                        <a class="fa fa-twitter"><input type="text"></a>
-                        <a class="fa fa-google"><input type="text"></a>
-                        <a class="fa fa-linkedin"><input type="text"></a>
-                        <a class="fa fa-instagram"><input type="text"></a>
-                        <a class="fa fa-youtube"><input type="text"></a>
-                    </div>
                 </div>
             </div>
         </div>
         <div class="add-condition">
-            <button id="add-instructor">Add</button>
+            <button type="button" id="add-instructor">Add</button>
         </div>
     </div>
     <div class="syllabus-container">
@@ -96,11 +109,11 @@
         <div class="syllabuses">
             <div class="syllabus-content">
                 <div class="controls"></div>
-                <button onclick="accordion()" class="accordion"><input type="text" required>Give the section a name.</button>
+                <button type="button" onclick="accordion()" class="accordion"><input type="text" name="syllabus-name" required>Give the section a name.</button>
                 <div class="panel">
                     <div class="syllabus-type">
-                        <button class="syllabus-type-button" data-type="video">Video</button>
-                        <button class="syllabus-type-button" data-type="text">Text</button>
+                        <button type="button" class="syllabus-type-button" data-type="video">Video</button>
+                        <button type="button" class="syllabus-type-button" data-type="text">Text</button>
                     </div>
                     <div class="video-upload-container" hidden>
                         <input type="file" id="video-file-input" multiple>
@@ -114,6 +127,7 @@
                     </div>
                     <div class="text-upload-container" hidden>
                         <div id="syllabus-descr"></div>
+                        <input type="hidden" id="syllabus-descr" name="syllabus-descr-body"/>
 {{--                        <div class="text-editor">--}}
 {{--                            <input name="box" type="hidden">--}}
 {{--                            <div id="editor-container"></div>--}}
@@ -124,7 +138,7 @@
             </div>
         </div>
         <div class="add-condition">
-            <button id="add-section">Add</button>
+            <button type="button" id="add-section">Add</button>
         </div>
     </div>
 </div>
