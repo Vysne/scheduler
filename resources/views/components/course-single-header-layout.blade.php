@@ -27,7 +27,7 @@
             <a href="#syllabus-part" class="header-item-link">Syllabus</a>
         </li>
     </ul>
-    <?php $currentUrl = Route::current()->getName(); if (!in_array($currentUrl, ['create-course', 'edit-course'])) : ?>
+    <?php $currentUrl = Route::current()->getName(); if (!in_array($currentUrl, ['create-course', 'edit-course/{id}'])) : ?>
     <div class="enrollment-container">
         <div class="enrollment-button-container">
             <button type="submit" class="enrollment-button">

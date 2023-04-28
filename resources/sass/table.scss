@@ -6,8 +6,20 @@
     padding: 1rem;
 }
 table {
+    & .table-header {
+        font-size: 2rem;
+        text-align: center;
+    }
     & .notifier-button {
         margin-top: unset;
+    }
+    & .action-buttons-wrap {
+        display: flex;
+        justify-content: space-evenly;
+        width: 100%;
+        & a {
+            height: 100%;
+        }
     }
     & a {
         display: flex;

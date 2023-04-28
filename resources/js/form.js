@@ -283,7 +283,7 @@ function addSkill() {
         removeDiv.setAttribute('class', 'remove-condition');
         removeDiv.innerHTML = '<i class="fa fa-times" aria-hidden="true"></i>';
         inputField.setAttribute('type', 'text');
-        inputField.setAttribute('name', 'skill[condition' + skillInptus.length + ']');
+        inputField.setAttribute('name', 'skill[condition' + skillInptus.length + ']' + '[skill]');
         inputField.setAttribute('required', '');
 
         container.append(inputClone);

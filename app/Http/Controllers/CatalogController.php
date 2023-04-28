@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CatalogController extends Controller
 {
@@ -14,5 +15,14 @@ class CatalogController extends Controller
     public function index()
     {
         return view('catalog');
+    }
+
+    public function getCourses()
+    {
+        return DB::table('courses')
+            ->join('users', 'courses.author', '=', 'users.id')
+            ->select('courses.id', 'courses.course_name', 'courses.image', 'courses.type', 'users.name')
+            ->get()
+            ->toArray();
     }
 }

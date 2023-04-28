@@ -18,11 +18,18 @@ class CourseInformationService
     {
         $courseInformation = new CourseInformation;
 
-        foreach ($courseDates as $date) {
-            $courseInformation->course_id = $courseId[0];
-            $courseInformation->day = $date['day'];
-            $courseInformation->time = $date['time'];
-            $courseInformation->save();
+
+        foreach ($courseDates as $key => $date) {
+
+            $date['course_id'] = $courseId[0];
+            $date['key'] = $key;
+
+            $courseInformation::insert($date);
+//            $courseInformation->course_id = $courseId[0];
+//            $courseInformation->key = $key;
+//            $courseInformation->day = $date['day'];
+//            $courseInformation->time = $date['time'];
+//            $courseInformation->save();
         }
     }
 
@@ -30,10 +37,15 @@ class CourseInformationService
     {
         $courseInformation = new CourseInformation;
 
-        foreach ($courseSkills as $skill) {
-            $courseInformation->course_id = $courseId[0];
-            $courseInformation->skill = $skill;
-            $courseInformation->save();
+        foreach ($courseSkills as $key => $skill) {
+
+            $skill['course_id'] = $courseId[0];
+            $skill['key'] = $key;
+
+            $courseInformation::insert($skill);
+//            $courseInformation->course_id = $courseId[0];
+//            $courseInformation->skill = $skill;
+//            $courseInformation->save();
         }
     }
 
@@ -41,11 +53,16 @@ class CourseInformationService
     {
         $courseInformation = new CourseInformation;
 
-        foreach ($courseInstructors as $instructor) {
-            $courseInformation->course_id = $courseId[0];
-            $courseInformation->text = $instructor['instructor-descr-body'];
-            $courseInformation->image = $instructor['img'];
-            $courseInformation->save();
+        foreach ($courseInstructors as $key => $instructor) {
+
+            $instructor['course_id'] = $courseId[0];
+            $instructor['key'] = $key;
+
+            $courseInformation::insert($instructor);
+//            $courseInformation->course_id = $courseId[0];
+//            $courseInformation->text = $instructor['instructor-descr-body'];
+//            $courseInformation->image = $instructor['img'];
+//            $courseInformation->save();
         }
     }
 
@@ -53,11 +70,16 @@ class CourseInformationService
     {
         $courseInformation = new CourseInformation;
 
-        foreach ($courseSyllabuses as $syllabus) {
-            $courseInformation->course_id = $courseId[0];
-            $courseInformation->name = $syllabus['syllabus-name'];
-            $courseInformation->text = $syllabus['syllabus-descr-body'];
-            $courseInformation->save();
+        foreach ($courseSyllabuses as $key => $syllabus) {
+
+            $syllabus['course_id'] = $courseId[0];
+            $syllabus['key'] = $key;
+
+            $courseInformation::insert($syllabus);
+//            $courseInformation->course_id = $courseId[0];
+//            $courseInformation->name = $syllabus['syllabus-name'];
+//            $courseInformation->text = $syllabus['syllabus-descr-body'];
+//            $courseInformation->save();
         }
     }
 }

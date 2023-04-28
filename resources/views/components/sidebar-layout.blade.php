@@ -30,7 +30,7 @@
             </a>
         </li>
         <li class="sidebar-item">
-            <a class="sidebar-item-link" title="Calendar">
+            <a href="{{ route('calendar') }}" class="sidebar-item-link" title="Calendar">
                 <i class="fa fa-table" aria-hidden="true"></i>
                 <span class="sidebar-item-title">Calendar</span>
             </a>
@@ -52,7 +52,7 @@
         </li>
         <?php else : ?>
         <li class="sidebar-item">
-            <a class="sidebar-item-link" title="Freelancer application">
+            <a href="{{ route('application') }}" class="sidebar-item-link" title="Freelancer application">
                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                 <span class="sidebar-item-title">Freelancer application</span>
             </a>

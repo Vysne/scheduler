@@ -50,7 +50,7 @@
     border-radius: .35rem;
     overflow: clip;
     & img {
-        width: 240px;
+        width: 313px;
         height: 160px;
     }
 }
@@ -75,6 +75,8 @@
 .course-title {
     display: flex;
     justify-content: center;
+    width: 315px;
+    height: 85px;
 }
 .course-creator {
     display: flex;

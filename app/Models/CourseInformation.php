@@ -17,7 +17,9 @@ class CourseInformation extends Model
         'time',
         'skill',
         'image',
-        'visible'
+        'visible',
+        'created_at',
+        'updated_at'
     ];
 
     public function course()

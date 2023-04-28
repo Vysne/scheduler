@@ -19,6 +19,8 @@ export default defineConfig({
                 'resources/sass/form.scss',
                 'resources/sass/dropdown.scss',
                 'resources/sass/time.scss',
+                'resources/sass/calendar.scss',
+                'resources/sass/application.scss',
                 'resources/js/app.js',
                 'resources/js/login.js',
                 'resources/js/navbar.js',
@@ -29,7 +31,10 @@ export default defineConfig({
                 'resources/js/course.js',
                 'resources/js/map.js',
                 'resources/js/form.js',
-                'resources/js/dropdown.js'
+                'resources/js/dropdown.js',
+                'resources/js/editCourse.js',
+                'resources/js/calendar.js',
+                'resources/js/notifiers.js'
             ],
             refresh: true,
         }),

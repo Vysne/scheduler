@@ -29,5 +29,11 @@ Route::get('/courses', [App\Http\Controllers\CatalogController::class, 'index'])
 
 Route::get('/create-course', [App\Http\Controllers\CourseController::class, 'index'])->name('create-course');
 Route::post('/create', [App\Http\Controllers\CourseController::class, 'create'])->name('create');
+Route::get('/edit-course/{id}', [App\Http\Controllers\CourseController::class, 'show'])->name('edit-course/{id}');
+Route::get('/update', [App\Http\Controllers\CourseController::class, 'update'])->name('update');
+
+Route::get('/calendar', [App\Http\Controllers\CalendarController::class, 'index'])->name('calendar');
+
+Route::get('/application', [App\Http\Controllers\InstructorApplicationController::class, 'index'])->name('application');
 
 Route::get('/course-single', [App\Http\Controllers\CourseSingleController::class, 'index'])->name('course-single');

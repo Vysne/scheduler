@@ -3,9 +3,8 @@
 namespace App\View\Components;
 
 use Illuminate\View\Component;
-use App\Http\Services\DashboardTableService;
 
-class UserCourseTableLayout extends Component
+class CourseEditFormLayout extends Component
 {
     /**
      * Create a new component instance.
@@ -24,8 +23,7 @@ class UserCourseTableLayout extends Component
      */
     public function render()
     {
-        $userCreatedCourses = new DashboardTableService;
-
-        return view('components.user-course-table-layout', ['userContents' => $userCreatedCourses->showCreatedCourses()]);
+        return view('components.course-edit-form-layout');
     }
+
 }

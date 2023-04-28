@@ -3,6 +3,7 @@
 namespace App\View\Components;
 
 use Illuminate\View\Component;
+use App\Http\Controllers\CatalogController;
 
 class ContentLayout extends Component
 {
@@ -23,6 +24,8 @@ class ContentLayout extends Component
      */
     public function render()
     {
-        return view('components.content-layout');
+        $courses = new CatalogController;
+
+        return view('components.content-layout', ['courses' => $courses->getCourses()]);
     }
 }

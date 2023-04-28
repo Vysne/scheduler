@@ -67,7 +67,7 @@
         </div>
         <div class="skills-content">
             <div class="skills-card">
-                <input type="text" name="skill[condition]" required>
+                <input type="text" name="skill[condition][skill]" required>
             </div>
         </div>
         <div class="add-condition">

@@ -69,6 +69,7 @@
             reader.addEventListener('load', function () {
                 let imgDiv = elem.parentElement.previousElementSibling;
                 uploaded_image = reader.result;
+                console.log(uploaded_image);
                 imgDiv.style.backgroundImage = `url(${uploaded_image})`;
             });
             reader.readAsDataURL(this.files[0]);
