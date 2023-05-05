@@ -1,6 +1,7 @@
 .content-container {
     display: flex;
     justify-content: space-evenly;
+    flex-direction: column;
 }
 .courses-container {
 
@@ -115,4 +116,7 @@
     & button:hover {
         background-color: #4e73df;
     }
+}
+.content-pagination-container {
+    margin-top: 5rem;
 }

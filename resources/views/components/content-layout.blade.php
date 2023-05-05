@@ -43,8 +43,8 @@
             @endforeach
         </ul>
     </div>
-{{--    <div class="">--}}
-{{--        {{ $courses->links() }}--}}
-{{--    </div>--}}
+    <div class="content-pagination-container">
+        {{ $courses->links() }}
+    </div>
 </div>
 
