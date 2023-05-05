@@ -1,7 +1,3 @@
-var Delta = Quill.import('delta');
-let Break = Quill.import('blots/break');
-let Embed = Quill.import('blots/embed');
-
 var editors = ['#course-descr', '#instructor-descr', '#syllabus-descr'];
 
 var toolbarOptions = [

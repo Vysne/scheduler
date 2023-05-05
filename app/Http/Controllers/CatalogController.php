@@ -22,7 +22,8 @@ class CatalogController extends Controller
         return DB::table('courses')
             ->join('users', 'courses.author', '=', 'users.id')
             ->select('courses.id', 'courses.course_name', 'courses.image', 'courses.type', 'users.name')
-            ->get()
-            ->toArray();
+            ->paginate(3);
+//            ->get()
+//            ->toArray();
     }
 }

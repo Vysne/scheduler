@@ -1,3 +1,4 @@
+{{--TODO REMOVE OR MAKE UP SOLUTION--}}
 <div class="course-content-container">
     <div class="about-course-container">
         <div class="course-content-title">

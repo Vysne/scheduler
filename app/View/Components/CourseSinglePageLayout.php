@@ -6,14 +6,15 @@ use Illuminate\View\Component;
 
 class CourseSinglePageLayout extends Component
 {
+    public $courseSingleData;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($courseSingleData)
     {
-        //
+        $this->courseSingleData = $courseSingleData;
     }
 
     /**

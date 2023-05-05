@@ -4,7 +4,7 @@
             @foreach($courses as $course)
             <li>
                 <div class="course-card" data-type="{{ $course->type }}">
-                    <a href="{{ route('course-single') }}">
+                    <a href="{{ url('course-single/' . $course->id) }}') }}">
                         <div class="course-image">
                             <img src="{{ asset($course->image) }}">
                         </div>
@@ -43,5 +43,8 @@
             @endforeach
         </ul>
     </div>
+{{--    <div class="">--}}
+{{--        {{ $courses->links() }}--}}
+{{--    </div>--}}
 </div>
 

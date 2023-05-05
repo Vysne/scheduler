@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\CourseController;
 use Illuminate\Http\Request;
 
 class CourseSingleController extends Controller
 {
-
-    public function index()
+    public function index($courseId)
     {
-//        $this->test();
-        return view('course-single-page');
+        $course = new CourseController;
+
+        return view('course-single-page', ['course' => $course->getSelectedCourse($courseId)]);
     }
+
 // TODO VIDEO PLAYBACK WORKS BUT NEED TO SOLVE THE POSITIONING FOR CODE
 //    public function test()
 //    {

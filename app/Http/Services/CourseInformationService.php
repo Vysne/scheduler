@@ -2,6 +2,7 @@
 
 namespace App\Http\Services;
 
+use Illuminate\Http\Request;
 use App\Models\CourseInformation;
 
 class CourseInformationService
@@ -49,7 +50,7 @@ class CourseInformationService
         }
     }
 
-    public function storeInstructors($courseInstructors, $courseId)
+    public function storeInstructors($courseInstructors, $courseId, $request)
     {
         $courseInformation = new CourseInformation;
 
@@ -57,6 +58,8 @@ class CourseInformationService
 
             $instructor['course_id'] = $courseId[0];
             $instructor['key'] = $key;
+            $filePath = $request->file('instructor.' . $instructor['key'] . '.img')->store('public');
+            $instructor['img'] = str_replace('public', 'storage', $filePath);
 
             $courseInformation::insert($instructor);
 //            $courseInformation->course_id = $courseId[0];

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Course;
@@ -31,14 +30,15 @@ class CourseController extends Controller
         $course->id = $courseId[0];
         $course->course_name = request('course-name');
         $course->author = Auth::user()->getAuthIdentifier();
-        $course->image = $request->file('course-img')->store('public');
+        $filePath = $request->file('course-img')->store('public');
+        $course->image = str_replace('public', 'storage', $filePath);
         $course->type = request('course-type');
         $course->course_descr_body = request('course-descr-body');
         $course->save();
 
         $courseInfoService->storeCourseDates(request('date'), $courseId);
         $courseInfoService->storeCourseSkills(request('skill'), $courseId);
-        $courseInfoService->storeInstructors(request('instructor'), $courseId);
+        $courseInfoService->storeInstructors(request('instructor'), $courseId, $request);
         $courseInfoService->storeSyllabuses(request('syllabus'), $courseId);
 
         return redirect('dashboard');
@@ -54,7 +54,7 @@ class CourseController extends Controller
         return;
     }
 
-    private function getSelectedCourse($courseId)
+    public function getSelectedCourse($courseId)
     {
         $course = DB::table('courses')
             ->select('courses.id', 'courses.course_name', 'courses.image', 'courses.type', 'courses.course_descr_body')
@@ -83,27 +83,19 @@ class CourseController extends Controller
             ->get()
             ->toArray();
 
-        $courseSyllabuses['course-syllabuses'] = DB::table('course_information')
+        $courseSyllabuses = DB::table('course_information')
             ->select('course_information.key', 'course_information.syllabus-name', 'course_information.syllabus-descr-body')
             ->where('course_information.course_id', '=', $courseId)
             ->whereNotNull(['course_information.key', 'course_information.syllabus-name', 'course_information.syllabus-descr-body'])
             ->get()
             ->toArray();
 
-//        $courseData = [
-//            'about-course' => $course,
-//            'course-dates' => $courseDates,
-//            'course-skills' => $courseSkills,
-//            'course-instructors' => $courseInstructors,
-//            'course-syllabuses' => $courseSyllabuses
-//        ];
-
         $courseData = [
             'about-course' => $course,
             'course-dates' => $courseDates,
             'course-skills' => $courseSkills,
-            'course-instructors' => $courseInstructors
-//            $courseSyllabuses
+            'course-instructors' => $courseInstructors,
+            'course-syllabuses' => $courseSyllabuses
         ];
 
         return json_decode(json_encode($courseData), true);
