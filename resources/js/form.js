@@ -32,17 +32,17 @@ function loadEditor() {
     //     });
     // });
     var quill;
-    var modules;
-
-    if (editors.length > 3) {
-        modules = {
-            toolbar: false,
-        }
-    } else {
-        modules = {
-            toolbar: toolbarOptions,
-        }
-    }
+    // var modules;
+    //
+    // if (editors.length > 3) {
+    //     modules = {
+    //         toolbar: false,
+    //     }
+    // } else {
+    //     modules = {
+    //         toolbar: toolbarOptions,
+    //     }
+    // }
     editors.forEach(function (editor) {
         quill = new Quill(editor, {
             modules: {
@@ -60,9 +60,9 @@ function loadEditor() {
         //     },
         //     theme: 'snow'
         // });
-
         quill.on('text-change', function () {
             getEditorHTML(editors);
+            updatePanelHeight(editors);
         });
     });
 
@@ -91,7 +91,7 @@ function uniqueId(editor, section) {
         setTimeout(function () {
             editor.setAttribute('id', 'instructor-descr' + value);
             let editorInput = editor.nextElementSibling;
-            console.log(editor);
+
             editorInput.setAttribute('id', 'instructor-descr' + value);
             editorInput.setAttribute('name', 'instructor[condition' + value + ']' + '[instructor-descr-body]');
 
@@ -137,20 +137,30 @@ function destroyEditorToolbars() {
 }
 
 function getEditorHTML(editors) {
-    console.log(editors);
+    // console.log(editors);
     var editorHTML = [];
     for (var i = 0; i < editors.length; i++) {
-        console.log(editors[i]);
         var html = document.querySelector(editors[i] + ' .ql-editor').innerHTML;
-
-        console.log(editors[i].substring(1));
         let input = document.querySelector(`input[id="${editors[i].substring(1)}"]`);
-        console.log(input);
         input.value = html;
 
         editorHTML.push(html);
     }
-    console.log(editorHTML);
+}
+
+function updatePanelHeight(editors) {
+    for (var i = 0; i < editors.length; i++) {
+
+        let editorElem = document.querySelector(editors[i]);
+        let containerElem = editorElem.parentElement.parentElement;
+        let editorContainerElem = editorElem.parentElement;
+
+        if (containerElem.getAttribute('class') === 'panel') {
+            let editorContainerHeight = editorContainerElem.clientHeight;
+            console.log(editorContainerHeight);
+            containerElem.setAttribute('style', 'max-height: ' + editorContainerHeight + 1000 + 'px');
+        }
+    }
 }
 
 // function updateLink() {
@@ -320,8 +330,6 @@ function addInstructor() {
 
        // if (quilValidator(container) !== 'false') {
            let containerClone = container.cloneNode(true);
-           console.log(containerClone);
-
            let containerCloneEditor = containerClone.querySelector('.ql-container');
            let instructorImg = containerClone.querySelector('.upload-container input');
            instructorImg.setAttribute('name', 'instructor[condition' + instructorImageInputs.length + ']' + '[img]');
