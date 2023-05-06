@@ -14,6 +14,7 @@ class Course extends Model
         'author',
         'image',
         'type',
+        'requirements',
         'course-descr-body',
         'rating'
     ];

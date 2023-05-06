@@ -83,6 +83,10 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="course-requirements-wrap">
+                                                <span>Course requirements</span>
+                                                <textarea type="text" id="course-requirements" name="course-requirements" required>{{ $data['requirements'] }}</textarea>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="course-description">

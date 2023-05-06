@@ -5,7 +5,7 @@
             display: flex;
             margin-bottom: 4rem;
             & .course-image-wrap {
-                width: 20%;
+                width: 40%;
                 margin-right: 3rem;
                 & img {
                     margin-bottom: 1rem;
@@ -15,8 +15,9 @@
                     height: 100%;
                     border-radius: 0.35rem;
                     margin-bottom: 1rem;
-                    background-size: cover;
-                    background-position: center;
+                    box-sizing: border-box;
+                    background-size: 100% 100%;
+                    background-repeat: no-repeat;
                     border: 1px solid black;
                 }
                 & .upload-container {
@@ -63,6 +64,16 @@
                     margin-bottom: 1rem;
                     & input {
                         border: 1px solid black;
+                    }
+                }
+                & .course-requirements-wrap {
+                    display: flex;
+                    flex-direction: column;
+                    margin-top: 1rem;
+                    & textarea {
+                        resize: none;
+                        min-height: 100px;
+                        max-height: 100px;
                     }
                 }
             }

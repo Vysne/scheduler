@@ -33,6 +33,7 @@ class CourseController extends Controller
         $filePath = $request->file('course-img')->store('public');
         $course->image = str_replace('public', 'storage', $filePath);
         $course->type = request('course-type');
+        $course->requirements = request('course-requirements');
         $course->course_descr_body = request('course-descr-body');
         $course->save();
 
@@ -57,7 +58,7 @@ class CourseController extends Controller
     public function getSelectedCourse($courseId)
     {
         $course = DB::table('courses')
-            ->select('courses.id', 'courses.course_name', 'courses.image', 'courses.type', 'courses.course_descr_body')
+            ->select('courses.id', 'courses.course_name', 'courses.image', 'courses.type', 'courses.requirements', 'courses.course_descr_body')
             ->where('courses.id', '=', $courseId)
             ->get()
             ->toArray();
