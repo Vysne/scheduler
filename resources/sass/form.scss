@@ -344,6 +344,9 @@
 .ql-container {
     height: calc(100% - 42px); /* 100% - height of 'ql-toolbar' */
 }
+.ql-tooltip {
+    left: 3.61099999999999px !important;
+}
 .text-editor {
     display: flex;
     justify-content: end;

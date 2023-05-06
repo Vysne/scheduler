@@ -35,17 +35,19 @@ function loadEditor() {
     var modules;
 
     if (editors.length > 3) {
-        var modules = {
+        modules = {
             toolbar: false,
         }
     } else {
-        var modules = {
+        modules = {
             toolbar: toolbarOptions,
         }
     }
     editors.forEach(function (editor) {
         quill = new Quill(editor, {
-            modules,
+            modules: {
+                toolbar: toolbarOptions
+            },
             theme: 'snow'
         });
         // quill = new Quill(editor, {
@@ -89,12 +91,14 @@ function uniqueId(editor, section) {
         setTimeout(function () {
             editor.setAttribute('id', 'instructor-descr' + value);
             let editorInput = editor.nextElementSibling;
+            console.log(editor);
             editorInput.setAttribute('id', 'instructor-descr' + value);
             editorInput.setAttribute('name', 'instructor[condition' + value + ']' + '[instructor-descr-body]');
 
             editors.push('#' + editor.getAttribute('id'));
 
             loadEditor();
+            destroyEditorToolbars();
             AmagiLoader.hide();
         }, 3000 );
     } else {
@@ -111,9 +115,25 @@ function uniqueId(editor, section) {
             editors.push('#' + editor.getAttribute('id'));
 
             loadEditor();
+            destroyEditorToolbars();
             AmagiLoader.hide();
         }, 3000 );
     }
+}
+
+function destroyEditorToolbars() {
+    let descriptionEditorToolbar = document.querySelector('.course-description .ql-toolbar:first-child');
+    descriptionEditorToolbar.remove();
+
+    let instructorEditorToolbars = document.querySelectorAll('.about-instructor .ql-toolbar:first-child');
+    instructorEditorToolbars.forEach(function (editor) {
+       editor.remove();
+    });
+
+    let syllabusEditorToolbars = document.querySelectorAll('.panel .ql-toolbar:first-child');
+    syllabusEditorToolbars.forEach(function (editor) {
+       editor.remove();
+    });
 }
 
 function getEditorHTML(editors) {
@@ -300,6 +320,7 @@ function addInstructor() {
 
        // if (quilValidator(container) !== 'false') {
            let containerClone = container.cloneNode(true);
+           console.log(containerClone);
 
            let containerCloneEditor = containerClone.querySelector('.ql-container');
            let instructorImg = containerClone.querySelector('.upload-container input');
