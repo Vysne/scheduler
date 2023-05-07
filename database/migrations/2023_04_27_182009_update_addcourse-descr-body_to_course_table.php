@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('courses', function (Blueprint $table) {
-            $table->string('course-descr-body', 1000)->after('type');
-        });
+//        Schema::table('courses', function (Blueprint $table) {
+//            $table->string('course-descr-body', 1000)->after('type');
+//        });
     }
 
     /**
@@ -25,8 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('courses', function (Blueprint $table) {
-            $table->removeColumn('course-descr-body');
-        });
+//        Schema::table('courses', function (Blueprint $table) {
+//            $table->removeColumn('course-descr-body');
+//        });
     }
 };

@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('courses', function (Blueprint $table) {
-            $table->text('requirements')->after('type');
-        });
+//        Schema::table('courses', function (Blueprint $table) {
+//            $table->text('requirements')->after('type');
+//        });
     }
 
     /**
@@ -25,8 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('courses', function (Blueprint $table) {
-            $table->removeColumn('requirements');
-        });
+//        Schema::table('courses', function (Blueprint $table) {
+//            $table->removeColumn('requirements');
+//        });
     }
 };

@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('course_information', function (Blueprint $table) {
-            $table->renameColumn('text', 'element-name');
-        });
+//        Schema::table('course_information', function (Blueprint $table) {
+//            $table->renameColumn('text', 'element-name');
+//        });
     }
 
     /**
@@ -25,8 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('course_information', function (Blueprint $table) {
-            $table->renameColumn('element-name', 'text');
-        });
+//        Schema::table('course_information', function (Blueprint $table) {
+//            $table->renameColumn('element-name', 'text');
+//        });
     }
 };

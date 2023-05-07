@@ -39,3 +39,5 @@ Route::get('/update', [App\Http\Controllers\CourseController::class, 'update'])-
 Route::get('/calendar', [App\Http\Controllers\CalendarController::class, 'index'])->name('calendar');
 
 Route::get('/application', [App\Http\Controllers\InstructorApplicationController::class, 'index'])->name('application');
+
+Route::get('/admin-panel', [App\Http\Controllers\AdminPanelController::class, 'index'])->name('admin-panel');

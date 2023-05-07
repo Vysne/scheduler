@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('courses', function (Blueprint $table) {
-            $table->integer('visible')->after('course_descr_body');
-        });
+//        Schema::table('courses', function (Blueprint $table) {
+//            $table->integer('visible')->after('course_descr_body');
+//        });
     }
 
     /**
@@ -25,8 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('courses', function (Blueprint $table) {
-            $table->removeColumn('visible');
-        });
+//        Schema::table('courses', function (Blueprint $table) {
+//            $table->removeColumn('visible');
+//        });
     }
 };

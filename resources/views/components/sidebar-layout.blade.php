@@ -58,6 +58,14 @@
             </a>
         </li>
         <?php endif; ?>
+        <?php if ($user['status'] == 'admin') : ?>
+        <li class="sidebar-item">
+            <a href="{{ route('admin-panel') }}" class="sidebar-item-link" title="Admin panel">
+                <i class="fa fa-unlock-alt" aria-hidden="true"></i>
+                <span class="sidebar-item-title">Admin panel</span>
+            </a>
+        </li>
+        <?php endif; ?>
         <hr class="sidebar-divider">
         <div class="sidebar-heading">Settings</div>
         <li class="sidebar-item" title="Dark mode">
