@@ -170,7 +170,7 @@
 {{--                                        {{ var_dump($data) }}--}}
                                     <div class="instructor-card">
                                         <div class="instructor-image">
-                                            <div id="display-image" style="background-image: url('{{ $data['img'] }}')"></div>
+                                            <div id="display-image" style="background-image: url('{{ asset($data['img']) }}')"></div>
                                             <div class="upload-container">
                                                 <i class="fa fa-upload" aria-hidden="true"></i>
                                                 <input onclick="uploadImg(this)" type="file" id="file-input" name="instructor[{{ $data['key'] }}][img]" accept="image/*">
@@ -204,23 +204,23 @@
                                 <div class="syllabuses">
                                     <div class="syllabus-content">
                                         <div class="controls"></div>
-                                        <button type="button" onclick="accordion()" class="accordion"><input type="text" name="syllabus[condition][syllabus-name]" required>Give the section a name.</button>
+                                        <button type="button" onclick="accordion(this)" class="accordion"><input type="text" name="syllabus[condition][syllabus-name]" required>Give the section a name.</button>
                                         <div class="panel">
-                                            <div class="syllabus-type">
-                                                <button type="button" class="syllabus-type-button" data-type="video">Video</button>
-                                                <button type="button" class="syllabus-type-button" data-type="text">Text</button>
-                                            </div>
-                                            <div class="video-upload-container" hidden>
-                                                <input type="file" id="video-file-input" multiple>
-                                                <label for="video-file-input">
-                                                    <i class="fa fa-upload" aria-hidden="true"></i>
-                                                    &nbsp;
-                                                    Choose files to upload
-                                                </label>
-                                                <div id="num-of-files">No files chosen</div>
-                                                <ul id="files-list"></ul>
-                                            </div>
-                                            <div class="text-upload-container" hidden>
+{{--                                            <div class="syllabus-type">--}}
+{{--                                                <button type="button" class="syllabus-type-button" data-type="video">Video</button>--}}
+{{--                                                <button type="button" class="syllabus-type-button" data-type="text">Text</button>--}}
+{{--                                            </div>--}}
+{{--                                            <div class="video-upload-container" hidden>--}}
+{{--                                                <input type="file" id="video-file-input" multiple>--}}
+{{--                                                <label for="video-file-input">--}}
+{{--                                                    <i class="fa fa-upload" aria-hidden="true"></i>--}}
+{{--                                                    &nbsp;--}}
+{{--                                                    Choose files to upload--}}
+{{--                                                </label>--}}
+{{--                                                <div id="num-of-files">No files chosen</div>--}}
+{{--                                                <ul id="files-list"></ul>--}}
+{{--                                            </div>--}}
+                                            <div class="text-upload-container">
                                                 <div id="syllabus-descr"></div>
                                                 <input type="hidden" id="syllabus-descr" name="syllabus[condition][syllabus-descr-body]"/>
                                                 {{--                        <div class="text-editor">--}}
@@ -274,20 +274,17 @@
             reader.readAsDataURL(this.files[0]);
         });
     }
-    function accordion() {
-        let accordionElem = document.getElementsByClassName('accordion');
-        let i;
+    function accordion(elem) {
+        let contentDiv = elem.parentElement;
 
-        for (i = 0; i < accordionElem.length; i++) {
-            accordionElem[i].addEventListener('click', function() {
-                this.classList.toggle('active');
-                let panel = this.nextElementSibling;
-                if (panel.style.maxHeight) {
-                    panel.style.maxHeight = null;
-                } else {
-                    panel.style.maxHeight = panel.scrollHeight + "px";
-                }
-            });
+        if (contentDiv.className !== 'syllabus-content-disabled') {
+            elem.classList.toggle('active');
+            let panel = elem.nextElementSibling;
+            if (panel.style.maxHeight) {
+                panel.style.maxHeight = null;
+            } else {
+                panel.style.maxHeight = panel.scrollHeight + 'px';
+            }
         }
     }
 </script>

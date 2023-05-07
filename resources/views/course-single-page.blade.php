@@ -136,7 +136,7 @@
 {{--                                                                <source src="video/Introduction.mp4" type="video/mp4">--}}
 {{--                                                            </video>--}}
 {{--                                </div>--}}
-                                <button class="accordion">{{ $courseSingleSyllabus['syllabus-name'] }}</button>
+                                <button class="accordion" onclick="accordion(this)">{{ $courseSingleSyllabus['syllabus-name'] }}</button>
                                 <div class="panel">
                                     <div id="syllabus-descr"></div>
                                     <input type="hidden" name="{{ $courseSingleSyllabus['key'] }}" value="{{ $courseSingleSyllabus['syllabus-descr-body'] }}"/>
@@ -154,4 +154,19 @@
 <script src="https://cdn.jsdelivr.net/npm/ol@v7.2.2/dist/ol.js"></script>
 <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/AmagiTech/JSLoader/amagiloader.js"></script>
+<script>
+    function accordion(elem) {
+        let contentDiv = elem.parentElement;
+
+        if (contentDiv.className !== 'syllabus-content-disabled') {
+            elem.classList.toggle('active');
+            let panel = elem.nextElementSibling;
+            if (panel.style.maxHeight) {
+                panel.style.maxHeight = null;
+            } else {
+                panel.style.maxHeight = panel.scrollHeight + 'px';
+            }
+        }
+    }
+</script>
 </body>

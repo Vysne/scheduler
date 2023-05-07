@@ -368,12 +368,12 @@ function addSection() {
        uniqueId(containerCloneEditor, container);
 
        let controlsDiv = containerClone.firstElementChild;
-       let panels = containerClone.querySelectorAll(['.video-upload-container', '.text-upload-container']);
-       panels.forEach(function (panel) {
-           if (!panel.getAttribute('hidden')) {
-               panel.setAttribute('hidden', '');
-           }
-       });
+       // let panels = containerClone.querySelectorAll(['.video-upload-container', '.text-upload-container']);
+       // panels.forEach(function (panel) {
+       //     if (!panel.getAttribute('hidden')) {
+       //         panel.setAttribute('hidden', '');
+       //     }
+       // });
 
        let removeDiv = document.createElement('div');
         removeDiv.setAttribute('class', 'remove-condition');

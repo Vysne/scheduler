@@ -225,14 +225,8 @@
                 }
             }
             & .about-instructor {
+                width: 100%;
                 height: 50%;
-                & .socials {
-                    width: 100%;
-                    margin-top: 1rem;
-                    & input {
-                        padding: 6px 3px 6px 3px;
-                    }
-                }
             }
             & .remove-condition {
                 & i {
@@ -262,6 +256,9 @@
                 & button {
                     margin-right: 1rem;
                 }
+            }
+            & .text-upload-container {
+                padding: 1rem 1rem;
             }
             & .video-upload-container {
                 background-color: #ffffff;

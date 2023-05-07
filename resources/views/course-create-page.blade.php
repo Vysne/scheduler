@@ -27,10 +27,11 @@
     'resources/sass/content.scss', 'resources/js/content.js',
     'resources/sass/page-title.scss',
     'resources/sass/course.scss',
+    'resources/js/course.js',
     'resources/sass/map.scss', 'resources/js/map.js',
     'resources/sass/form.scss', 'resources/js/form.js',
     'resources/sass/dropdown.scss', 'resources/js/dropdown.js',
-    'resources/sass/time.scss'
+    'resources/sass/time.scss',
     ])
 
 </head>
@@ -75,21 +76,40 @@
             reader.readAsDataURL(this.files[0]);
         });
     }
-    function accordion() {
-        let accordionElem = document.getElementsByClassName('accordion');
-        let i;
 
-        for (i = 0; i < accordionElem.length; i++) {
-            accordionElem[i].addEventListener('click', function() {
-                this.classList.toggle('active');
-                let panel = this.nextElementSibling;
-                if (panel.style.maxHeight) {
-                    panel.style.maxHeight = null;
-                } else {
-                    panel.style.maxHeight = panel.scrollHeight + "px";
-                }
-            });
+    function accordion(elem) {
+        let contentDiv = elem.parentElement;
+
+        if (contentDiv.className !== 'syllabus-content-disabled') {
+            elem.classList.toggle('active');
+            let panel = elem.nextElementSibling;
+            if (panel.style.maxHeight) {
+                panel.style.maxHeight = null;
+            } else {
+                panel.style.maxHeight = panel.scrollHeight + 'px';
+            }
         }
     }
+
+    // function test(elem) {
+    //     console.log(elem);
+    //     let accordionElem = document.getElementsByClassName('accordion');
+    //     let i;
+    //
+    //     for (i = 0; i < accordionElem.length; i++) {
+    //         let contentDiv = accordionElem[i].parentElement;
+    //         accordionElem[i].addEventListener('click', function() {
+    //             if (contentDiv.className !== 'syllabus-content-disabled') {
+    //                 this.classList.toggle('active');
+    //                 let panel = this.nextElementSibling;
+    //                 if (panel.style.maxHeight) {
+    //                     panel.style.maxHeight = null;
+    //                 } else {
+    //                     panel.style.maxHeight = panel.scrollHeight + "px";
+    //                 }
+    //             }
+    //         });
+    //     }
+    // }
 </script>
 </body>
