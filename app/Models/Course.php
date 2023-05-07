@@ -16,6 +16,7 @@ class Course extends Model
         'type',
         'requirements',
         'course-descr-body',
+        'visible',
         'rating'
     ];
 

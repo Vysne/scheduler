@@ -64,19 +64,48 @@
             <tbody>
             @foreach($userContents as $userContent)
             <tr>
-                <th scope="row">{{ $userContent->course_name }}</th>
+                <td>{{ $userContent->course_name }}</td>
                 <td>{{ $userContent->type }}</td>
                 <td></td>
                 <td>
                     <div class="action-buttons-wrap">
-                        <a href="{{ url('/edit-course/' . $userContent->id) }}" class="notifier-button">
-                            <i class="fa fa-clock-o" aria-hidden="true"></i>
-                            <span>Inspect</span>
-                        </a>
-                        <a href="" class="notifier-button">
-                            <i class="fa fa-trash" aria-hidden="true"></i>
-                            <span>Delete</span>
-                        </a>
+                        <input type="hidden" value="{{ $userContent->visible }}">
+                        <div class="inspect-button-wrap">
+                            <a href="{{ url('/edit-course/' . $userContent->id) }}" class="notifier-button">
+                                <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                <span>Inspect</span>
+                            </a>
+                        </div>
+                        <div class="disable-button-wrap">
+                            @if ($userContent->visible != 0)
+                            <form action="{{ url('/disable/' . $userContent->id) }}" method="POST" id="disable-form">
+                                @csrf
+                                <a href="#" class="notifier-button" id="disable-button" onclick="visibilityAction(this)">
+                                    <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                                    <span>Disable</span>
+                                </a>
+                            </form>
+                            @else
+                            <form action="{{ url('/enable/' . $userContent->id) }}" method="POST" id="enable-form">
+                                @csrf
+                                <a href="#" class="notifier-button" id="disable-button" onclick="visibilityAction(this)">
+                                    <i class="fa fa-eye" aria-hidden="true"></i>
+                                    <span>Enable</span>
+                                </a>
+                            </form>
+                            @endif
+                        </div>
+                        <?php $user = auth()->user(); if ($user['status'] == 'admin') : ?>
+                        <form action="{{ url('/delete/' . $userContent->id) }}" method="POST" id="delete-form">
+                            @csrf
+                            <div class="delete-button-wrap">
+                                <a href="#" class="notifier-button" onclick="">
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                    <span>Delete</span>
+                                </a>
+                            </div>
+                        </form>
+                        <?php endif; ?>
                     </div>
                 </td>
             </tr>

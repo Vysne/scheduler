@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Services\DashboardTableService;
 
 class HomeController extends Controller
 {
@@ -24,5 +25,32 @@ class HomeController extends Controller
     public function index()
     {
         return view('dashboard');
+    }
+
+    public function disableAction($courseId)
+    {
+        $dashboardTableService = new DashboardTableService;
+
+        $dashboardTableService->disableCourse($courseId);
+
+        return redirect('dashboard');
+    }
+
+    public function enableAction($courseId)
+    {
+        $dashboardTableService = new DashboardTableService;
+
+        $dashboardTableService->enableCourse($courseId);
+
+        return redirect('dashboard');
+    }
+
+    public function deleteAction($courseId)
+    {
+        $dashboardTableService = new DashboardTableService;
+
+        $dashboardTableService->deleteCourse($courseId);
+
+        return redirect('dashboard');
     }
 }

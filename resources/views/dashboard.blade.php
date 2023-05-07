@@ -39,5 +39,12 @@
             <x-user-course-table-layout></x-user-course-table-layout>
         </div>
     </div>
+<script>
+    function visibilityAction(elem) {
+        let form = elem.parentElement;
+
+        form.submit();
+    }
+</script>
 </body>
 </html>
