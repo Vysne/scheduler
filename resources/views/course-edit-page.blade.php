@@ -167,7 +167,7 @@
                                 <div class="instructor-content">
                                     @php($i = 0)
                                     @foreach($course['course-instructors'] as $data)
-{{--                                        {{ var_dump($data) }}--}}
+{{--                                        {{ dd($data) }}--}}
                                     <div class="instructor-card">
                                         <div class="instructor-image">
                                             <div id="display-image" style="background-image: url('{{ asset($data['img']) }}')"></div>
@@ -177,13 +177,18 @@
                                             </div>
                                         </div>
                                         <div class="about-instructor">
-                                            @if($i++ == 0)
-                                                <div id="instructor-descr"></div>
-                                                <input type="hidden" id="instructor-descr" value="{{ $data['instructor-descr-body'] }}" name="instructor[{{ $data['key'] }}][instructor-descr-body]"/>
-                                            @else
-                                                <div id="instructor-descr{{ $i++ -1 }}"></div>
-                                                <input type="hidden" id="instructor-descr{{ $i++ -1 }}" value="{{ $data['instructor-descr-body'] }}" name="instructor[{{ $data['key'] }}][instructor-descr-body]"/>
-                                            @endif
+                                            <div id="{{ $data['element-name'] }}"></div>
+                                            <input type="hidden" id="instructor-descr" value="{{ $data['instructor-descr-body'] }}" name="instructor[{{ $data['key'] }}][instructor-descr-body]"/>
+                                            <input type="hidden" id="instructor-element-name" name="instructor[{{ $data['key'] }}][element-name]" value="{{ $data['element-name'] }}"/>
+{{--                                            @if($i++ == 0)--}}
+{{--                                                <div id="instructor-descr"></div>--}}
+{{--                                                <input type="hidden" id="instructor-descr" value="{{ $data['instructor-descr-body'] }}" name="instructor[{{ $data['key'] }}][instructor-descr-body]"/>--}}
+{{--                                                <input type="hidden" id="instructor-element-name" name="instructor[condition][element-name]" value="instructor-descr"/>--}}
+{{--                                            @else--}}
+{{--                                                <div id="instructor-descr{{ $i++ -1 }}"></div>--}}
+{{--                                                <input type="hidden" id="instructor-descr{{ $i++ -1 }}" value="{{ $data['instructor-descr-body'] }}" name="instructor[{{ $data['key'] }}][instructor-descr-body]"/>--}}
+{{--                                                <input type="hidden" id="instructor-element-name" name="instructor[condition][element-name]" value="instructor-descr"/>--}}
+{{--                                            @endif--}}
                                             {{--                    <div class="text-editor">--}}
                                             {{--                        <input name="box" type="hidden">--}}
                                             {{--                        <div id="editor-container"></div>--}}
@@ -202,9 +207,10 @@
                                     <h2 id="syllabus-part">Syllabus</h2>
                                 </div>
                                 <div class="syllabuses">
+                                    @foreach($course['course-syllabuses'] as $data)
                                     <div class="syllabus-content">
-                                        <div class="controls"></div>
-                                        <button type="button" onclick="accordion(this)" class="accordion"><input type="text" name="syllabus[condition][syllabus-name]" required>Give the section a name.</button>
+{{--                                        <div class="controls"></div>--}}
+                                        <button type="button" onclick="accordion(this)" class="accordion"><input type="text" name="syllabus[{{ $data['key'] }}][syllabus-name]" value="{{ $data['syllabus-name'] }}" required>Give the section a name.</button>
                                         <div class="panel">
 {{--                                            <div class="syllabus-type">--}}
 {{--                                                <button type="button" class="syllabus-type-button" data-type="video">Video</button>--}}
@@ -221,8 +227,9 @@
 {{--                                                <ul id="files-list"></ul>--}}
 {{--                                            </div>--}}
                                             <div class="text-upload-container">
-                                                <div id="syllabus-descr"></div>
-                                                <input type="hidden" id="syllabus-descr" name="syllabus[condition][syllabus-descr-body]"/>
+                                                <div id="{{ $data['element-name'] }}"></div>
+                                                <input type="hidden" id="syllabus-descr" name="syllabus[{{ $data['key'] }}][syllabus-descr-body]" value="{{ $data['syllabus-descr-body'] }}"/>
+                                                <input type="hidden" id="syllabus-element-name" name="syllabus[{{ $data['key'] }}][element-name]" value="{{ $data['element-name'] }}"/>
                                                 {{--                        <div class="text-editor">--}}
                                                 {{--                            <input name="box" type="hidden">--}}
                                                 {{--                            <div id="editor-container"></div>--}}
@@ -231,6 +238,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    @endforeach
                                 </div>
                                 <div class="add-condition">
                                     <button type="button" id="add-section">Add</button>

@@ -138,8 +138,10 @@
 {{--                                </div>--}}
                                 <button class="accordion" onclick="accordion(this)">{{ $courseSingleSyllabus['syllabus-name'] }}</button>
                                 <div class="panel">
-                                    <div id="syllabus-descr"></div>
-                                    <input type="hidden" name="{{ $courseSingleSyllabus['key'] }}" value="{{ $courseSingleSyllabus['syllabus-descr-body'] }}"/>
+                                    <div class="text-upload-container">
+                                        <div id="syllabus-descr"></div>
+                                        <input type="hidden" name="{{ $courseSingleSyllabus['key'] }}" value="{{ $courseSingleSyllabus['syllabus-descr-body'] }}"/>
+                                    </div>
                                 </div>
                             </div>
                             @endforeach

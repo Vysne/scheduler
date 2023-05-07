@@ -1,4 +1,4 @@
-var editors = ['#course-descr', '#instructor-descr', '#syllabus-descr'];
+// var editors = ['#course-descr', '#instructor-descr', '#syllabus-descr'];
 
 var toolbarOptions = [
     [{ 'font': [] }, { 'size': ['small', false, 'large', 'huge'] }],
@@ -26,11 +26,17 @@ function courseEditorContent() {
     let courseEditorInput = document.querySelector('input[id="course-descr"]');
 
     quill = new Quill(courseEditor, {
-        toolbar: toolbarOptions,
+        modules: {
+            toolbar: toolbarOptions
+        },
         theme: 'snow'
     });
 
     quill.pasteHTML(courseEditorInput.value);
+
+    quill.on('text-change', function () {
+        getEditorHTML('#course-descr');
+    });
 }
 
 function instructorEditorContainerNames() {
@@ -43,12 +49,64 @@ function instructorEditorContainerNames() {
        let editorInput = editorDiv.nextElementSibling;
 
        quill = new Quill(editorDiv, {
-          toolbar: toolbarOptions,
-          theme: 'snow'
+           modules: {
+               toolbar: toolbarOptions
+           },
+           theme: 'snow'
        });
 
         quill.pasteHTML(editorInput.value);
+
+        quill.on('text-change', function () {
+            getEditorHTML(editorDiv);
+        });
     });
 }
 
-window.onload = [courseEditorContent(), instructorEditorContainerNames()];
+function syllabusEdtiorContainers() {
+    var quill;
+
+    let syllabusEditorContainers = document.querySelectorAll('.syllabus-content');
+
+    syllabusEditorContainers.forEach(function (container) {
+       let editorDiv = container.querySelector('.text-upload-container').firstElementChild;
+       let editorInput = editorDiv.nextElementSibling;
+
+       quill = new Quill(editorDiv, {
+           modules: {
+               toolbar: toolbarOptions
+           },
+           theme: 'snow'
+       });
+
+       quill.pasteHTML(editorInput.value);
+
+       quill.on('text-change', function () {
+           getEditorHTML(editorDiv);
+           updatePanelHeight(editorDiv);
+       });
+    });
+}
+
+function getEditorHTML(editors) {
+    var editorHTML = [];
+    for (var i = 0; i < editors.length; i++) {
+        var html = document.querySelector(editors[i] + ' .ql-editor').innerHTML;
+        let input = document.querySelector(`input[id="${editors[i].substring(1)}"]`);
+        input.value = html;
+
+        editorHTML.push(html);
+    }
+}
+
+function updatePanelHeight(editors) {
+    let containerElem = editors.parentElement.parentElement;
+    let editorContainerElem = editors.parentElement;
+
+    if (containerElem.getAttribute('class') === 'panel') {
+        let editorContainerHeight = editorContainerElem.clientHeight;
+        containerElem.setAttribute('style', 'max-height: ' + editorContainerHeight + 1000 + 'px');
+    }
+}
+
+window.onload = [courseEditorContent(), instructorEditorContainerNames(), syllabusEdtiorContainers()];

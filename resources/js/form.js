@@ -80,6 +80,7 @@ function loadEditor() {
 }
 
 function uniqueId(editor, section) {
+    console.log(editor);
     AmagiLoader.show();
     let sectionEditors;
 
@@ -91,9 +92,12 @@ function uniqueId(editor, section) {
         setTimeout(function () {
             editor.setAttribute('id', 'instructor-descr' + value);
             let editorInput = editor.nextElementSibling;
+            let elementInput = editor.nextElementSibling.nextElementSibling;
 
             editorInput.setAttribute('id', 'instructor-descr' + value);
             editorInput.setAttribute('name', 'instructor[condition' + value + ']' + '[instructor-descr-body]');
+            elementInput.setAttribute('name', 'instructor[condition' + value + ']' + '[element-name]');
+            elementInput.value = editor.getAttribute('id');
 
             editors.push('#' + editor.getAttribute('id'));
 
@@ -109,8 +113,12 @@ function uniqueId(editor, section) {
         setTimeout(function () {
             editor.setAttribute('id', 'syllabus-descr' + value);
             let editorInput = editor.nextElementSibling;
+            let elementInput = editor.nextElementSibling.nextElementSibling;
+
             editorInput.setAttribute('id', 'syllabus-descr' + value);
             editorInput.setAttribute('name', 'syllabus[condition' + value + ']' + '[syllabus-descr-body]');
+            elementInput.setAttribute('name', 'syllabus[condition' + value + ']' + '[element-name]');
+            elementInput.value = editor.getAttribute('id');
 
             editors.push('#' + editor.getAttribute('id'));
 

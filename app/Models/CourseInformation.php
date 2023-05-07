@@ -12,7 +12,7 @@ class CourseInformation extends Model
     protected $fillable = [
         'id',
         'key',
-        'text',
+        'element-name',
         'day',
         'time',
         'skill',

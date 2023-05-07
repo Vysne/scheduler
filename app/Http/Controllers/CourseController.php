@@ -78,16 +78,16 @@ class CourseController extends Controller
             ->toArray();
 
         $courseInstructors = DB::table('course_information')
-            ->select('course_information.key', 'course_information.instructor-descr-body', 'course_information.img')
+            ->select('course_information.key', 'course_information.element-name', 'course_information.instructor-descr-body', 'course_information.img')
             ->where('course_information.course_id', '=', $courseId)
-            ->whereNotNull(['course_information.key', 'course_information.instructor-descr-body', 'course_information.img'])
+            ->whereNotNull(['course_information.key', 'course_information.element-name', 'course_information.instructor-descr-body', 'course_information.img'])
             ->get()
             ->toArray();
 
         $courseSyllabuses = DB::table('course_information')
-            ->select('course_information.key', 'course_information.syllabus-name', 'course_information.syllabus-descr-body')
+            ->select('course_information.key', 'course_information.syllabus-name', 'course_information.element-name', 'course_information.syllabus-descr-body')
             ->where('course_information.course_id', '=', $courseId)
-            ->whereNotNull(['course_information.key', 'course_information.syllabus-name', 'course_information.syllabus-descr-body'])
+            ->whereNotNull(['course_information.key', 'course_information.syllabus-name', 'course_information.element-name', 'course_information.syllabus-descr-body'])
             ->get()
             ->toArray();
 

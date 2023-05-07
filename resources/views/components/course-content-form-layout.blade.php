@@ -94,6 +94,7 @@
                 <div class="about-instructor">
                     <div id="instructor-descr"></div>
                     <input type="hidden" id="instructor-descr" name="instructor[condition][instructor-descr-body]"/>
+                    <input type="hidden" id="instructor-element-name" name="instructor[condition][element-name]" value="instructor-descr"/>
 {{--                    <div class="text-editor">--}}
 {{--                        <input name="box" type="hidden">--}}
 {{--                        <div id="editor-container"></div>--}}
@@ -132,6 +133,7 @@
                     <div class="text-upload-container">
                         <div id="syllabus-descr"></div>
                         <input type="hidden" id="syllabus-descr" name="syllabus[condition][syllabus-descr-body]"/>
+                        <input type="hidden" id="syllabus-element-name" name="syllabus[condition][element-name]" value="syllabus-descr"/>
 {{--                        <div class="text-editor">--}}
 {{--                            <input name="box" type="hidden">--}}
 {{--                            <div id="editor-container"></div>--}}
