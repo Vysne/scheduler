@@ -23,12 +23,16 @@ Route::get('/dashboard', function () {
 
 Auth::routes();
 
+Route::get('/profile', [App\Http\Controllers\UserProfileController::class, 'index'])->name('profile');
+Route::post('/update', [App\Http\Controllers\UserProfileController::class, 'update'])->name('update');
+
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
 Route::post('/disable/{id}', [App\Http\Controllers\HomeController::class, 'disableAction'])->name('/disable/{id}');
 Route::post('/enable/{id}', [App\Http\Controllers\HomeController::class, 'enableAction'])->name('/enable/{id}');
 Route::post('/delete/{id}', [App\Http\Controllers\HomeController::class, 'deleteAction'])->name('/delete/{id}');
 
 Route::get('/courses', [App\Http\Controllers\CatalogController::class, 'index'])->name('courses');
+Route::post('/courses/join/{id}', [App\Http\Controllers\CatalogController::class, 'joinAction'])->name('/join/{id}');
 Route::get('/course-single/{id}', [App\Http\Controllers\CourseSingleController::class, 'index'])->name('course-single/{id}');
 
 Route::get('/create-course', [App\Http\Controllers\CourseController::class, 'index'])->name('create-course');

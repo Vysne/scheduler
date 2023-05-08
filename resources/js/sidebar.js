@@ -103,7 +103,9 @@ function currentPageMarkUp()
     if (currentPageDom != null) {
         let currentPage = currentPageDom.firstElementChild.innerHTML;
         let sidebarBtn = document.querySelector(`.sidebar-item-link[title="${currentPage}"]`);
-        sidebarBtn.classList.add('selected');
+        if (sidebarBtn != null) {
+            sidebarBtn.classList.add('selected');
+        }
     }
 }
 

@@ -53,10 +53,16 @@
                     <li class="navbar-menu-item">
                         <a role="button" id="userDropdown" data-toggle="dropdown" class="item-link" aria-haspopup="true" aria-expanded="false" target="shrinked">
                             <span class="user-name">{{ Auth::user()->name }}</span>
-                            <img src="{{ asset('/img/user-profile.svg') }}" class="profile-img">
+                            @foreach($userData as $userImage)
+                                @if($userImage['user-image'])
+                                    <img src="{{ asset($userImage['user-image']) }}" class="profile-img">
+                                @else
+                                    <img src="{{ asset('/img/user-profile.svg') }}" class="profile-img">
+                                @endif
+                            @endforeach
                         </a>
                         <div class="user-dropdown-menu dropdown-menu-disabled" id="dropdown-menu">
-                            <a href="#" class="dropdown-item">
+                            <a href="{{ route('profile') }}" class="dropdown-item">
                                 <i class="fa fa-user" aria-hidden="true"></i>
                                 Profile
                             </a>

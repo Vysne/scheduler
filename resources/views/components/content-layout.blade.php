@@ -30,12 +30,14 @@
                             <p>(2354)</p>
                         </div>
                         <div class="course-join">
-                            <button type="button">
-                                <div class="course-join-icon">
-                                    <i></i>
-                                    <span>Join course</span>
-                                </div>
-                            </button>
+                            <form action="{{ url('/join/' . $course->id) }}) }}" method="POST">
+                                <button type="button">
+                                    <div class="course-join-icon">
+                                        <i></i>
+                                        <span>Join course</span>
+                                    </div>
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>

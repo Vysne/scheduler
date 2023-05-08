@@ -43,6 +43,11 @@ class CatalogController extends Controller
         }
     }
 
+    public function joinAction($courseId)
+    {
+        dd($courseId);
+    }
+
     public function filterCourses($filterValues)
     {
         return DB::table('courses')

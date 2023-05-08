@@ -7,8 +7,15 @@
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
 
+html {
+    //height: 100%;
+    height: auto;
+}
+
 .app {
     display: flex;
+    //height: 100%;
+    height: auto;
 }
 
 main {
