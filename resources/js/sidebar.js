@@ -121,5 +121,4 @@ function scrollablePageSidebar()
     }
 }
 
-
 window.onload = [localTime(), sidebarInteraction(), currentPageMarkUp(), scrollablePageSidebar()];

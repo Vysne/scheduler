@@ -52,9 +52,9 @@
         </li>
         <?php else : ?>
         <li class="sidebar-item">
-            <a href="{{ route('application') }}" class="sidebar-item-link" title="Freelancer application">
+            <a class="sidebar-item-link" title="Freelancer application" data-toggle="modal" data-target="#applicationModal">
                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                <span class="sidebar-item-title">Freelancer application</span>
+                <span class="sidebar-item-title">Course creator application</span>
             </a>
         </li>
         <?php endif; ?>

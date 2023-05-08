@@ -114,6 +114,16 @@
                                                 <input type="hidden" name="user-location" id="user-location" value="{{ $data['location'] }}">
                                             </div>
                                         </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <h6 class="mb-0">Joined</h6>
+                                            </div>
+                                            <div class="col-sm-9 text-secondary">
+                                                <span data-status="static">{{ date('M d, Y', strtotime($data['created_at'])) }}</span>
+                                                <input type="hidden" name="user-location" id="user-location" value="{{ date('M d, Y', strtotime($data['created_at'])) }}">
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
