@@ -2,7 +2,10 @@
 
 namespace App\View\Components;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\View\Component;
+use App\Models\UserInformation;
 
 class navbarLayout extends Component
 {
@@ -23,6 +26,13 @@ class navbarLayout extends Component
      */
     public function render()
     {
-        return view('components.navbar-layout');
+        return view('components.navbar-layout', ['userData' => $this->getUserLogo()]);
+    }
+
+    private function getUserLogo()
+    {
+        $userId = Auth::id();
+
+        return UserInformation::where('user_id', '=', $userId)->get('user-image')->toArray();
     }
 }
