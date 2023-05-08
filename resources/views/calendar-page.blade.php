@@ -32,8 +32,10 @@
         <x-navbar-layout></x-navbar-layout>
         <div id="calendar"></div>
     </div>
+    <x-application-modal-layout></x-application-modal-layout>
 </div>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.6/index.global.min.js'></script>
 
 <script>
