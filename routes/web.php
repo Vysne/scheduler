@@ -42,6 +42,7 @@ Route::get('/update', [App\Http\Controllers\CourseController::class, 'update'])-
 
 Route::get('/calendar', [App\Http\Controllers\CalendarController::class, 'index'])->name('calendar');
 
-//Route::get('/application', [App\Http\Controllers\InstructorApplicationController::class, 'index'])->name('application');
+Route::get('/terms-and-conditions', [App\Http\Controllers\TermsAndConditionsController::class, 'index'])->name('terms-and-conditions');
+Route::post('/apply', [App\Http\Controllers\ApplicationController::class, 'index'])->name('apply');
 
 Route::get('/admin-panel', [App\Http\Controllers\AdminPanelController::class, 'index'])->name('admin-panel');

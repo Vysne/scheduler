@@ -38,7 +38,7 @@ class UserInformationService
             ]);
     }
 
-    private function getUserInformation($userId)
+    public function getUserInformation($userId)
     {
         return UserInformation::where('user_id', '=', $userId)->get()->toArray();
     }

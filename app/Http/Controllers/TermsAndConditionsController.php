@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class InstructorApplicationController extends Controller
+class TermsAndConditionsController extends Controller
 {
     public function __construct()
     {
@@ -13,6 +13,6 @@ class InstructorApplicationController extends Controller
 
     public function index()
     {
-        return view('application-page');
+        return view('terms-and-conditions-page');
     }
 }

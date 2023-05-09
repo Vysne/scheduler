@@ -3,6 +3,7 @@
 namespace App\View\Components;
 
 use Illuminate\View\Component;
+use App\Http\Services\ApplicationService;
 
 class ApplicationModalLayout extends Component
 {
@@ -23,6 +24,8 @@ class ApplicationModalLayout extends Component
      */
     public function render()
     {
-        return view('components.application-modal-layout');
+        $applicationService = new ApplicationService;
+
+        return view('components.application-modal-layout', ['application' => $applicationService->getApplication()]);
     }
 }
