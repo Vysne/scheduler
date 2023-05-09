@@ -61,7 +61,7 @@ class CatalogController extends Controller
     {
         return DB::table('courses')
             ->join('users', 'courses.author', '=', 'users.id')
-            ->select('courses.id', 'courses.course_name', 'courses.image', 'courses.type', 'users.name')
+            ->select('courses.id', 'courses.course_name', 'courses.author', 'courses.image', 'courses.type', 'users.name')
             ->where('courses.visible', '=', 1)
             ->where(function($query) use($filterValues) {
                 foreach ($filterValues['filters'] as $key => $filter) {

@@ -45,17 +45,17 @@
                 <div class="course-single-container">
                     <form action="{{ route('update') }}" method="GET" enctype="multipart/form-data">
                         @csrf
-                        <x-course-single-header-layout></x-course-single-header-layout>
+                        @foreach($course['about-course'] as $courseSingleData)
+                        <x-course-single-header-layout :availability="$availability" :courseSingleData="$courseSingleData"></x-course-single-header-layout>
                         <div class="course-content-container">
                             <div class="about-course-container">
                                 <div class="course-content-title">
                                     <h2 id="about-course-part">About course</h2>
                                 </div>
-                                @foreach($course['about-course'] as $data)
                                 <div class="about-course-form">
                                     <div class="course-card-info">
                                         <div class="course-image-wrap">
-                                            <div id="display-image" style="background-image: url('{{ asset($data['image']) }}')"></div>
+                                            <div id="display-image" style="background-image: url('{{ asset($courseSingleData['image']) }}')"></div>
                                             <div class="upload-container">
                                                 <i class="fa fa-upload" aria-hidden="true"></i>
                                                 <input onclick="uploadImg(this)" type="file" id="file-input" name="course-img" accept="image/*">
@@ -64,13 +64,13 @@
                                         <div class="course-name-and-type-container">
                                             <div class="course-name-wrap">
                                                 <span>Course title</span>
-                                                <input type="text" id="course-title" name="course-name" value="{{ $data['course_name'] }}">
+                                                <input type="text" id="course-title" name="course-name" value="{{ $courseSingleData['course_name'] }}">
                                             </div>
                                             <div class="course-type-wrap">
                                                 <span>Course type</span>
                                                 <div class="course-type-select">
                                                     <div class="dropdown" onclick="dropdownActive(this)">
-                                                        <input type="text" class="textBox" placeholder="Select a day" value="{{ $data['type'] }}" name="course-type" readonly required>
+                                                        <input type="text" class="textBox" placeholder="Select a day" value="{{ $courseSingleData['type'] }}" name="course-type" readonly required>
                                                         <div class="option">
                                                             <div onclick="show(this)">Economy and Finances</div>
                                                             <div onclick="show(this)">Health</div>
@@ -85,13 +85,13 @@
                                             </div>
                                             <div class="course-requirements-wrap">
                                                 <span>Course requirements</span>
-                                                <textarea type="text" id="course-requirements" name="course-requirements" required>{{ $data['requirements'] }}</textarea>
+                                                <textarea type="text" id="course-requirements" name="course-requirements" required>{{ $courseSingleData['requirements'] }}</textarea>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="course-description">
                                         <div id="course-descr"></div>
-                                        <input type="hidden" id="course-descr" name="course-descr-body" value="{{ $data['course_descr_body'] }}"/>
+                                        <input type="hidden" id="course-descr" name="course-descr-body" value="{{ $courseSingleData['course_descr_body'] }}"/>
                                         {{--                <div class="text-editor">--}}
                                         {{--                    <input name="box" type="hidden">--}}
                                         {{--                    <div id="editor-container"></div>--}}

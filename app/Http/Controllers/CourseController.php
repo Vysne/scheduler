@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Course;
 use App\Http\Services\CourseInformationService;
+use App\Http\Services\EnlistmentService;
 
 class CourseController extends Controller
 {
@@ -17,7 +18,9 @@ class CourseController extends Controller
 
     public function show($courseId)
     {
-        return view('course-edit-page', ['course' => $this->getSelectedCourse($courseId)]);
+        $enlistmentService = new EnlistmentService;
+
+        return view('course-edit-page', ['course' => $this->getSelectedCourse($courseId), 'availability' => $enlistmentService->checkEnlistment()]);
     }
 
     public function create(Request $request)

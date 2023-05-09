@@ -39,25 +39,6 @@
             <x-user-course-table-layout></x-user-course-table-layout>
         </div>
         <x-application-modal-layout></x-application-modal-layout>
-{{--        <div class="modal fade-scale" id="applicationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">--}}
-{{--            <div class="modal-dialog modal-dialog-centered" role="document">--}}
-{{--                <div class="modal-content">--}}
-{{--                    <div class="modal-header">--}}
-{{--                        <h5 class="modal-title" id="exampleModalLongTitle">Course creator application</h5>--}}
-{{--                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
-{{--                            <span aria-hidden="true">&times;</span>--}}
-{{--                        </button>--}}
-{{--                    </div>--}}
-{{--                    <div class="modal-body">--}}
-{{--                        <h1>Test</h1>--}}
-{{--                    </div>--}}
-{{--                    <div class="modal-footer">--}}
-{{--                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>--}}
-{{--                        <button type="button" class="btn btn-primary">Save changes</button>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
     </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
