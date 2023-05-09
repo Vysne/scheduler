@@ -40,13 +40,13 @@
 {{--            <x-course-single-page-layout :courseSingleData="$courseSingleData"></x-course-single-page-layout>--}}
             <div class="course-single-wrapper">
                 <div class="course-single-container">
-                    <x-course-single-header-layout></x-course-single-header-layout>
+                    @foreach($course['about-course'] as $courseSingleData)
+                    <x-course-single-header-layout :availability="$availability" :courseSingleData="$courseSingleData"></x-course-single-header-layout>
                     <div class="course-content-container">
                         <div class="about-course-container">
                             <div class="course-content-title">
                                 <h2 id="about-course-part">About course</h2>
                             </div>
-                            @foreach($course['about-course'] as $courseSingleData)
                             <div class="about-course-content">
                                 <div class="course-content-description">
                                     <h3>{{ $courseSingleData['course_name'] }}</h3>
@@ -62,8 +62,8 @@
                                     <p>4/5 stars</p>
                                 </div>
                             </div>
-                            @endforeach
                         </div>
+                        @endforeach
                         <div class="time-and-location-container">
                             <div class="course-content-title">
                                 <h2 id="time-and-location-part">Time & location</h2>

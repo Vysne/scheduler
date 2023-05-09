@@ -32,7 +32,7 @@ Route::post('/enable/{id}', [App\Http\Controllers\HomeController::class, 'enable
 Route::post('/delete/{id}', [App\Http\Controllers\HomeController::class, 'deleteAction'])->name('/delete/{id}');
 
 Route::get('/courses', [App\Http\Controllers\CatalogController::class, 'index'])->name('courses');
-Route::post('/courses/join/{id}', [App\Http\Controllers\CatalogController::class, 'joinAction'])->name('/join/{id}');
+Route::post('/join/{id}', [App\Http\Controllers\CatalogController::class, 'joinAction'])->name('/join/{id}');
 Route::get('/course-single/{id}', [App\Http\Controllers\CourseSingleController::class, 'index'])->name('course-single/{id}');
 
 Route::get('/create-course', [App\Http\Controllers\CourseController::class, 'index'])->name('create-course');

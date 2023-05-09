@@ -4,14 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\CourseController;
 use Illuminate\Http\Request;
+use App\Http\Services\EnlistmentService;
 
 class CourseSingleController extends Controller
 {
     public function index($courseId)
     {
         $course = new CourseController;
+        $enlistmentService = new EnlistmentService;
 
-        return view('course-single-page', ['course' => $course->getSelectedCourse($courseId)]);
+        return view('course-single-page', ['course' => $course->getSelectedCourse($courseId), 'availability' => $enlistmentService->checkEnlistment()]);
     }
 
 // TODO VIDEO PLAYBACK WORKS BUT NEED TO SOLVE THE POSITIONING FOR CODE

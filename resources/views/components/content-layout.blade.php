@@ -30,14 +30,31 @@
                             <p>(2354)</p>
                         </div>
                         <div class="course-join">
-                            <form action="{{ url('/join/' . $course->id) }}) }}" method="POST">
-                                <button type="button">
+                            @if ($course->author != Auth::id() && array_key_exists($course->id, $availability) == false)
+                            <form action="{{ url('/join/' . $course->id) }}" method="POST">
+                                @csrf
+                                <button type="submit">
                                     <div class="course-join-icon">
                                         <i></i>
                                         <span>Join course</span>
                                     </div>
                                 </button>
                             </form>
+                            @elseif (array_key_exists($course->id, $availability) == true)
+                                <button type="submit">
+                                    <div class="course-join-icon">
+                                        <i></i>
+                                        <span>{{ ucfirst($availability[$course->id]) }}</span>
+                                    </div>
+                                </button>
+                            @else
+                                <button type="submit">
+                                    <div class="course-join-icon">
+                                        <i></i>
+                                        <span>Already joined</span>
+                                    </div>
+                                </button>
+                            @endif
                         </div>
                     </div>
                 </div>

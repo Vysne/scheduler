@@ -13,12 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('enlistments', function (Blueprint $table) {
-            $table->id();
-            $table->bigInteger('course_id')->unsigned();
-            $table->bigInteger('user_id')->unsigned();
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrent();
+        Schema::table('enlistments', function (Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
@@ -29,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('enlistments');
+        Schema::table('enlistments', function (Blueprint $table) {
+            $table->dropForeign('user_id');
+        });
     }
 };

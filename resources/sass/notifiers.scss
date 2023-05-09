@@ -3,6 +3,9 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    & div, ul, li {
+        box-sizing: unset;
+    }
 }
 .notifier-box {
     display: flex;

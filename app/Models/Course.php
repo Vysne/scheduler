@@ -29,4 +29,9 @@ class Course extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function enlistments()
+    {
+        return $this->hasMany(Enlistments::class);
+    }
 }

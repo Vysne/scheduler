@@ -58,7 +58,7 @@ class CourseController extends Controller
     public function getSelectedCourse($courseId)
     {
         $course = DB::table('courses')
-            ->select('courses.id', 'courses.course_name', 'courses.image', 'courses.type', 'courses.requirements', 'courses.course_descr_body')
+            ->select('courses.id', 'courses.course_name', 'courses.author', 'courses.image', 'courses.type', 'courses.requirements', 'courses.course_descr_body')
             ->where('courses.id', '=', $courseId)
             ->get()
             ->toArray();

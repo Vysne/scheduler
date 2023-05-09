@@ -30,9 +30,28 @@
     <?php $currentUrl = Route::current()->getName(); if (!in_array($currentUrl, ['create-course', 'edit-course/{id}'])) : ?>
     <div class="enrollment-container">
         <div class="enrollment-button-container">
-            <button type="submit" class="enrollment-button">
-                <span>Enroll</span>
-            </button>
+            @if ($courseSingleData['author'] != Auth::id() && array_key_exists($courseSingleData['id'], $availability) == false)
+            <form action="{{ url('/join/' . $courseSingleData['id']) }}" method="POST">
+                @csrf
+                <button type="submit" class="enrollment-button">
+                    <span>Join course</span>
+                </button>
+            </form>
+            @elseif (array_key_exists($courseSingleData['id'], $availability) == true)
+                <button type="submit" class="enrollment-button">
+                    <div class="course-join-icon">
+                        <i></i>
+                        <span>{{ ucfirst($availability[$courseSingleData['id']]) }}</span>
+                    </div>
+                </button>
+            @else
+                <button type="submit" class="enrollment-button">
+                    <div class="course-join-icon">
+                        <i></i>
+                        <span>Already joined</span>
+                    </div>
+                </button>
+            @endif
         </div>
         <div class="enrollment-statistics-container">
             <h5>Already enrolled: 100 users</h5>
