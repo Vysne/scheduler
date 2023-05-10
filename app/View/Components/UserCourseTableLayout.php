@@ -4,6 +4,7 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 use App\Http\Services\DashboardTableService;
+use App\Http\Services\EnlistmentService;
 
 class UserCourseTableLayout extends Component
 {
@@ -25,7 +26,8 @@ class UserCourseTableLayout extends Component
     public function render()
     {
         $userCreatedCourses = new DashboardTableService;
+        $enlistmentService = new EnlistmentService;
 
-        return view('components.user-course-table-layout', ['userContents' => $userCreatedCourses->showCreatedCourses()]);
+        return view('components.user-course-table-layout', ['userContents' => $userCreatedCourses->showCreatedCourses(), 'enlistments' => $enlistmentService->getEnlistments()]);
     }
 }

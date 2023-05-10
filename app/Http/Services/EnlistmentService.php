@@ -23,4 +23,20 @@ class EnlistmentService
 
         return $availability;
     }
+
+//    TODO WILL ADD PROGRESS VALUE
+    public function getEnlistments()
+    {
+        $userId = Auth::id();
+
+        $userEnlistments = DB::table('enlistments')
+            ->join('courses', 'enlistments.course_id', '=', 'courses.id')
+//            ->join('users', 'enlistments.user_id', '=', 'users.id')
+            ->select('courses.id', 'courses.course_name', 'courses.type', 'enlistments.status')
+            ->where('enlistments.user_id', '=', $userId)
+            ->where('courses.visible', '=', 1)
+            ->get();
+
+        return $userEnlistments;
+    }
 }

@@ -57,7 +57,9 @@
     width: 242px;
     border-radius: 50%;
     border: 1px solid black;
-    background-size: contain;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .upload-container {

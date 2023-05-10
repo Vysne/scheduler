@@ -49,9 +49,9 @@
                                     <div class="card-body">
                                         <div class="d-flex flex-column align-items-center text-center">
                                             @if($data['user-image'] == 'user-profile.svg')
-                                                <img src="{{ asset('img/' . $data['user-image']) }}" alt="Admin" class="rounded-circle" width="270">
+                                                <img src="{{ asset('img/' . $data['user-image']) }}" alt="Admin" class="rounded-circle" width="100%" height="100%">
                                             @else
-                                                <img src="{{ asset($data['user-image']) }}" alt="Admin" class="rounded-circle" width="270">
+                                                <img src="{{ asset($data['user-image']) }}" alt="Admin" class="rounded-circle" width="100%" height="100%">
                                             @endif
                                             <div id="display-image" hidden></div>
                                             <div class="upload-container" hidden>

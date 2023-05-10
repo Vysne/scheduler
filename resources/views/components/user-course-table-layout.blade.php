@@ -13,9 +13,11 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach($enlistments as $enlistment)
+{{--                    {{ dd($enlistment) }}--}}
                 <tr>
-                    <th scope="row">The Ultimate Web Design Projects Course</th>
-                    <td>Computer Science</td>
+                    <th scope="row">{{ $enlistment->course_name }}</th>
+                    <td>{{ $enlistment->type }}</td>
                     <td>
                         <div class="progress-bar-wrapper">
                             <div class="progress">
@@ -25,30 +27,13 @@
                         </div>
                     </td>
                     <td>
-                        <a href="#" class="notifier-button">
+                        <a class="notifier-button">
                             <i class="fa fa-clock-o" aria-hidden="true"></i>
-                            <span>Inspect</span>
+                            <span>{{ ucfirst($enlistment->status) }}</span>
                         </a>
                     </td>
                 </tr>
-                <tr>
-                    <th scope="row">Mastering Business Negotiations</th>
-                    <td>Business</td>
-                    <td>
-                        <div class="progress-bar-wrapper">
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 20%"></div>
-                            </div>
-                            <span>20%</span>
-                        </div>
-                    </td>
-                    <td>
-                        <a href="#" class="notifier-button">
-                            <i class="fa fa-clock-o" aria-hidden="true"></i>
-                            <span>Inspect</span>
-                        </a>
-                    </td>
-                </tr>
+                @endforeach
             </tbody>
             <thead>
             <tr>
