@@ -60,10 +60,11 @@
             </thead>
             <tbody>
             @foreach($enlistments as $enlistment)
+                <x-user-profile-modal-layout :enlistment="$enlistment"></x-user-profile-modal-layout>
                 <tr>
                     <td>
                         <div class="d-flex align-items-center">
-                            <a href="#" class="user-profile-link" data-toggle="modal" data-target="#userProfileModal">
+                            <a href="#" class="user-profile-link" data-toggle="modal" data-target="#{{ $enlistment['user_id'] }}userProfileModal">
                                 @if($enlistment['user-image'] != 'user-profile.svg')
                                 <img
                                     src="{{ asset($enlistment['user-image']) }}"
@@ -111,17 +112,22 @@
                     <td style="display: table-cell">
                         @if($enlistment['status'] != 'accepted' && $enlistment['status'] != 'declined')
                             <div class="action-buttons-wrap">
-                                <a href="#" id="disable-button" onclick="visibilityAction(this)">
-                                    <i class="fa fa-check ql-color-blue" aria-hidden="true"></i>
-                                </a>
-                                <a href="#" id="disable-button" onclick="visibilityAction(this)">
-                                    <i class="fa fa-times" aria-hidden="true"></i>
-                                </a>
+                                <form action="{{ url('/members/' . $enlistment['id'] . '/accept/' . $enlistment['user_id']) }}" method="POST">
+                                    @csrf
+                                    <button type="submit" id="disable-button" onclick="visibilityAction(this)">
+                                        <i class="fa fa-check ql-color-blue" aria-hidden="true"></i>
+                                    </button>
+                                </form>
+                                <form action="{{ url('/members/' . $enlistment['id'] . '/decline/' . $enlistment['user_id']) }}" method="POST">
+                                    @csrf
+                                    <button type="submit" id="disable-button" onclick="visibilityAction(this)">
+                                        <i class="fa fa-times" aria-hidden="true"></i>
+                                    </button>
+                                </form>
                             </div>
                         @endif
                     </td>
                 </tr>
-                <x-user-profile-modal-layout :enlistment="$enlistment"></x-user-profile-modal-layout>
             @endforeach
             </tbody>
         </table>

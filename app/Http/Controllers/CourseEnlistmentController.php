@@ -15,4 +15,22 @@ class CourseEnlistmentController extends Controller
 
         return view('course-members-page', ['enlistments' => $enlistmentService->getCourseEnlistments($courseId), 'members' => $enlistmentService->getCourseMembers($courseId)]);
     }
+
+    public function acceptAction($courseId, $userId)
+    {
+        $enlistmentService = new EnlistmentService;
+
+        $enlistmentService->acceptUser($courseId, $userId);
+
+        return redirect('/members/' . $courseId);
+    }
+
+    public function declineAction($courseId, $userId)
+    {
+        $enlistmentService = new EnlistmentService;
+
+        $enlistmentService->declineUser($courseId, $userId);
+
+        return redirect('/members/' . $courseId);
+    }
 }

@@ -57,8 +57,8 @@
                             @foreach($userData as $userImage)
                                 @if($userImage['user-image'] != 'user-profile.svg')
                                     <img src="{{ asset($userImage['user-image']) }}" class="profile-img">
-{{--                                @else--}}
-{{--                                    <img src="{{ asset('/img/user-profile.svg') }}" class="profile-img">--}}
+                                @else
+                                    <img src="{{ asset('/img/user-profile.svg') }}" class="profile-img">
                                 @endif
                             @endforeach
                             @else

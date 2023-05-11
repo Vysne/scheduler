@@ -14,25 +14,33 @@
             </thead>
             <tbody>
                 @foreach($enlistments as $enlistment)
-{{--                    {{ dd($enlistment) }}--}}
-                <tr>
-                    <th scope="row">{{ $enlistment->course_name }}</th>
-                    <td>{{ $enlistment->type }}</td>
-                    <td>
-                        <div class="progress-bar-wrapper">
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 50%"></div>
-                            </div>
-                            <span>50%</span>
-                        </div>
-                    </td>
-                    <td>
-                        <a class="notifier-button">
-                            <i class="fa fa-clock-o" aria-hidden="true"></i>
-                            <span>{{ ucfirst($enlistment->status) }}</span>
-                        </a>
-                    </td>
-                </tr>
+                    @if($enlistment->status !== 'declined')
+                        <tr>
+                            <th scope="row">{{ $enlistment->course_name }}</th>
+                            <td>{{ $enlistment->type }}</td>
+                            <td>
+                                <div class="progress-bar-wrapper">
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 50%"></div>
+                                    </div>
+                                    <span>50%</span>
+                                </div>
+                            </td>
+                            <td>
+                                @if($enlistment->status === 'accepted')
+                                    <a href="{{ url('/course-single/' . $enlistment->id) }}" class="notifier-button">
+                                        <i class="fa fa-check" aria-hidden="true"></i>
+                                        <span>Already joined</span>
+                                    </a>
+                                @elseif($enlistment->status === 'processing')
+                                    <a href="{{ url('/course-single/' . $enlistment->id) }}" class="notifier-button">
+                                        <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                        <span>{{ ucfirst($enlistment->status) }}</span>
+                                    </a>
+                                @endif
+                            </td>
+                        </tr>
+                    @endif
                 @endforeach
             </tbody>
             <thead>

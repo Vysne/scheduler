@@ -31,6 +31,8 @@ Route::post('/disable/{id}', [App\Http\Controllers\HomeController::class, 'disab
 Route::post('/enable/{id}', [App\Http\Controllers\HomeController::class, 'enableAction'])->name('/enable/{id}');
 Route::post('/delete/{id}', [App\Http\Controllers\HomeController::class, 'deleteAction'])->name('/delete/{id}');
 Route::get('/members/{id}', [App\Http\Controllers\CourseEnlistmentController::class, 'index'])->name('/members/{id}');
+Route::post('/members/{id}/accept/{user_id}', [App\Http\Controllers\CourseEnlistmentController::class, 'acceptAction'])->name('/members/{id}/accept/{user_id}');
+Route::post('/members/{id}/decline/{user_id}', [App\Http\Controllers\CourseEnlistmentController::class, 'declineAction'])->name('/members/{id}/decline/{user_id}');
 
 Route::get('/courses', [App\Http\Controllers\CatalogController::class, 'index'])->name('courses');
 Route::post('/join/{id}', [App\Http\Controllers\CatalogController::class, 'joinAction'])->name('/join/{id}');

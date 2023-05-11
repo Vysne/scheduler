@@ -4,7 +4,7 @@
             @foreach($courses as $course)
             <li>
                 <div class="course-card" data-type="{{ $course->type }}">
-                    <a href="{{ url('course-single/' . $course->id) }}') }}">
+                    <a href="{{ url('course-single/' . $course->id) }}">
                         <div class="course-image">
                             <img src="{{ asset($course->image) }}">
                         </div>
@@ -41,12 +41,21 @@
                                 </button>
                             </form>
                             @elseif (array_key_exists($course->id, $availability) == true)
+                                @if($availability[$course->id] !== 'accepted')
                                 <button type="submit">
                                     <div class="course-join-icon">
                                         <i></i>
                                         <span>{{ ucfirst($availability[$course->id]) }}</span>
                                     </div>
                                 </button>
+                                @else
+                                    <button type="submit">
+                                        <div class="course-join-icon">
+                                            <i></i>
+                                            <span>Already joined</span>
+                                        </div>
+                                    </button>
+                                @endif
                             @else
                                 <button type="submit">
                                     <div class="course-join-icon">

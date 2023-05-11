@@ -35,7 +35,7 @@
         <div class="catalog-wrap">
             <x-navbar-layout></x-navbar-layout>
             <x-page-title-layout></x-page-title-layout>
-            <x-notifiers-layout></x-notifiers-layout>
+{{--            <x-notifiers-layout></x-notifiers-layout>--}}
             <x-user-course-table-layout></x-user-course-table-layout>
         </div>
         <x-application-modal-layout></x-application-modal-layout>

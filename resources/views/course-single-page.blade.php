@@ -37,11 +37,15 @@
     <x-sidebar-layout></x-sidebar-layout>
     <div class="catalog-wrap">
         <x-navbar-layout></x-navbar-layout>
-{{--            <x-course-single-page-layout :courseSingleData="$courseSingleData"></x-course-single-page-layout>--}}
             <div class="course-single-wrapper">
                 <div class="course-single-container">
                     @foreach($course['about-course'] as $courseSingleData)
                     <x-course-single-header-layout :availability="$availability" :courseSingleData="$courseSingleData"></x-course-single-header-layout>
+                    @if(array_key_exists($courseSingleData['id'], $availability))
+                        <input type="hidden" id="enroll-check" value="{{ $availability[$courseSingleData['id']] }}">
+                    @else
+                        <input type="hidden" id="enroll-check" value="">
+                    @endif
                     <div class="course-content-container">
                         <div class="about-course-container">
                             <div class="course-content-title">
@@ -115,7 +119,6 @@
                                     <div class="about-instructor">
                                         <div id="instructor-descr"></div>
                                         <input type="hidden" name="{{ $courseSingleInstructor['key'] }}" value="{{ $courseSingleInstructor['instructor-descr-body'] }}"/>
-                                        {{--                                        <input type="hidden" id="instructor-descr" name="{{ $courseSingleInstructor['key'] }}" value="{{ $courseSingleInstructor['instructor-descr-body'] }}"/>--}}
                                     </div>
                                 </div>
                                 @endforeach
@@ -127,15 +130,6 @@
                             </div>
                             @foreach($course['course-syllabuses'] as $courseSingleSyllabus)
                             <div class="syllabus-content-disabled">
-{{--                                <button class="accordion">Section 1</button>--}}
-{{--                                <div class="panel">--}}
-{{--                                    <h4>Introduction</h4>--}}
-{{--                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>--}}
-{{--                                                            <video id="course-video" controls autobuffer>--}}
-{{--                                                        <source src="{{ asset('video/Introduction.mp4') }}" type="video/mp4">--}}
-{{--                                                                <source src="video/Introduction.mp4" type="video/mp4">--}}
-{{--                                                            </video>--}}
-{{--                                </div>--}}
                                 <button class="accordion" onclick="accordion(this)">{{ $courseSingleSyllabus['syllabus-name'] }}</button>
                                 <div class="panel">
                                     <div class="text-upload-container">

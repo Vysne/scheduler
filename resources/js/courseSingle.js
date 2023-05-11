@@ -59,8 +59,23 @@ function loadSyllabusEditors() {
 function hideSyllabus() {
     let syllabus = document.querySelector('.syllabus-content-disabled');
 
-    syllabus.classList.remove('syllabus-content-disabled');
-    syllabus.classList.add('syllabus-content');
+    if (checkEnrollment() !== 'accepted') {
+        syllabus.classList.remove('syllabus-content-disabled');
+        syllabus.classList.add('syllabus-content');
+    } else {
+        let syllabuses = document.querySelectorAll('.syllabus-content-disabled');
+
+        syllabuses.forEach(function (syllabus) {
+           syllabus.classList.remove('syllabus-content-disabled');
+           syllabus.classList.add('syllabus-content');
+        });
+    }
+}
+
+function checkEnrollment() {
+    let input = document.getElementById('enroll-check');
+
+    return input.value;
 }
 
 window.onload = [loadCourseEditor(), loadInstructorEditors(), loadSyllabusEditors(), hideSyllabus()];

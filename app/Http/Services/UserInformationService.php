@@ -55,15 +55,17 @@ class UserInformationService
             ->where('id', '=', $userId)
             ->get();
 
-        foreach($userLoginData as $loginData) {
-            DB::table('user_information')
-                ->insert([
-                    'user_id' => $userId,
-                    'title' => $loginData->name,
-                    'email' => $loginData->email,
-                    'status' => $loginData->status,
-                    'user-image' => 'user-profile.svg'
-                ]);
+        if (UserInformation::where('user_id', '=', $userId)->exists() === false) {
+            foreach($userLoginData as $loginData) {
+                DB::table('user_information')
+                    ->insert([
+                        'user_id' => $userId,
+                        'title' => $loginData->name,
+                        'email' => $loginData->email,
+                        'status' => $loginData->status,
+                        'user-image' => 'user-profile.svg'
+                    ]);
+            }
         }
 
         return $this->getUserInformation($userId);

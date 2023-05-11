@@ -46,7 +46,7 @@ class EnlistmentService
             ->join('users', 'enlistments.user_id', '=', 'users.id')
             ->join('user_information', 'enlistments.user_id', '=', 'user_information.user_id')
             ->join('courses', 'enlistments.course_id', '=', 'courses.id')
-            ->select('users.id', 'users.name', 'user_information.title', 'user_information.email', 'user_information.mobile', 'user_information.location', 'user_information.user-image', 'user_information.aboutme-descr-body', 'courses.id', 'courses.course_name', 'enlistments.status', 'enlistments.created_at')
+            ->select('users.id', 'users.name', 'user_information.title', 'user_information.email', 'user_information.mobile', 'user_information.location', 'user_information.user-image', 'user_information.aboutme-descr-body', 'courses.id', 'courses.course_name', 'enlistments.user_id', 'enlistments.status', 'enlistments.created_at')
             ->where('enlistments.course_id', '=', $courseId)
             ->get();
 
@@ -65,5 +65,23 @@ class EnlistmentService
             ->get();
 
         return json_decode(json_encode($courseMembers), true);
+    }
+
+    public function acceptUser($courseId, $userId)
+    {
+        return DB::table('enlistments')
+            ->where('enlistments.course_id', '=', $courseId)
+            ->where('enlistments.user_id', '=', $userId)
+            ->update([
+                'status' => 'accepted'
+            ]);
+    }
+
+    public function declineUser($courseId, $userId)
+    {
+        return DB::table('enlistments')
+            ->where('enlistments.course_id', '=', $courseId)
+            ->where('enlistments.user_id', '=', $userId)
+            ->delete();
     }
 }

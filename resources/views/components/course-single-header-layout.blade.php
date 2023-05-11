@@ -38,14 +38,23 @@
                 </button>
             </form>
             @elseif (array_key_exists($courseSingleData['id'], $availability) == true)
-                <button type="submit" class="enrollment-button">
-                    <div class="course-join-icon">
-                        <i></i>
-                        <span>{{ ucfirst($availability[$courseSingleData['id']]) }}</span>
-                    </div>
-                </button>
+                @if($availability[$courseSingleData['id']] != 'accepted')
+                    <button type="button" class="enrollment-button">
+                        <div class="course-join-icon">
+                            <i></i>
+                            <span>{{ ucfirst($availability[$courseSingleData['id']]) }}</span>
+                        </div>
+                    </button>
+                @else
+                    <button type="button" class="enrollment-button">
+                        <div class="course-join-icon">
+                            <i></i>
+                            <span>Already joined</span>
+                        </div>
+                    </button>
+                @endif
             @else
-                <button type="submit" class="enrollment-button">
+                <button type="button" class="enrollment-button">
                     <div class="course-join-icon">
                         <i></i>
                         <span>Already joined</span>
