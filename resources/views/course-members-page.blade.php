@@ -28,7 +28,8 @@
     'resources/sass/page-title.scss',
     'resources/sass/notifiers.scss', 'resources/js/notifiers.js',
     'resources/sass/table.scss', 'resources/js/table.js',
-    'resources/sass/courseMembers.scss', 'resources/js/courseMembers.js'
+    'resources/sass/courseMembers.scss', 'resources/js/courseMembers.js',
+    'resources/js/achievementForm.js'
     ])
 
 </head>
@@ -142,6 +143,7 @@
             </thead>
             <tbody>
             @foreach($members as $member)
+                <x-achievement-form-modal-layout :member="$member"></x-achievement-form-modal-layout>
                 <tr>
                     <td>
                         <div class="d-flex align-items-center">
@@ -160,9 +162,9 @@
                                     class="rounded-circle"
                                 />
                             @endif
-                                <div class="ms-3" style="display: flex; align-items: center">
-                                    <p class="fw-bold mb-1">{{ $member['name'] }}</p>
-                                </div>
+                            <div class="ms-3" style="display: flex; align-items: center">
+                                <p class="fw-bold mb-1">{{ $member['name'] }}</p>
+                            </div>
                         </div>
                     </td>
                     <td>
@@ -175,13 +177,13 @@
                     </td>
                     <td style="display: table-cell">
                         <div class="action-buttons-wrap">
-                            <a href="#" id="disable-button" onclick="visibilityAction(this)">
+                            <a href="#" id="disable-button" data-toggle="modal" data-target="#{{ $member['user_id'] }}achievementModal">
                                 <i class="fa fa-certificate" aria-hidden="true"></i>
                             </a>
-                            <a href="#" id="disable-button" onclick="visibilityAction(this)">
+                            <a href="#" id="disable-button">
                                 <i class="fa fa-commenting" aria-hidden="true"></i>
                             </a>
-                            <a href="#" id="disable-button" onclick="visibilityAction(this)">
+                            <a href="#" id="disable-button">
                                 <i class="fa fa-times" aria-hidden="true"></i>
                             </a>
                         </div>
@@ -202,10 +204,12 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script>
-    function visibilityAction(elem) {
-        let form = elem.parentElement;
+    function closeModal(button) {
+        let input = button.parentElement.previousElementSibling.firstElementChild.lastElementChild;
+        let quillEditor = button.parentElement.previousElementSibling.querySelector('.ql-editor');
 
-        form.submit();
+        input.value = '';
+        quillEditor.innerHTML = '';
     }
 </script>
 </body>

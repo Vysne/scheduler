@@ -40,7 +40,8 @@ export default defineConfig({
                 'resources/js/notifiers.js',
                 'resources/js/courseSingle.js',
                 'resources/js/profile.js',
-                'resources/js/courseMembers.js'
+                'resources/js/courseMembers.js',
+                'resources/js/achievementForm.js'
             ],
             refresh: true,
         }),
