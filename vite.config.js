@@ -23,6 +23,7 @@ export default defineConfig({
                 'resources/sass/application.scss',
                 'resources/sass/courseSingle.scss',
                 'resources/sass/profile.scss',
+                'resources/sass/courseMembers.scss',
                 'resources/js/app.js',
                 'resources/js/login.js',
                 'resources/js/navbar.js',
@@ -38,7 +39,8 @@ export default defineConfig({
                 'resources/js/calendar.js',
                 'resources/js/notifiers.js',
                 'resources/js/courseSingle.js',
-                'resources/js/profile.js'
+                'resources/js/profile.js',
+                'resources/js/courseMembers.js'
             ],
             refresh: true,
         }),

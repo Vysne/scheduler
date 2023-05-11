@@ -14,16 +14,21 @@ class UserInformationService
 
         $userInfoData = $this->getUserInformation($userId);
 
-        if (!$userInfoData) {
-            $userInfoData = $this->userInformationAutomization($userId);
-        }
+//        if (!$userInfoData) {
+//            $userInfoData = $this->userInformationAutomization($userId);
+//        }
 
         return $userInfoData;
     }
 
     public function updateUserInformation($request, $userId)
     {
-        $filePath = $request->file('profile-img')->store('public');
+        if ($request->file('profile-img')) {
+            $filePath = $request->file('profile-img')->store('public');
+            $fileName = str_replace('public', 'storage', $filePath);
+        } else {
+            $fileName = 'user-profile.svg';
+        }
 
         return DB::table('user_information')
             ->where('user_id', '=', $userId)
@@ -33,7 +38,7 @@ class UserInformationService
                 'status' => $request['user-status'],
                 'mobile' => $request['user-mobile'],
                 'location' => $request['user-location'],
-                'user-image' => str_replace('public', 'storage', $filePath),
+                'user-image' => $fileName,
                 'aboutme-descr-body' => $request['aboutme-descr-body']
             ]);
     }
@@ -43,7 +48,7 @@ class UserInformationService
         return UserInformation::where('user_id', '=', $userId)->get()->toArray();
     }
 
-    private function userInformationAutomization($userId)
+    public function userInformationAutomization($userId)
     {
         $userLoginData = DB::table('users')
             ->select('name', 'email', 'status')

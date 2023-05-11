@@ -4,12 +4,15 @@ namespace App\Http\Services;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Services\UserInformationService;
 
 class DashboardTableService
 {
     public function showCreatedCourses()
     {
         $userId = Auth::user()->getAuthIdentifier();
+
+        $this->generateDefaultProfileInfo($userId);
 
         return DB::table('courses')
             ->select('id', 'course_name', 'type', 'visible')
@@ -37,5 +40,12 @@ class DashboardTableService
         return DB::table('courses')
             ->where('id', $courseId)
             ->delete();
+    }
+
+    private function generateDefaultProfileInfo($userId)
+    {
+        $userInformationService = new UserInformationService;
+
+        return $userInformationService->userInformationAutomization($userId);
     }
 }

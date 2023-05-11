@@ -57,8 +57,14 @@
                         <input type="hidden" value="{{ $userContent->visible }}">
                         <div class="inspect-button-wrap">
                             <a href="{{ url('/edit-course/' . $userContent->id) }}" class="notifier-button">
-                                <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
                                 <span>Inspect</span>
+                            </a>
+                        </div>
+                        <div class="course-enlistment-wrap">
+                            <a href="{{ url('/members/' . $userContent->id) }}" class="notifier-button">
+                                <i class="fa fa-users" aria-hidden="true"></i>
+                                <span>Members</span>
                             </a>
                         </div>
                         <div class="disable-button-wrap">

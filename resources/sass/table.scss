@@ -17,11 +17,11 @@ table {
         display: flex;
         justify-content: space-evenly;
         width: 100%;
-        & .inspect-button-wrap, .disable-button-wrap, .delete-button-wrap {
+        & .inspect-button-wrap, .course-enlistment-wrap, .disable-button-wrap, .delete-button-wrap {
             display: flex;
             width: 100%;
         }
-        & .inspect-button-wrap, .disable-button-wrap {
+        & .inspect-button-wrap, .course-enlistment-wrap {
             margin-right: 1rem;
         }
         & a {

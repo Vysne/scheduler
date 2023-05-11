@@ -53,12 +53,12 @@
                     <li class="navbar-menu-item">
                         <a role="button" id="userDropdown" data-toggle="dropdown" class="item-link" aria-haspopup="true" aria-expanded="false" target="shrinked">
                             <span class="user-name">{{ Auth::user()->name }}</span>
-                            @if(array_key_exists('user-image', $userData[0]) != false)
+                            @if($userData != [] && array_key_exists('user-image', $userData[0]) != false)
                             @foreach($userData as $userImage)
                                 @if($userImage['user-image'] != 'user-profile.svg')
                                     <img src="{{ asset($userImage['user-image']) }}" class="profile-img">
-                                @else
-                                    <img src="{{ asset('/img/user-profile.svg') }}" class="profile-img">
+{{--                                @else--}}
+{{--                                    <img src="{{ asset('/img/user-profile.svg') }}" class="profile-img">--}}
                                 @endif
                             @endforeach
                             @else

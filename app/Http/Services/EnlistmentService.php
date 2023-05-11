@@ -39,4 +39,31 @@ class EnlistmentService
 
         return $userEnlistments;
     }
+
+    public function getCourseEnlistments($courseId)
+    {
+        $courseEnlistments = DB::table('enlistments')
+            ->join('users', 'enlistments.user_id', '=', 'users.id')
+            ->join('user_information', 'enlistments.user_id', '=', 'user_information.user_id')
+            ->join('courses', 'enlistments.course_id', '=', 'courses.id')
+            ->select('users.id', 'users.name', 'user_information.title', 'user_information.email', 'user_information.mobile', 'user_information.location', 'user_information.user-image', 'user_information.aboutme-descr-body', 'courses.id', 'courses.course_name', 'enlistments.status', 'enlistments.created_at')
+            ->where('enlistments.course_id', '=', $courseId)
+            ->get();
+
+        return json_decode(json_encode($courseEnlistments), true);
+    }
+
+    public function getCourseMembers($courseId)
+    {
+        $courseMembers = DB::table('enlistments')
+            ->join('users', 'enlistments.user_id', '=', 'users.id')
+            ->join('user_information', 'enlistments.user_id', '=', 'user_information.user_id')
+            ->join('courses', 'enlistments.course_id', '=', 'courses.id')
+            ->select('users.id', 'users.name', 'user_information.title', 'user_information.email', 'user_information.mobile', 'user_information.location', 'user_information.user-image', 'user_information.aboutme-descr-body', 'courses.id', 'courses.course_name', 'enlistments.status', 'enlistments.created_at', 'enlistments.updated_at')
+            ->where('enlistments.course_id', '=', $courseId)
+            ->where('enlistments.status', '=', 'accepted')
+            ->get();
+
+        return json_decode(json_encode($courseMembers), true);
+    }
 }

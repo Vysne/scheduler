@@ -30,6 +30,7 @@ Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])-
 Route::post('/disable/{id}', [App\Http\Controllers\HomeController::class, 'disableAction'])->name('/disable/{id}');
 Route::post('/enable/{id}', [App\Http\Controllers\HomeController::class, 'enableAction'])->name('/enable/{id}');
 Route::post('/delete/{id}', [App\Http\Controllers\HomeController::class, 'deleteAction'])->name('/delete/{id}');
+Route::get('/members/{id}', [App\Http\Controllers\CourseEnlistmentController::class, 'index'])->name('/members/{id}');
 
 Route::get('/courses', [App\Http\Controllers\CatalogController::class, 'index'])->name('courses');
 Route::post('/join/{id}', [App\Http\Controllers\CatalogController::class, 'joinAction'])->name('/join/{id}');

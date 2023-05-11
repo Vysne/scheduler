@@ -121,7 +121,7 @@
                                             </div>
                                             <div class="col-sm-9 text-secondary">
                                                 <span data-status="static">{{ date('M d, Y', strtotime($data['created_at'])) }}</span>
-                                                <input type="hidden" name="user-location" id="user-location" value="{{ date('M d, Y', strtotime($data['created_at'])) }}">
+                                                <input type="hidden" name="user-joindate" id="user-joindate" value="{{ date('M d, Y', strtotime($data['created_at'])) }}">
                                             </div>
                                         </div>
                                     </div>

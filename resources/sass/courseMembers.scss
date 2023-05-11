@@ -1,0 +1,70 @@
+#disable-button{
+    pointer-events: none;
+}
+.fa-check, .fa-times, .fa-certificate, .fa-commenting {
+    color: #d2d7f2;
+    transition: .15s;
+    pointer-events: all;
+    &:hover {
+        color: #4e73df;
+    }
+}
+.table-switch-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+    & button {
+        width: 10%;
+        border-radius: 0.35rem;
+        background-color: #858796;
+        border-color: #858796;
+        transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out, border-color 0.3s ease-in-out, box-shadow 0.13s ease-in-out;
+        & span {
+            color: #ffffff;
+        }
+        &:hover {
+            background-color: #4e73df;
+        }
+    }
+    .active {
+        background-color: #4e73df
+    }
+}
+.enlistment-status-wrap {
+    width: 50%;
+    border-radius: 1rem;
+    text-align: center;
+    pointer-events: none;
+}
+.yellow {
+    background-color: yellow;
+}
+.green {
+    background-color: greenyellow;
+}
+.red {
+    background-color: red;
+}
+.user-profile-link {
+    color: black;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: .15s;
+    &:hover {
+        color: #4e73df;
+    }
+}
+.course-page-link {
+    display: unset;
+    color: black;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: .15s;
+    &:hover {
+        color: #4e73df;
+    }
+}
+.about-me-container {
+    display: flex;
+    flex-direction: column;
+}
