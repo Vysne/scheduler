@@ -36,7 +36,7 @@
             </a>
         </li>
         <li class="sidebar-item">
-            <a class="sidebar-item-link" title="Achievements">
+            <a href="{{ route('achievements') }}" class="sidebar-item-link" title="Achievements">
                 <i class="fa fa-certificate" aria-hidden="true"></i>
                 <span class="sidebar-item-title">Achievements</span>
             </a>

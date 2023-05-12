@@ -24,6 +24,7 @@ export default defineConfig({
                 'resources/sass/courseSingle.scss',
                 'resources/sass/profile.scss',
                 'resources/sass/courseMembers.scss',
+                'resources/sass/achievement.scss',
                 'resources/js/app.js',
                 'resources/js/login.js',
                 'resources/js/navbar.js',
@@ -41,7 +42,8 @@ export default defineConfig({
                 'resources/js/courseSingle.js',
                 'resources/js/profile.js',
                 'resources/js/courseMembers.js',
-                'resources/js/achievementForm.js'
+                'resources/js/achievementForm.js',
+                'resources/js/achievement.js',
             ],
             refresh: true,
         }),

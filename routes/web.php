@@ -33,6 +33,7 @@ Route::post('/delete/{id}', [App\Http\Controllers\HomeController::class, 'delete
 Route::get('/members/{id}', [App\Http\Controllers\CourseEnlistmentController::class, 'index'])->name('/members/{id}');
 Route::post('/members/{id}/accept/{user_id}', [App\Http\Controllers\CourseEnlistmentController::class, 'acceptAction'])->name('/members/{id}/accept/{user_id}');
 Route::post('/members/{id}/decline/{user_id}', [App\Http\Controllers\CourseEnlistmentController::class, 'declineAction'])->name('/members/{id}/decline/{user_id}');
+Route::post('/members/{id}/achievement/{user_id}', [App\Http\Controllers\CourseEnlistmentController::class, 'achievementAction'])->name('/members/{id}/achievement/{user_id}');
 
 Route::get('/courses', [App\Http\Controllers\CatalogController::class, 'index'])->name('courses');
 Route::post('/join/{id}', [App\Http\Controllers\CatalogController::class, 'joinAction'])->name('/join/{id}');
@@ -44,6 +45,8 @@ Route::get('/edit-course/{id}', [App\Http\Controllers\CourseController::class, '
 Route::get('/update', [App\Http\Controllers\CourseController::class, 'update'])->name('update');
 
 Route::get('/calendar', [App\Http\Controllers\CalendarController::class, 'index'])->name('calendar');
+
+Route::get('/achievements', [App\Http\Controllers\AchievementsController::class, 'index'])->name('achievements');
 
 Route::get('/terms-and-conditions', [App\Http\Controllers\TermsAndConditionsController::class, 'index'])->name('terms-and-conditions');
 Route::post('/apply', [App\Http\Controllers\ApplicationController::class, 'index'])->name('apply');

@@ -33,4 +33,13 @@ class CourseEnlistmentController extends Controller
 
         return redirect('/members/' . $courseId);
     }
+
+    public function achievementAction(Request $request, $courseId, $userId)
+    {
+        $enlistmentService = new EnlistmentService;
+
+        $enlistmentService->assignAchievement($courseId, $userId, $request);
+
+        return redirect('/members/' . $courseId);
+    }
 }

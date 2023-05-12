@@ -84,4 +84,16 @@ class EnlistmentService
             ->where('enlistments.user_id', '=', $userId)
             ->delete();
     }
+
+    public function assignAchievement($courseId, $userId, $request)
+    {
+        return DB::table('achievements')
+            ->insert([
+                'course_id' => $courseId,
+                'user_id' => $userId,
+                'achievement_creator' => $request['achievement-creator'],
+                'achievement_title' => $request['achievement-title'],
+                'achievement_descr_body' => $request['achievement-body']
+            ]);
+    }
 }

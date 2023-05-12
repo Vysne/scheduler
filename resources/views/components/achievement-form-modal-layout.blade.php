@@ -1,4 +1,4 @@
-<form action="" method="POST">
+<form action="{{ url('/members/' . $member['id'] . '/achievement/' . $member['user_id']) }}" method="POST">
     @csrf
     <div class="modal fade-scale" id="{{ $member['user_id'] }}achievementModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
@@ -10,6 +10,11 @@
                     </button>
                 </div>
                 <div class="modal-body">
+                    <input type="hidden" name="achievement-creator" value="{{ Auth::user()->name }}">
+                    <div class="achievement-title-wrap">
+                        <span>Achievement title</span>
+                        <input type="text" class="" id="achievement-title-input" name="achievement-title" required>
+                    </div>
                     <div class="achievement-container">
                         <div id="{{ $member['user_id'] }}-achievement"></div>
                         <input type="hidden" id="{{ $member['user_id'] }}-achievement-descr" name="achievement-body" value=""/>
