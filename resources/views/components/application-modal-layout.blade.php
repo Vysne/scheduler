@@ -15,6 +15,7 @@
                     <p>Before submitting the <b>Course creator application</b>, keep in mind that <b>your profile information</b> is used for the required procedure.</p>
                     <div class="tacbox">
                         <input id="checkbox" type="checkbox" required/>
+                        &nbsp;
                         <label for="checkbox"> I agree to these <a href="{{ route('terms-and-conditions') }}">Terms and Conditions</a>.</label>
                     </div>
                 </div>

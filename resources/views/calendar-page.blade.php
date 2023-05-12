@@ -30,7 +30,16 @@
     <x-sidebar-layout></x-sidebar-layout>
     <div class="catalog-wrap">
         <x-navbar-layout></x-navbar-layout>
-        <div id="calendar"></div>
+{{--        <div id="calendar"></div>--}}
+        <div class="add-calendar-event-wrap">
+            <button type="button" data-toggle="modal" data-target="#calendarEventAddModal">
+                <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                &nbsp;
+                <span>New event</span>
+            </button>
+        </div>
+        <x-calendar-form-layout></x-calendar-form-layout>
+        <iframe src="https://outlook.live.com/calendar/0/published/00000000-0000-0000-0000-000000000000/3064dcfa-4e78-4c74-9117-1694f37a4492/cid-B3E44109C35D337F/calendar.html" width="100%" height="100%"></iframe>
     </div>
     <x-application-modal-layout></x-application-modal-layout>
 </div>

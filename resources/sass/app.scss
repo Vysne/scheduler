@@ -61,6 +61,19 @@ main {
         }
     }
 }
+.tacbox {
+    display: flex;
+    flex-direction: row;
+    & input {
+        width: unset;
+    }
+    & label {
+        position: relative;
+        top: unset;
+        -webkit-transform: unset;
+        transform: unset;
+    }
+}
 
 .terms-and-conditions-wrap {
     display: flex;
