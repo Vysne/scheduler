@@ -18,15 +18,16 @@
 }
 .table-switch-wrap {
     display: flex;
-    justify-content: center;
+    justify-content: end;
+    margin-top: 1rem;
     margin-bottom: 1rem;
     & button {
-        width: 10%;
         border-radius: 0.35rem;
         background-color: #858796;
         border-color: #858796;
         transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out, border-color 0.3s ease-in-out, box-shadow 0.13s ease-in-out;
         & span {
+            font-size: 1.2rem;
             color: #ffffff;
         }
         &:hover {

@@ -2,9 +2,8 @@
     <div class="course-single-container">
         <form action="{{ route('create') }}" method="POST" enctype="multipart/form-data">
             @csrf
-{{--            <x-course-single-header-layout></x-course-single-header-layout>--}}
             @auth
-                <div class="course-navbar-container">
+                <nav class="course-navbar-container">
                     <ul class="course-navbar-menu">
                         <div class="navbar-button">
                             <li class="navbar-item">
@@ -70,7 +69,7 @@
                         </div>
                     </div>
                     <?php endif; ?>
-                </div>
+                </nav>
             @endauth
             <x-course-content-form-layout></x-course-content-form-layout>
         </form>

@@ -72,7 +72,7 @@
         </ul>
     </div>
     <div class="content-pagination-container">
-        {{ $courses->links() }}
+        {{ $courses->appends(request()->all())->links() }}
     </div>
 </div>
 

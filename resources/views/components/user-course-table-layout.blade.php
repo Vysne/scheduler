@@ -1,22 +1,19 @@
 <div class="user-course-table">
     <div class="table-wrapper">
-        <table class="table table-dark table-bordered bdr">
-            <thead>
-                <tr>
-                    <th colspan="4" class="table-header">My courses</th>
-                </tr>
+        <table class="table align-middle mb-0 bg-white" id="my-courses-table">
+            <thead class="bg-light">
                 <tr>
                     <th scope="col">Course</th>
                     <th scope="col">Type</th>
                     <th scope="col">Progress</th>
-                    <th scope="col">Course page</th>
+                    <th scope="col">Status</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($enlistments as $enlistment)
                     @if($enlistment->status !== 'declined')
                         <tr>
-                            <th scope="row">{{ $enlistment->course_name }}</th>
+                            <td><a href="{{ url('/course-single/' . $enlistment->id) }}" class="table-course-name">{{ $enlistment->course_name }}</a></td>
                             <td>{{ $enlistment->type }}</td>
                             <td>
                                 <div class="progress-bar-wrapper">
@@ -28,12 +25,12 @@
                             </td>
                             <td>
                                 @if($enlistment->status === 'accepted')
-                                    <a href="{{ url('/course-single/' . $enlistment->id) }}" class="notifier-button">
+                                    <a href="{{ url('/course-single/' . $enlistment->id) }}" class="process-notifier">
                                         <i class="fa fa-check" aria-hidden="true"></i>
                                         <span>Already joined</span>
                                     </a>
                                 @elseif($enlistment->status === 'processing')
-                                    <a href="{{ url('/course-single/' . $enlistment->id) }}" class="notifier-button">
+                                    <a href="{{ url('/course-single/' . $enlistment->id) }}" class="process-notifier">
                                         <i class="fa fa-clock-o" aria-hidden="true"></i>
                                         <span>{{ ucfirst($enlistment->status) }}</span>
                                     </a>
@@ -43,10 +40,9 @@
                     @endif
                 @endforeach
             </tbody>
-            <thead>
-            <tr>
-                <th colspan="4" class="table-header">Created courses</th>
-            </tr>
+        </table>
+        <table class="table align-middle mb-0 bg-white" id="created-courses-table" hidden>
+            <thead class="bg-light">
             <tr>
                 <th scope="col">Course</th>
                 <th scope="col">Type</th>
@@ -57,39 +53,35 @@
             <tbody>
             @foreach($userContents as $userContent)
             <tr>
-                <td>{{ $userContent->course_name }}</td>
+                <td><a href="{{ url('/course-single/' . $userContent->id) }}" class="table-course-name">{{ $userContent->course_name }}</a></td>
                 <td>{{ $userContent->type }}</td>
                 <td></td>
                 <td>
                     <div class="action-buttons-wrap">
                         <input type="hidden" value="{{ $userContent->visible }}">
                         <div class="inspect-button-wrap">
-                            <a href="{{ url('/edit-course/' . $userContent->id) }}" class="notifier-button">
+                            <a href="{{ url('/edit-course/' . $userContent->id) }}" title="Edit">
                                 <i class="fa fa-pencil" aria-hidden="true"></i>
-                                <span>Inspect</span>
                             </a>
                         </div>
                         <div class="course-enlistment-wrap">
-                            <a href="{{ url('/members/' . $userContent->id) }}" class="notifier-button">
+                            <a href="{{ url('/members/' . $userContent->id) }}" title="Manage members">
                                 <i class="fa fa-users" aria-hidden="true"></i>
-                                <span>Members</span>
                             </a>
                         </div>
                         <div class="disable-button-wrap">
                             @if ($userContent->visible != 0)
                             <form action="{{ url('/disable/' . $userContent->id) }}" method="POST" id="disable-form">
                                 @csrf
-                                <a href="#" class="notifier-button" id="disable-button" onclick="visibilityAction(this)">
+                                <a href="#" id="disable-button" onclick="visibilityAction(this)" title="Hide course">
                                     <i class="fa fa-eye-slash" aria-hidden="true"></i>
-                                    <span>Disable</span>
                                 </a>
                             </form>
                             @else
                             <form action="{{ url('/enable/' . $userContent->id) }}" method="POST" id="enable-form">
                                 @csrf
-                                <a href="#" class="notifier-button" id="disable-button" onclick="visibilityAction(this)">
+                                <a href="#" id="disable-button" onclick="visibilityAction(this)" title="Publish course">
                                     <i class="fa fa-eye" aria-hidden="true"></i>
-                                    <span>Enable</span>
                                 </a>
                             </form>
                             @endif
@@ -98,9 +90,8 @@
                         <form action="{{ url('/delete/' . $userContent->id) }}" method="POST" id="delete-form">
                             @csrf
                             <div class="delete-button-wrap">
-                                <a href="#" class="notifier-button" onclick="">
+                                <a href="#" onclick="" title="Delete">
                                     <i class="fa fa-trash" aria-hidden="true"></i>
-                                    <span>Delete</span>
                                 </a>
                             </div>
                         </form>

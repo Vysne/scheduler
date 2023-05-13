@@ -5,10 +5,16 @@
 .table-wrapper {
     padding: 1rem;
 }
+.table {
+    margin-bottom: 1rem !important;
+}
 table {
     & .table-header {
         font-size: 2rem;
         text-align: center;
+        background-color: #4e73df;
+        background-size: cover;
+        color: #d2d7f2;
     }
     & .notifier-button {
         margin-top: unset;
@@ -21,12 +27,10 @@ table {
             display: flex;
             width: 100%;
         }
-        & .inspect-button-wrap, .course-enlistment-wrap {
-            margin-right: 1rem;
-        }
         & a {
             width: 100%;
             height: 100%;
+            font-size: 1.5rem;
         }
         & form {
             width: 100%;
@@ -34,16 +38,21 @@ table {
     }
     & a {
         display: flex;
-        justify-content: center;
-        width: 40%;
+        width: 100%;
         color: #ffffff;
         text-decoration: none;
-        font-size: 1.5rem;
+        font-size: 1.2rem;
+        pointer-events: none;
         & i {
             padding-top: .4rem;
             padding-right: 5%;
-            color: #ffffff;
+            color: #4e73df;
             font-size: 1.5rem;
+            pointer-events: all;
+            transition: .15s;
+            &:hover {
+               color: #0f548c;
+            }
         }
         & span {
             color: #ffffff;
@@ -76,4 +85,48 @@ table {
 .bdr {
     border-radius: 6px;
     overflow: hidden;
+}
+.table-course-name {
+    display: unset;
+    color: black;
+    pointer-events: all;
+    transition: .15s;
+    font-weight: normal;
+    &:hover {
+        color: #4e73df;
+    }
+}
+.process-notifier {
+    pointer-events: all;
+    transition: .15s;
+    & span, i {
+        font-size: 1.5rem;
+        color: #4e73df;
+    }
+    &:hover {
+        color: #0f548c;
+    }
+}
+.table-switch-wrap {
+    display: flex;
+    justify-content: end;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    & button {
+        width: 200px;
+        border-radius: 0.35rem;
+        background-color: #858796;
+        border-color: #858796;
+        transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out, border-color 0.3s ease-in-out, box-shadow 0.13s ease-in-out;
+        & span {
+            font-size: 1.2rem;
+            color: #ffffff;
+        }
+        &:hover {
+            background-color: #4e73df;
+        }
+    }
+    .active {
+        background-color: #4e73df
+    }
 }
