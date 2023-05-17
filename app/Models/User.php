@@ -61,4 +61,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Enlistments::class);
     }
+
+    public function googleAccounts()
+    {
+        return $this->hasMany(GoogleAccount::class);
+    }
 }

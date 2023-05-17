@@ -52,7 +52,7 @@
         </li>
         <?php else : ?>
         <li class="sidebar-item">
-            <a class="sidebar-item-link" title="Freelancer application" data-toggle="modal" data-target="#applicationModal">
+            <a class="sidebar-item-link" title="Course creator application" data-toggle="modal" data-target="#applicationModal">
                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                 <span class="sidebar-item-title">Course creator application</span>
             </a>

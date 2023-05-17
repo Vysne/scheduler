@@ -45,6 +45,9 @@ Route::get('/edit-course/{id}', [App\Http\Controllers\CourseController::class, '
 Route::get('/update', [App\Http\Controllers\CourseController::class, 'update'])->name('update');
 
 Route::get('/calendar', [App\Http\Controllers\CalendarController::class, 'index'])->name('calendar');
+Route::name('google.index')->get('google', [App\Http\Controllers\GoogleAccountController::class, 'index']);
+Route::name('google.store')->get('google/oauth', [App\Http\Controllers\GoogleAccountController::class, 'store']);
+Route::name('google.destroy')->get('google/{email}', [App\Http\Controllers\GoogleAccountController::class, 'destroy']);
 
 Route::get('/achievements', [App\Http\Controllers\AchievementsController::class, 'index'])->name('achievements');
 
