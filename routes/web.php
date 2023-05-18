@@ -48,6 +48,7 @@ Route::get('/calendar', [App\Http\Controllers\CalendarController::class, 'index'
 Route::name('google.index')->get('google', [App\Http\Controllers\GoogleAccountController::class, 'index']);
 Route::name('google.store')->get('google/oauth', [App\Http\Controllers\GoogleAccountController::class, 'store']);
 Route::name('google.destroy')->get('google/{email}', [App\Http\Controllers\GoogleAccountController::class, 'destroy']);
+//Route::post('create', [App\Http\Controllers\CalendarController::class, 'create'])->name('google.create');
 
 Route::get('/achievements', [App\Http\Controllers\AchievementsController::class, 'index'])->name('achievements');
 

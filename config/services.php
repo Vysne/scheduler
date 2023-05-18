@@ -41,6 +41,8 @@ return [
         // The URL that listens to Google webhook notifications (Part 3).
         'webhook_uri' => env('GOOGLE_WEBHOOK_URI'),
 
+        'crud_url' => env('GOOGLE_CALENDAR_API_URL'),
+
         // Let the user know what we will be using from his Google account.
         'scopes' => [
             // Getting access to the user's email.

@@ -1,6 +1,44 @@
-//#calendar {
-//    height: 50%;
-//}
+.calendar-navbar {
+    display: flex;
+    flex-direction: row;
+}
+.event-create-wrap {
+    display: flex;
+    justify-content: space-between;
+}
+.content-calendar {
+    display: flex;
+    flex-direction: row;
+    & table {
+        width: 40%;
+        & tr {
+            & .event-summary {
+                pointer-events: none;
+                & .event-link-wrap {
+                    width: 60%;
+                }
+                & a {
+                    pointer-events: all;
+                }
+            }
+            & .action-buttons-wrap {
+                display: flex;
+                font-size: 1.2rem;
+                & .event-delete-button, .event-update-button {
+                    background-color: unset;
+                    border: unset;
+                    transition: .15s;
+                    &:hover {
+                        color: #0a58ca;
+                    }
+                }
+            }
+        }
+    }
+    & iframe {
+        width: 100%;
+    }
+}
 
 .add-calendar-event-wrap {
     display: flex;
@@ -25,13 +63,28 @@
     }
 }
 
-#calendarEventAddModal {
+#calendarEventAddModal, #calendarEventEditModal {
     & .modal-body {
         & label {
             position: unset;
         }
-        & .event-title-wrap {
-
+        & input {
+            padding: unset;
+        }
+        & .event-location-wrap, .event-description-wrap {
+            margin-top: 1rem;
+            & input {
+                padding: 10px;
+                font-family: FontAwesome, "Open Sans", Verdana, sans-serif;
+                font-style: normal;
+                font-weight: normal;
+                text-decoration: inherit;
+            }
+        }
+        .event-description-wrap {
+            & textarea {
+                width: 100%;
+            }
         }
         & .event-start-wrap, .event-end-wrap {
             display: flex;

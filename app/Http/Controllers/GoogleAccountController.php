@@ -5,19 +5,25 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Services\Google;
 use App\Models\GoogleAccount;
+use App\Http\Controllers\Api\CalendarApiController;
 use Illuminate\Support\Facades\DB;
 
 class GoogleAccountController extends Controller
 {
-    public function __construct()
+    private $calendarApiController;
+
+    public function __construct(CalendarApiController $calendarApiController)
     {
         $this->middleware('auth');
+        $this->calendarApiController = $calendarApiController;
     }
 
     public function index()
     {
-        return view('accounts', [
-            'accounts' => auth()->user()->googleAccounts,
+        return view('calendar-page', [
+            'accounts' => GoogleAccount::where('user_id', auth()->id())->first(),
+            'events' => $this->calendarApiController->getEvents(),
+//            'accounts' => auth()->user()->googleAccounts,
         ]);
     }
 
