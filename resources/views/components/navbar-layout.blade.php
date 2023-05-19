@@ -10,11 +10,11 @@
                     </a>
                     <div class="navbar-divider"></div>
                 @endguest
-                <form class="navbar-search @guest guest-search @endguest">
+                <form class="navbar-search @guest guest-search @endguest" action="{{ route('search') }}" method="GET">
                     <div class="input-group">
-                        <input type="text" class="search-field" placeholder="Search for.." aria-label="Search">
+                        <input type="text" class="search-field" name="search" placeholder="Search for.." aria-label="Search">
                         <div class="input-group-button">
-                            <button class="search-button" type="button">
+                            <button class="search-button" type="submit">
                                 <i class="fa fa-search" aria-hidden="true"></i>
                             </button>
                         </div>

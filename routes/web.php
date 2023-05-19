@@ -23,6 +23,8 @@ Route::get('/dashboard', function () {
 
 Auth::routes();
 
+Route::get('/search/', [\App\Http\Controllers\SearchController::class, 'search'])->name('search');
+
 Route::get('/profile', [App\Http\Controllers\UserProfileController::class, 'index'])->name('profile');
 Route::post('/update', [App\Http\Controllers\UserProfileController::class, 'update'])->name('update');
 
@@ -57,3 +59,5 @@ Route::post('/apply', [App\Http\Controllers\ApplicationController::class, 'index
 Route::get('/admin-panel', [App\Http\Controllers\AdminPanelController::class, 'index'])->name('admin-panel');
 Route::post('/admin-panel/accept/{user_id}', [App\Http\Controllers\AdminPanelController::class, 'acceptAction'])->name('/admin-panel/accept/{user_id}');
 Route::post('/admin-panel/decline/{user_id}', [App\Http\Controllers\AdminPanelController::class, 'declineAction'])->name('/admin-panel/decline/{user_id}');
+Route::post('/admin-panel/course/accept/{course_id}', [App\Http\Controllers\AdminPanelController::class, 'acceptCourseAction'])->name('/admin-panel/course/accept/{course_id}');
+Route::post('/admin-panel/course/decline/{course_id}', [App\Http\Controllers\AdminPanelController::class, 'declineCourseAction'])->name('/admin-panel/course/decline/{course_id}');

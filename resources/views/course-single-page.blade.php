@@ -87,9 +87,6 @@
                                         <a href="#" id="popup-remove" class="ol-popup-remove"><i class="fa fa-trash" aria-hidden="true"></i></a>
                                         <div id="popup-content"></div>
                                     </div>
-                                    <div class="location">
-                                        <h1>Test</h1>
-                                    </div>
                                 </div>
                             </div>
 
@@ -129,7 +126,11 @@
                                 <h2 id="syllabus-part">Syllabus</h2>
                             </div>
                             @foreach($course['course-syllabuses'] as $courseSingleSyllabus)
-                            <div class="syllabus-content-disabled">
+                                @if (auth()->id() == '4')
+                                    <div class="syllabus-content">
+                                @else
+                                    <div class="syllabus-content-disabled">
+                                @endif
                                 <button class="accordion" onclick="accordion(this)">{{ $courseSingleSyllabus['syllabus-name'] }}</button>
                                 <div class="panel">
                                     <div class="text-upload-container">

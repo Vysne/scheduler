@@ -44,6 +44,7 @@ export default defineConfig({
                 'resources/js/courseMembers.js',
                 'resources/js/achievementForm.js',
                 'resources/js/achievement.js',
+                'resources/js/admin.js',
             ],
             refresh: true,
         }),

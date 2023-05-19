@@ -25,8 +25,9 @@
     'resources/sass/sidebar.scss', 'resources/js/sidebar.js',
     'resources/sass/page-title.scss',
     'resources/sass/notifiers.scss', 'resources/js/notifiers.js',
-    'resources/sass/table.scss', 'resources/js/table.js',
-    'resources/sass/courseMembers.scss'
+    'resources/sass/table.scss',
+    'resources/sass/courseMembers.scss',
+    'resources/js/admin.js'
     ])
 
 </head>
@@ -37,15 +38,15 @@
         <x-navbar-layout></x-navbar-layout>
         <x-page-title-layout></x-page-title-layout>
         <div class="table-switch-wrap">
-            <button type="button" id="enlistment-button">
-                <span>Course creator requests</span>
+            <button type="button" id="creator-button">
+                <span style="font-size: 1rem">Course creator requests</span>
             </button>
             &nbsp;
-            <button type="button" id="members-button" class="active">
-                <span>Course members</span>
+            <button type="button" id="course-button" class="active">
+                <span>Course requests</span>
             </button>
         </div>
-        <table class="table align-middle mb-0 bg-white" id="course-creator-table">
+        <table class="table align-middle mb-0 bg-white" id="course-creator-table" hidden>
             <thead class="bg-light">
             <tr>
                 <th>User Name</th>
@@ -111,6 +112,68 @@
                                     </button>
                                 </form>
                                 <form action="{{ url('/admin-panel/decline/' . $application['user_id']) }}" method="POST">
+                                    @csrf
+                                    <button type="submit" id="disable-button" onclick="visibilityAction(this)">
+                                        <i class="fa fa-times" aria-hidden="true"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        @endif
+                    </td>
+                </tr>
+            </tbody>
+            @endforeach
+        </table>
+        <table class="table align-middle mb-0 bg-white" id="course-table">
+            <thead class="bg-light">
+            <tr>
+                <th>Course</th>
+                <th>Creator</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach($courses as $course)
+{{--                                {{ dd($course) }}--}}
+                <tr>
+                    <td>
+                        <div class="d-flex align-items-center">
+                            <a href="{{ url('/course-single/' . $course['id']) }}" class="user-profile-link" style="pointer-events: all">
+                                <img
+                                    src="{{ asset($course['image']) }}"
+                                    alt=""
+                                    style="width: 200px; height: 80px"
+                                    class="rounded mx-auto d-block"
+                                />
+                                <div class="ms-3" style="display: block;">
+                                    <h5 class="fw-bold mb-1">{{ $course['course_name'] }}</h5>
+                                    <p class="mb-1">{{ $course['type'] }}</p>
+                                </div>
+                            </a>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="d-flex align-items-center">
+                            <div class="ms-3" style="display: block;">
+                                <h5 class="fw-bold mb-1">{{ $course['title'] }}</h5>
+                                <p class="mb-1">{{ $course['email'] }}</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <p class="fw-normal mb-1">{{ date('M d, Y', strtotime($course['updated_at'])) }}</p>
+                    </td>
+                    <td style="display: table-cell">
+                        @if($course['visible'] != '1')
+                            <div class="action-buttons-wrap">
+                                <form action="{{ url('/admin-panel/course/accept/' . $course['id']) }}" method="POST">
+                                    @csrf
+                                    <button type="submit" id="disable-button" onclick="visibilityAction(this)">
+                                        <i class="fa fa-check ql-color-blue" aria-hidden="true"></i>
+                                    </button>
+                                </form>
+                                <form action="{{ url('/admin-panel/course/decline/' . $course['id']) }}" method="POST">
                                     @csrf
                                     <button type="submit" id="disable-button" onclick="visibilityAction(this)">
                                         <i class="fa fa-times" aria-hidden="true"></i>

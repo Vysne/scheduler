@@ -15,7 +15,7 @@ class AdminPanelController extends Controller
 
     public function index()
     {
-        return view('admin-panel-page', ['applications' => $this->getApplications()]);
+        return view('admin-panel-page', ['applications' => $this->getApplications(), 'courses' => $this->getCoursesWithCreatorData()]);
     }
 
     private function getApplications()
@@ -51,6 +51,49 @@ class AdminPanelController extends Controller
         DB::table('applications')
             ->where('applications.user_id', '=', $userId)
             ->delete();
+
+        return redirect('/admin-panel');
+    }
+
+    public function getCoursesWithCreatorData()
+    {
+        $result = DB::table('courses')
+            ->join('user_information', 'courses.author', '=', 'user_information.user_id')
+            ->select(
+                'courses.id',
+                'courses.course_name',
+                'courses.author',
+                'courses.image',
+                'courses.type',
+                'courses.visible',
+                'courses.updated_at',
+                'user_information.title',
+                'user_information.email'
+            )
+            ->where('courses.visible', '=', 0)
+            ->get();
+
+        return json_decode(json_encode($result), true);
+    }
+
+    public function acceptCourseAction($courseId)
+    {
+        DB::table('courses')
+            ->where('courses.id', '=', $courseId)
+            ->update([
+                'visible' => 1
+            ]);
+
+        return redirect('/admin-panel');
+    }
+
+    public function declineCourseAction($courseId)
+    {
+        DB::table('courses')
+            ->where('courses.id', '=', $courseId)
+            ->update([
+                'visible' => 2
+            ]);
 
         return redirect('/admin-panel');
     }
