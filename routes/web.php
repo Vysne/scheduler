@@ -48,7 +48,6 @@ Route::get('/calendar', [App\Http\Controllers\CalendarController::class, 'index'
 Route::name('google.index')->get('google', [App\Http\Controllers\GoogleAccountController::class, 'index']);
 Route::name('google.store')->get('google/oauth', [App\Http\Controllers\GoogleAccountController::class, 'store']);
 Route::name('google.destroy')->get('google/{email}', [App\Http\Controllers\GoogleAccountController::class, 'destroy']);
-//Route::post('create', [App\Http\Controllers\CalendarController::class, 'create'])->name('google.create');
 
 Route::get('/achievements', [App\Http\Controllers\AchievementsController::class, 'index'])->name('achievements');
 
@@ -56,3 +55,5 @@ Route::get('/terms-and-conditions', [App\Http\Controllers\TermsAndConditionsCont
 Route::post('/apply', [App\Http\Controllers\ApplicationController::class, 'index'])->name('apply');
 
 Route::get('/admin-panel', [App\Http\Controllers\AdminPanelController::class, 'index'])->name('admin-panel');
+Route::post('/admin-panel/accept/{user_id}', [App\Http\Controllers\AdminPanelController::class, 'acceptAction'])->name('/admin-panel/accept/{user_id}');
+Route::post('/admin-panel/decline/{user_id}', [App\Http\Controllers\AdminPanelController::class, 'declineAction'])->name('/admin-panel/decline/{user_id}');
