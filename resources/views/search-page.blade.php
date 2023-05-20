@@ -36,25 +36,25 @@
                 <div class="courses-container">
                     <ul class="course-box">
                         @foreach($courses as $course)
-                            {{ dd($course) }}
+                            @if($course['visible'] != 0)
                             <li>
-                                <div class="course-card" data-type="{{ $course->type }}">
-                                    <a href="{{ url('course-single/' . $course->id) }}">
+                                <div class="course-card" data-type="{{ $course['type'] }}">
+                                    <a href="{{ url('course-single/' . $course['id']) }}">
                                         <div class="course-image">
-                                            <img src="{{ asset($course->image) }}">
+                                            <img src="{{ asset($course['image']) }}">
                                         </div>
                                         <div class="course-tags">
                                             <div class="course-tag">
-                                                <span>{{ $course->type }}</span>
+                                                <span>{{ $course['type'] }}</span>
                                             </div>
                                         </div>
                                     </a>
                                     <div class="course-content">
                                         <div class="course-title">
-                                            <h3>{{ $course->course_name }}</h3>
+                                            <h3>{{ $course['course_name'] }}</h3>
                                         </div>
                                         <div class="course-creator">
-                                            <span>{{ $course->name }}</span>
+                                            <span>{{ $course['title'] }}</span>
                                         </div>
                                         <div class="course-rating">
                                             <span class="fa fa-star star-checked"></span>
@@ -65,8 +65,8 @@
                                             <p>(2354)</p>
                                         </div>
                                         <div class="course-join">
-                                            @if ($course->author != Auth::id() && array_key_exists($course->id, $availability) == false)
-                                                <form action="{{ url('/join/' . $course->id) }}" method="POST">
+                                            @if ($course['author'] != Auth::id() && array_key_exists($course['id'], $availability) == false)
+                                                <form action="{{ url('/join/' . $course['id']) }}" method="POST">
                                                     @csrf
                                                     <button type="submit">
                                                         <div class="course-join-icon">
@@ -75,12 +75,12 @@
                                                         </div>
                                                     </button>
                                                 </form>
-                                            @elseif (array_key_exists($course->id, $availability) == true)
-                                                @if($availability[$course->id] !== 'accepted')
+                                            @elseif (array_key_exists($course['id'], $availability) == true)
+                                                @if($availability[$course['id']] !== 'accepted')
                                                     <button type="submit">
                                                         <div class="course-join-icon">
                                                             <i></i>
-                                                            <span>{{ ucfirst($availability[$course->id]) }}</span>
+                                                            <span>{{ ucfirst($availability[$course['id']]) }}</span>
                                                         </div>
                                                     </button>
                                                 @else
@@ -103,17 +103,18 @@
                                     </div>
                                 </div>
                             </li>
+                            @endif
                         @endforeach
                     </ul>
                 </div>
-                <div class="content-pagination-container">
-                    {{ $courses->appends(request()->all())->links() }}
-                </div>
+{{--                <div class="content-pagination-container">--}}
+{{--                    {{ $courses->appends(request()->all())->links() }}--}}
+{{--                </div>--}}
             </div>
-            <div class="post-list">
-                <p>{{ $course->course_name }}</p>
-                <img src="{{ $course->image }}">
-            </div>
+{{--            <div class="post-list">--}}
+{{--                <p>{{ $course['course_name'] }}</p>--}}
+{{--                <img src="{{ $course['image'] }}">--}}
+{{--            </div>--}}
         @else
             <div>
                 <h2>No posts found</h2>
