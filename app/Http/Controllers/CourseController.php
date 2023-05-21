@@ -48,9 +48,9 @@ class CourseController extends Controller
         return redirect('dashboard');
     }
 
-    public function update($courseId)
+    public function update(Request $request)
     {
-        var_dump($courseId);
+        dd($request);
     }
 
     public function remove()

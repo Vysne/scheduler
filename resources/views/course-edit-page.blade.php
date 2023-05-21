@@ -46,6 +46,7 @@
                     <form action="{{ route('update') }}" method="GET" enctype="multipart/form-data">
                         @csrf
                         @foreach($course['about-course'] as $courseSingleData)
+                        <input type="hidden" name="course_id" value="{{ $courseSingleData['id'] }}">
                         <x-course-single-header-layout :availability="$availability" :courseSingleData="$courseSingleData"></x-course-single-header-layout>
                         <div class="course-content-container">
                             <div class="about-course-container">
@@ -297,6 +298,36 @@
                 panel.style.maxHeight = panel.scrollHeight + 'px';
             }
         }
+    }
+    function removeTime(button) {
+        let condition = button.parentElement.parentElement;
+        condition.remove();
+
+        let conditions = document.querySelectorAll('#time-input-container:not(:first-child)');
+        var i = 1;
+
+        conditions.forEach(function (condition) {
+           let dayInput = condition.querySelector('.day-select input');
+           let timeInput = condition.querySelector('.time-input input');
+           let counter = i++;
+
+           dayInput.setAttribute('name', 'date[condition' + counter + ']' + '[day]');
+           timeInput.setAttribute('name', 'date[condition' + counter + ']' + '[time]');
+        });
+    }
+    function removeSkill(button) {
+        let condition = button.parentElement;
+        condition.remove();
+
+        let conditions = document.querySelectorAll('.skills-card:not(:first-child)');
+        var i = 1;
+
+        conditions.forEach(function (condition) {
+           let skillInput = condition.querySelector('input');
+           let counter = i++;
+
+           skillInput.setAttribute('name', 'skill[condition' + counter + ']');
+        });
     }
 </script>
 </body>
