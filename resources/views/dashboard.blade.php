@@ -38,11 +38,11 @@
 {{--            <x-notifiers-layout></x-notifiers-layout>--}}
             <div class="table-switch-wrap">
                 <button type="button" id="enlistment-button">
-                    <span>My courses</span>
+                    <span>Created courses</span>
                 </button>
                 &nbsp;
                 <button type="button" id="members-button" class="active">
-                    <span>Created courses</span>
+                    <span>My courses</span>
                 </button>
             </div>
             <x-user-course-table-layout></x-user-course-table-layout>

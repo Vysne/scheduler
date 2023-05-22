@@ -58,25 +58,46 @@
                 <td></td>
                 <td>
                     <div class="action-buttons-wrap">
-                        <input type="hidden" value="{{ $userContent->visible }}">
-                        <div class="inspect-button-wrap">
-                            <a href="{{ url('/edit-course/' . $userContent->id) }}" title="Edit">
-                                <i class="fa fa-pencil" aria-hidden="true"></i>
-                            </a>
-                        </div>
-                        <div class="course-enlistment-wrap">
-                            <a href="{{ url('/members/' . $userContent->id) }}" title="Manage members">
-                                <i class="fa fa-users" aria-hidden="true"></i>
-                            </a>
-                        </div>
+                        @if ($userContent->visible === 2)
+                            @if (Auth::user()->status == 'creator')
+                                <div class="inspect-button-wrap">
+                                    <div class="processing-button">
+                                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                                <div class="course-enlistment-wrap">
+                                    <div class="processing-button">
+                                        <i class="fa fa-users" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            @endif
+                        @else
+                            <input type="hidden" value="{{ $userContent->visible }}">
+                            <div class="inspect-button-wrap">
+                                <a href="{{ url('/edit-course/' . $userContent->id) }}" title="Edit">
+                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                            <div class="course-enlistment-wrap">
+                                <a href="{{ url('/members/' . $userContent->id) }}" title="Manage members">
+                                    <i class="fa fa-users" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        @endif
                         <div class="disable-button-wrap">
-                            @if ($userContent->visible != 0)
+                            @if ($userContent->visible === 1)
                             <form action="{{ url('/disable/' . $userContent->id) }}" method="POST" id="disable-form">
                                 @csrf
                                 <a href="#" id="disable-button" onclick="visibilityAction(this)" title="Hide course">
                                     <i class="fa fa-eye-slash" aria-hidden="true"></i>
                                 </a>
                             </form>
+                            @elseif ($userContent->visible === 2)
+                                @if (Auth::user()->status == 'creator')
+                                    <div class="processing-button">
+                                        <i class="fa fa-eye-slash" aria-hidden="true" title="Verifying course"></i>
+                                    </div>
+                                @endif
                             @else
                             <form action="{{ url('/enable/' . $userContent->id) }}" method="POST" id="enable-form">
                                 @csrf

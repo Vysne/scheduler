@@ -71,80 +71,87 @@ class CourseInformationService
 
     public function updateCourseDates($courseDates, $courseId)
     {
-        foreach($courseDates as $key => $date) {
-            CourseInformation::updateOrCreate(
-                [
-                    'course_id' => $courseId,
-                    'key' => $key
-                ],
-                [
-                    'course_id' => $courseId,
-                    'day' => $date['day'],
-                    'time' => $date['time']
-                ]
-            );
+        if ($courseDates !== null) {
+            foreach($courseDates as $key => $date) {
+                CourseInformation::updateOrCreate(
+                    [
+                        'course_id' => $courseId,
+                        'key' => $key
+                    ],
+                    [
+                        'course_id' => $courseId,
+                        'day' => $date['day'],
+                        'time' => $date['time']
+                    ]
+                );
+            }
         }
     }
 
     public function updateCourseSkills($courseSkills, $courseId)
     {
-        foreach($courseSkills as $key => $skill) {
-            CourseInformation::updateOrCreate(
-                [
-                    'course_id' => $courseId,
-                    'key' => $key
-                ],
-                [
-                    'course_id' => $courseId,
-                    'skill' => $skill
-                ]
-            );
+        if ($courseSkills !== null) {
+            foreach($courseSkills as $key => $skill) {
+                CourseInformation::updateOrCreate(
+                    [
+                        'course_id' => $courseId,
+                        'key' => $key
+                    ],
+                    [
+                        'course_id' => $courseId,
+                        'skill' => $skill
+                    ]
+                );
+            }
         }
     }
 
     public function updateCourseInstructors($courseInstructors, $courseId, $request)
     {
-        foreach($courseInstructors as $key => $instructor) {
-            $upload = $request->file('instructor.' . $key . '.img');
+        if ($courseInstructors !== null) {
+            foreach($courseInstructors as $key => $instructor) {
+                $upload = $request->file('instructor.' . $key . '.img');
 
-            if ($upload != null) {
-                $filePath = $upload->store('public');
-                $file = str_replace('public', 'storage', $filePath);
-            } else {
-                $file = $instructor['instructor-image'];
+                if ($upload != null) {
+                    $filePath = $upload->store('public');
+                    $file = str_replace('public', 'storage', $filePath);
+                } else {
+                    $file = $instructor['instructor-image'];
+                }
+
+                CourseInformation::updateOrCreate(
+                    [
+                        'course_id' => $courseId,
+                        'key' => $key,
+                    ],
+                    [
+                        'instructor-descr-body' => $instructor['instructor-descr-body'],
+                        'element-name' => $instructor['element-name'],
+                        'img' => $file,
+                        'course_id' => $courseId,
+                    ]
+                );
             }
-
-            CourseInformation::updateOrCreate(
-                [
-                    'course_id' => $courseId,
-                    'key' => $key,
-                ],
-                [
-                    'instructor-descr-body' => $instructor['instructor-descr-body'],
-                    'element-name' => $instructor['element-name'],
-                    'img' => $file,
-                    'course_id' => $courseId,
-                ]
-            );
         }
     }
 
     public function updateCourseSyllabuses($courseSyllabuses, $courseId)
     {
-
-        foreach($courseSyllabuses as $key => $syllabus) {
-            CourseInformation::updateOrCreate(
-                [
-                    'course_id' => $courseId,
-                    'key' => $key
-                ],
-                [
-                    'course_id' => $courseId,
-                    'syllabus-name' => $syllabus['syllabus-name'],
-                    'element-name' => $syllabus['element-name'],
-                    'syllabus-descr-body' => $syllabus['syllabus-descr-body']
-                ]
-            );
+        if ($courseSyllabuses !== null) {
+            foreach($courseSyllabuses as $key => $syllabus) {
+                CourseInformation::updateOrCreate(
+                    [
+                        'course_id' => $courseId,
+                        'key' => $key
+                    ],
+                    [
+                        'course_id' => $courseId,
+                        'syllabus-name' => $syllabus['syllabus-name'],
+                        'element-name' => $syllabus['element-name'],
+                        'syllabus-descr-body' => $syllabus['syllabus-descr-body']
+                    ]
+                );
+            }
         }
     }
 }

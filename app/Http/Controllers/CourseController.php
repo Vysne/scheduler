@@ -67,7 +67,7 @@ class CourseController extends Controller
                 'type' => request('course-type'),
                 'requirements' => request('course-requirements'),
                 'course_descr_body' => request('course-descr-body'),
-                'visible' => 0
+                'visible' => 2
             ]);
 
         $courseInfoService->updateCourseDates(request('date'), request('course_id'));
@@ -116,7 +116,8 @@ class CourseController extends Controller
             ->toArray();
 
         $courseSyllabuses = DB::table('course_information')
-            ->select('course_information.id', 'course_information.key', 'course_information.syllabus-name', 'course_information.element-name', 'course_information.syllabus-descr-body')
+            ->join('courses', 'course_information.course_id', '=', 'courses.id')
+            ->select('course_information.id', 'courses.author', 'course_information.key', 'course_information.syllabus-name', 'course_information.element-name', 'course_information.syllabus-descr-body')
             ->where('course_information.course_id', '=', $courseId)
             ->whereNotNull(['course_information.key', 'course_information.syllabus-name', 'course_information.element-name', 'course_information.syllabus-descr-body'])
             ->get()

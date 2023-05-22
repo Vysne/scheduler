@@ -126,7 +126,7 @@
                                 <h2 id="syllabus-part">Syllabus</h2>
                             </div>
                             @foreach($course['course-syllabuses'] as $courseSingleSyllabus)
-                                @if (auth()->id() == '4')
+                                @if (auth()->id() == $courseSingleSyllabus['author'] || auth()->id() == '4')
                                     <div class="syllabus-content">
                                 @else
                                     <div class="syllabus-content-disabled">

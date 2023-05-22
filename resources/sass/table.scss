@@ -27,6 +27,10 @@ table {
             display: flex;
             width: 100%;
         }
+        & .processing-button {
+            font-size: 1.5rem;
+            color: #858796;
+        }
         & a {
             width: 100%;
             height: 100%;
