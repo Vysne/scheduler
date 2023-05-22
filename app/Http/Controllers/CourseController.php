@@ -89,7 +89,7 @@ class CourseController extends Controller
     public function getSelectedCourse($courseId)
     {
         $course = DB::table('courses')
-            ->select('courses.id', 'courses.course_name', 'courses.author', 'courses.image', 'courses.type', 'courses.requirements', 'courses.course_descr_body')
+            ->select('courses.id', 'courses.course_name', 'courses.author', 'courses.image', 'courses.type', 'courses.requirements', 'courses.course_descr_body', 'courses.enlistments')
             ->where('courses.id', '=', $courseId)
             ->get()
             ->toArray();
@@ -123,8 +123,25 @@ class CourseController extends Controller
             ->get()
             ->toArray();
 
+        $courseRating = DB::table('course_rating')
+            ->select('rating')
+            ->where('course_id', $courseId)
+            ->get();
+
+        $sumCourseRating = 0;
+        foreach ($courseRating as $rating) {
+            $sumCourseRating += $rating->rating;
+        }
+
+        if ($sumCourseRating !== 0) {
+            $calculatedRating = $sumCourseRating / count($courseRating);
+        } else {
+            $calculatedRating = 0;
+        }
+
         $courseData = [
             'about-course' => $course,
+            'course-rating' => $calculatedRating,
             'course-dates' => $courseDates,
             'course-skills' => $courseSkills,
             'course-instructors' => $courseInstructors,
@@ -132,5 +149,16 @@ class CourseController extends Controller
         ];
 
         return json_decode(json_encode($courseData), true);
+    }
+
+    public function getUserRating($courseId)
+    {
+        $userId = Auth::id();
+
+        return DB::table('course_rating')
+            ->where('course_id', '=', $courseId)
+            ->where('user_id', '=', $userId)
+            ->select('course_rating.rating')
+            ->first();
     }
 }

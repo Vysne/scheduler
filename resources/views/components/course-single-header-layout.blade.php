@@ -63,7 +63,7 @@
             @endif
         </div>
         <div class="enrollment-statistics-container">
-            <h5>Already enrolled: 100 users</h5>
+            <h5>Enrolled users: {{ $courseSingleData['enlistments'] }}</h5>
         </div>
     </div>
     <?php else : ?>

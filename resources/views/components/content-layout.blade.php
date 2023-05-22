@@ -22,12 +22,13 @@
                             <span>{{ $course->name }}</span>
                         </div>
                         <div class="course-rating">
-                            <span class="fa fa-star star-checked"></span>
-                            <span class="fa fa-star star-checked"></span>
-                            <span class="fa fa-star star-checked"></span>
                             <span class="fa fa-star"></span>
                             <span class="fa fa-star"></span>
-                            <p>(2354)</p>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <p>({{ $course->enlistments }})</p>
+                            <input type="hidden" value="{{ $course->rating }}">
                         </div>
                         <div class="course-join">
                             @if ($course->author != Auth::id() && array_key_exists($course->id, $availability) == false)

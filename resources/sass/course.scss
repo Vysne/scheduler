@@ -150,8 +150,14 @@ html {
             flex-direction: row;
             justify-content: space-between;
             width: 30%;
+            & #rating-form {
+                display: flex;
+            }
             & span {
                 font-size: 3rem;
+            }
+            & .star-checked {
+                color: yellow;
             }
             & p {
                 font-size: 2rem;

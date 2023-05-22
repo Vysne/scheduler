@@ -69,12 +69,30 @@ class EnlistmentService
 
     public function acceptUser($courseId, $userId)
     {
-        return DB::table('enlistments')
+        DB::table('enlistments')
             ->where('enlistments.course_id', '=', $courseId)
             ->where('enlistments.user_id', '=', $userId)
             ->update([
                 'status' => 'accepted'
             ]);
+
+        $currentEnlistmentCount = DB::table('enlistments')
+            ->where('enlistments.course_id', '=', $courseId)
+            ->where('enlistments.status', '=', 'accepted')
+            ->get();
+
+        return DB::table('courses')
+            ->where('courses.id', '=', $courseId)
+            ->update([
+                'enlistments' => count($currentEnlistmentCount)
+            ]);
+
+//        return DB::table('enlistments')
+//            ->where('enlistments.course_id', '=', $courseId)
+//            ->where('enlistments.user_id', '=', $userId)
+//            ->update([
+//                'status' => 'accepted'
+//            ]);
     }
 
     public function declineUser($courseId, $userId)

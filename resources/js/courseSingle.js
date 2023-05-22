@@ -59,15 +59,25 @@ function loadSyllabusEditors() {
 function hideSyllabus() {
     let syllabus = document.querySelector('.syllabus-content-disabled');
 
-    if (checkEnrollment() !== 'accepted') {
-        syllabus.classList.remove('syllabus-content-disabled');
-        syllabus.classList.add('syllabus-content');
+    if (syllabus !== null) {
+        if (checkEnrollment() !== 'accepted') {
+            console.log(syllabus);
+            syllabus.classList.remove('syllabus-content-disabled');
+            syllabus.classList.add('syllabus-content');
+        } else {
+            let syllabuses = document.querySelectorAll('.syllabus-content-disabled');
+
+            syllabuses.forEach(function (syllabus) {
+                syllabus.classList.remove('syllabus-content-disabled');
+                syllabus.classList.add('syllabus-content');
+            });
+        }
     } else {
         let syllabuses = document.querySelectorAll('.syllabus-content-disabled');
 
         syllabuses.forEach(function (syllabus) {
-           syllabus.classList.remove('syllabus-content-disabled');
-           syllabus.classList.add('syllabus-content');
+            syllabus.classList.remove('syllabus-content-disabled');
+            syllabus.classList.add('syllabus-content');
         });
     }
 }
@@ -78,4 +88,67 @@ function checkEnrollment() {
     return input.value;
 }
 
-window.onload = [loadCourseEditor(), loadInstructorEditors(), loadSyllabusEditors(), hideSyllabus()];
+let ratDisplay = document.querySelector('.course-content-rating p');
+let stars = document.querySelectorAll('.fa-star');
+let totalStar = 0;
+
+stars.forEach(function (star, index) {
+    star.dataset.rating = index + 1;
+    star.addEventListener('mouseover', onMouseOver);
+    star.addEventListener('click', onClick);
+    star.addEventListener('mouseleave', onMouseLeave);
+});
+
+function onMouseOver(e) {
+    let ratingVal = e.target.dataset.rating;
+
+    if (!ratingVal) {
+        return;
+    } else {
+        fill(ratingVal);
+    }
+}
+
+function onMouseLeave(e) {
+    fill(totalStar);
+}
+
+function onClick(e) {
+    let ratingVal = e.target.dataset.rating;
+    let input = document.getElementById('user-rating');
+    let form = document.getElementById('rating-form');
+    totalStar = ratingVal;
+    fill(totalStar);
+    ratDisplay.innerHTML = ratingVal + '/5 stars';
+    input.value = ratDisplay.innerHTML.charAt(0);
+    form.submit();
+}
+
+function fill(ratingVal) {
+    for (let i = 0; i < 5; i++) {
+        if (i < ratingVal) {
+            stars[i].classList.add('star-checked');
+        } else {
+            stars[i].classList.remove('star-checked');
+        }
+    }
+}
+
+function ratingLoad() {
+    let ratingValue = document.getElementById('user-rating');
+    let ratingText = document.querySelector('.course-content-rating p');
+
+    if (ratingValue.value !== 0) {
+        let starsNodeList = document.querySelectorAll('.fa-star');
+        let starsArray = Array.from(starsNodeList);
+        let selectedStars = starsArray.slice(0, ratingValue.value);
+
+        selectedStars.forEach(function (star) {
+            star.classList.add('star-checked');
+        });
+    }
+
+    ratingText.innerHTML = ratingValue.value + '/5 stars';
+}
+
+window.onload = [loadCourseEditor(), loadInstructorEditors(), loadSyllabusEditors(), hideSyllabus(), ratingLoad()];

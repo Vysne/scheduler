@@ -58,12 +58,20 @@
                                     <input type="hidden" id="course-descr" name="course-descr-body" value="{{ $courseSingleData['course_descr_body'] }}"/>
                                 </div>
                                 <div class="course-content-rating">
-                                    <span class="fa fa-star star-checked"></span>
-                                    <span class="fa fa-star star-checked"></span>
-                                    <span class="fa fa-star star-checked"></span>
-                                    <span class="fa fa-star"></span>
-                                    <span class="fa fa-star"></span>
-                                    <p>4/5 stars</p>
+                                    @if (in_array($courseSingleData['id'], array_keys($availability)))
+                                        @if ($availability[$courseSingleData['id']] == 'accepted')
+                                            <form action="{{ url('course-single/' . $courseSingleData['id'] . '/rate') }}" method="POST" id="rating-form">
+                                                @csrf
+                                                <span class="fa fa-star"></span>
+                                                <span class="fa fa-star"></span>
+                                                <span class="fa fa-star"></span>
+                                                <span class="fa fa-star"></span>
+                                                <span class="fa fa-star"></span>
+                                                <p>0/5 stars</p>
+                                                <input type="hidden" id="user-rating" name="user-rating" value="{{ $rating->rating ?? 0 }}">
+                                            </form>
+                                        @endif
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -126,7 +134,7 @@
                                 <h2 id="syllabus-part">Syllabus</h2>
                             </div>
                             @foreach($course['course-syllabuses'] as $courseSingleSyllabus)
-                                @if (auth()->id() == $courseSingleSyllabus['author'] || auth()->id() == '4')
+                                @if (auth()->id() == $courseSingleSyllabus['author'])
                                     <div class="syllabus-content">
                                 @else
                                     <div class="syllabus-content-disabled">

@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\CourseController;
+use App\Models\Course;
 use Illuminate\Http\Request;
 use App\Http\Services\EnlistmentService;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class CourseSingleController extends Controller
 {
@@ -13,7 +16,42 @@ class CourseSingleController extends Controller
         $course = new CourseController;
         $enlistmentService = new EnlistmentService;
 
-        return view('course-single-page', ['course' => $course->getSelectedCourse($courseId), 'availability' => $enlistmentService->checkEnlistment()]);
+        return view('course-single-page', ['course' => $course->getSelectedCourse($courseId), 'availability' => $enlistmentService->checkEnlistment(), 'rating' => $course->getUserRating($courseId)]);
+    }
+
+    public function rateCourse($courseId)
+    {
+        DB::table('course_rating')
+            ->updateOrInsert(
+                [
+                    'course_id' => $courseId,
+                    'user_id' => Auth::id(),
+
+                ],
+                [
+                    'rating' => request('user-rating')
+                ]
+            );
+
+        $courseRating = DB::table('course_rating')
+            ->where('course_id', $courseId)
+            ->get();
+
+        $sumCourseRating = 0;
+        foreach($courseRating as $rating) {
+            $sumCourseRating += $rating->rating;
+        }
+
+        Course::updateOrCreate(
+            [
+                'id' => $courseId,
+            ],
+            [
+                'rating' => $sumCourseRating / count($courseRating)
+            ]
+        );
+
+        return redirect('course-single/' . $courseId);
     }
 
 // TODO VIDEO PLAYBACK WORKS BUT NEED TO SOLVE THE POSITIONING FOR CODE

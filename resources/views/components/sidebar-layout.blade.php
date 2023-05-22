@@ -67,14 +67,6 @@
         </li>
         <?php endif; ?>
         <hr class="sidebar-divider">
-        <div class="sidebar-heading">Settings</div>
-        <li class="sidebar-item" title="Dark mode">
-            <a class="sidebar-item-link">
-                <i class="fa fa-cog" aria-hidden="true"></i>
-                <span class="sidebar-item-title">Dark mode</span>
-            </a>
-        </li>
-        <hr class="sidebar-divider">
         <div class="sidebar-button">
             <button class="rounded-button" id="sidebarToggle" target="expanded"></button>
         </div>
