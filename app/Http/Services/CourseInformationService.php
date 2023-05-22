@@ -19,18 +19,12 @@ class CourseInformationService
     {
         $courseInformation = new CourseInformation;
 
-
         foreach ($courseDates as $key => $date) {
 
             $date['course_id'] = $courseId[0];
             $date['key'] = $key;
 
             $courseInformation::insert($date);
-//            $courseInformation->course_id = $courseId[0];
-//            $courseInformation->key = $key;
-//            $courseInformation->day = $date['day'];
-//            $courseInformation->time = $date['time'];
-//            $courseInformation->save();
         }
     }
 
@@ -44,9 +38,6 @@ class CourseInformationService
             $skill['key'] = $key;
 
             $courseInformation::insert($skill);
-//            $courseInformation->course_id = $courseId[0];
-//            $courseInformation->skill = $skill;
-//            $courseInformation->save();
         }
     }
 
@@ -62,10 +53,6 @@ class CourseInformationService
             $instructor['img'] = str_replace('public', 'storage', $filePath);
 
             $courseInformation::insert($instructor);
-//            $courseInformation->course_id = $courseId[0];
-//            $courseInformation->text = $instructor['instructor-descr-body'];
-//            $courseInformation->image = $instructor['img'];
-//            $courseInformation->save();
         }
     }
 
@@ -79,12 +66,85 @@ class CourseInformationService
             $syllabus['key'] = $key;
 
             $courseInformation::insert($syllabus);
-//            $courseInformation->course_id = $courseId[0];
-//            $courseInformation->name = $syllabus['syllabus-name'];
-//            $courseInformation->text = $syllabus['syllabus-descr-body'];
-//            $courseInformation->save();
         }
     }
 
-//    public function u
+    public function updateCourseDates($courseDates, $courseId)
+    {
+        foreach($courseDates as $key => $date) {
+            CourseInformation::updateOrCreate(
+                [
+                    'course_id' => $courseId,
+                    'key' => $key
+                ],
+                [
+                    'course_id' => $courseId,
+                    'day' => $date['day'],
+                    'time' => $date['time']
+                ]
+            );
+        }
+    }
+
+    public function updateCourseSkills($courseSkills, $courseId)
+    {
+        foreach($courseSkills as $key => $skill) {
+            CourseInformation::updateOrCreate(
+                [
+                    'course_id' => $courseId,
+                    'key' => $key
+                ],
+                [
+                    'course_id' => $courseId,
+                    'skill' => $skill
+                ]
+            );
+        }
+    }
+
+    public function updateCourseInstructors($courseInstructors, $courseId, $request)
+    {
+        foreach($courseInstructors as $key => $instructor) {
+            $upload = $request->file('instructor.' . $key . '.img');
+
+            if ($upload != null) {
+                $filePath = $upload->store('public');
+                $file = str_replace('public', 'storage', $filePath);
+            } else {
+                $file = $instructor['instructor-image'];
+            }
+
+            CourseInformation::updateOrCreate(
+                [
+                    'course_id' => $courseId,
+                    'key' => $key,
+                ],
+                [
+                    'instructor-descr-body' => $instructor['instructor-descr-body'],
+                    'element-name' => $instructor['element-name'],
+                    'img' => $file,
+                    'course_id' => $courseId,
+                ]
+            );
+        }
+    }
+
+    public function updateCourseSyllabuses($courseSyllabuses, $courseId)
+    {
+
+        foreach($courseSyllabuses as $key => $syllabus) {
+            CourseInformation::updateOrCreate(
+                [
+                    'course_id' => $courseId,
+                    'key' => $key
+                ],
+                [
+                    'course_id' => $courseId,
+                    'syllabus-name' => $syllabus['syllabus-name'],
+                    'element-name' => $syllabus['element-name'],
+                    'syllabus-descr-body' => $syllabus['syllabus-descr-body']
+                ]
+            );
+        }
+    }
 }

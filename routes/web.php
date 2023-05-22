@@ -44,7 +44,8 @@ Route::get('/course-single/{id}', [App\Http\Controllers\CourseSingleController::
 Route::get('/create-course', [App\Http\Controllers\CourseController::class, 'index'])->name('create-course');
 Route::post('/create', [App\Http\Controllers\CourseController::class, 'create'])->name('create');
 Route::get('/edit-course/{id}', [App\Http\Controllers\CourseController::class, 'show'])->name('edit-course/{id}');
-Route::get('/update', [App\Http\Controllers\CourseController::class, 'update'])->name('update');
+Route::post('/update', [App\Http\Controllers\CourseController::class, 'update'])->name('update');
+Route::post('/remove', [App\Http\Controllers\CourseController::class, 'remove'])->name('remove');
 
 Route::get('/calendar', [App\Http\Controllers\CalendarController::class, 'index'])->name('calendar');
 Route::name('google.index')->get('google', [App\Http\Controllers\GoogleAccountController::class, 'index']);

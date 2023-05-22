@@ -11,12 +11,16 @@ class CourseInformation extends Model
 
     protected $fillable = [
         'id',
+        'course_id',
         'key',
+        'syllabus-name',
         'element-name',
+        'syllabus-descr-body',
+        'instructor-descr-body',
         'day',
         'time',
         'skill',
-        'image',
+        'img',
         'visible',
         'created_at',
         'updated_at'
