@@ -70,7 +70,23 @@
                                                 <p>0/5 stars</p>
                                                 <input type="hidden" id="user-rating" name="user-rating" value="{{ $rating->rating ?? 0 }}">
                                             </form>
+                                        @else
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                            <p>0/5 stars</p>
+                                            <input type="hidden" id="user-rating" name="user-rating" value="{{ $course['course-rating'] }}">
                                         @endif
+                                    @else
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                        <p>0/5 stars</p>
+                                        <input type="hidden" id="user-rating" name="user-rating" value="{{ $course['course-rating'] }}">
                                     @endif
                                 </div>
                             </div>

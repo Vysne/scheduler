@@ -14,11 +14,12 @@ class SearchController extends Controller
 
         $courses = Course::query()
             ->join('user_information', 'courses.author', '=', 'user_information.user_id')
-            ->select('courses.id', 'courses.course_name', 'courses.author', 'courses.image', 'courses.type', 'courses.visible', 'user_information.title')
+            ->select('courses.id', 'courses.course_name', 'courses.author', 'courses.image', 'courses.type', 'courses.enlistments', 'courses.rating', 'courses.visible', 'user_information.title')
+            ->where('courses.visible', 1)
             ->where('course_name', 'LIKE', "%{$search}%")
             ->orWhere('type', 'LIKE', "%{$search}%")
-            ->get();
+            ->paginate(3);
 
-        return view('search-page', ['courses' => json_decode(json_encode($courses), true), 'availability' => $enlistmentService->checkEnlistment()]);
+        return view('search-page', ['courses' => $courses, 'availability' => $enlistmentService->checkEnlistment()]);
     }
 }

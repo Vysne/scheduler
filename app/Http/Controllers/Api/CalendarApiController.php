@@ -99,11 +99,11 @@ class CalendarApiController extends Controller
             'location' => $request->request->get('location'),
             'description' => $request->request->get('description'),
             'start' => [
-                'dateTime' => $request->request->get('event-start-date') . 'T' . $request->request->get('event-start-time') . ':00',
+                'dateTime' => $request->request->get('event-start-date') . 'T' . $request->request->get('event-start-time'),
                 'timeZone' => $request->request->get('timeZone')
             ],
             'end' => [
-                'dateTime' => $request->request->get('event-end-date') . 'T' . $request->request->get('event-end-time') . ':00',
+                'dateTime' => $request->request->get('event-end-date') . 'T' . $request->request->get('event-end-time'),
                 'timeZone' => $request->request->get('timeZone')
             ],
             'reminders' => [

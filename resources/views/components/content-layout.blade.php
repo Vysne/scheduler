@@ -53,7 +53,7 @@
                                     <button type="submit">
                                         <div class="course-join-icon">
                                             <i></i>
-                                            <span>Already joined</span>
+                                            <span>Joined</span>
                                         </div>
                                     </button>
                                 @endif
@@ -61,7 +61,7 @@
                                 <button type="submit">
                                     <div class="course-join-icon">
                                         <i></i>
-                                        <span>Already joined</span>
+                                        <span>Joined</span>
                                     </div>
                                 </button>
                             @endif

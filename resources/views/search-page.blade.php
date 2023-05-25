@@ -36,7 +36,6 @@
                 <div class="courses-container">
                     <ul class="course-box">
                         @foreach($courses as $course)
-                            @if($course['visible'] != 0)
                             <li>
                                 <div class="course-card" data-type="{{ $course['type'] }}">
                                     <a href="{{ url('course-single/' . $course['id']) }}">
@@ -57,12 +56,13 @@
                                             <span>{{ $course['title'] }}</span>
                                         </div>
                                         <div class="course-rating">
-                                            <span class="fa fa-star star-checked"></span>
-                                            <span class="fa fa-star star-checked"></span>
-                                            <span class="fa fa-star star-checked"></span>
                                             <span class="fa fa-star"></span>
                                             <span class="fa fa-star"></span>
-                                            <p>(2354)</p>
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                            <p>({{ $course['enlistments'] }})</p>
+                                            <input type="hidden" value="{{ $course['rating'] }}">
                                         </div>
                                         <div class="course-join">
                                             @if ($course['author'] != Auth::id() && array_key_exists($course['id'], $availability) == false)
@@ -103,20 +103,21 @@
                                     </div>
                                 </div>
                             </li>
-                            @endif
                         @endforeach
+{{--                            @endif--}}
+{{--                        @endforeach--}}
                     </ul>
                 </div>
-{{--                <div class="content-pagination-container">--}}
-{{--                    {{ $courses->appends(request()->all())->links() }}--}}
-{{--                </div>--}}
+                <div class="content-pagination-container">
+                    {{ $courses->appends(request()->all())->links() }}
+                </div>
             </div>
 {{--            <div class="post-list">--}}
 {{--                <p>{{ $course['course_name'] }}</p>--}}
 {{--                <img src="{{ $course['image'] }}">--}}
 {{--            </div>--}}
         @else
-            <div>
+            <div class="search-response">
                 <h2>No posts found</h2>
             </div>
         @endif

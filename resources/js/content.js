@@ -6,7 +6,6 @@ function ratingLoad() {
             let starsNodeList = starContainer.querySelectorAll('.fa-star');
             let starsArray = Array.from(starsNodeList);
             let selectedStars = starsArray.slice(0, ratingValue.value);
-            console.log(selectedStars);
 
             selectedStars.forEach(function (star) {
                 star.classList.add('star-checked');

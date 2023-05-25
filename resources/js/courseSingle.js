@@ -61,7 +61,6 @@ function hideSyllabus() {
 
     if (syllabus !== null) {
         if (checkEnrollment() !== 'accepted') {
-            console.log(syllabus);
             syllabus.classList.remove('syllabus-content-disabled');
             syllabus.classList.add('syllabus-content');
         } else {
@@ -88,15 +87,18 @@ function checkEnrollment() {
     return input.value;
 }
 
+let status = document.querySelector('.course-join-icon span');
 let ratDisplay = document.querySelector('.course-content-rating p');
 let stars = document.querySelectorAll('.fa-star');
 let totalStar = 0;
 
 stars.forEach(function (star, index) {
-    star.dataset.rating = index + 1;
-    star.addEventListener('mouseover', onMouseOver);
-    star.addEventListener('click', onClick);
-    star.addEventListener('mouseleave', onMouseLeave);
+    if (status.innerHTML === 'Accepted') {
+        star.dataset.rating = index + 1;
+        star.addEventListener('mouseover', onMouseOver);
+        star.addEventListener('click', onClick);
+        star.addEventListener('mouseleave', onMouseLeave);
+    }
 });
 
 function onMouseOver(e) {
