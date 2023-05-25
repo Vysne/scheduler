@@ -55,13 +55,11 @@
             </div>
             <div id="map" class="map">
                 <div id="popup" class="ol-popup">
-                    <a href="#" id="popup-closer" class="ol-popup-closer"></a>
-                    <a href="#" id="popup-remove" class="ol-popup-remove"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                    <a id="popup-closer" class="ol-popup-closer"></a>
                     <div id="popup-content"></div>
                 </div>
-                <div class="location">
-                    <h1>Test</h1>
-                </div>
+                <input type="hidden" id="lon" name="location[longitude]" value="">
+                <input type="hidden" id="lat" name="location[latitude]" value="">
             </div>
         </div>
     </div>
@@ -114,31 +112,12 @@
         <div class="syllabuses">
             <div class="syllabus-content">
                 <div class="controls"></div>
-                <button type="button" class="accordion" onclick="accordion(this)"><input type="text" name="syllabus[condition][syllabus-name]" required>Give the section a name.</button>
+                <button type="button" class="accordion" ondblclick="accordion(this)"><input type="text" name="syllabus[condition][syllabus-name]" required>Give the section a name.</button>
                 <div class="panel">
-{{--                    <div class="syllabus-type">--}}
-{{--                        <button type="button" class="syllabus-type-button" data-type="video">Video</button>--}}
-{{--                        <button type="button" class="syllabus-type-button" data-type="text">Text</button>--}}
-{{--                    </div>--}}
-{{--                    <div class="video-upload-container" hidden>--}}
-{{--                        <input type="file" id="video-file-input" multiple>--}}
-{{--                        <label for="video-file-input">--}}
-{{--                            <i class="fa fa-upload" aria-hidden="true"></i>--}}
-{{--                            &nbsp;--}}
-{{--                            Choose files to upload--}}
-{{--                        </label>--}}
-{{--                        <div id="num-of-files">No files chosen</div>--}}
-{{--                        <ul id="files-list"></ul>--}}
-{{--                    </div>--}}
                     <div class="text-upload-container">
                         <div id="syllabus-descr"></div>
                         <input type="hidden" id="syllabus-descr" name="syllabus[condition][syllabus-descr-body]"/>
                         <input type="hidden" id="syllabus-element-name" name="syllabus[condition][element-name]" value="syllabus-descr"/>
-{{--                        <div class="text-editor">--}}
-{{--                            <input name="box" type="hidden">--}}
-{{--                            <div id="editor-container"></div>--}}
-{{--                            <div id="counter-2">0 characters</div>--}}
-{{--                        </div>--}}
                     </div>
                 </div>
             </div>

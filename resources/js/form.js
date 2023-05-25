@@ -80,7 +80,6 @@ function loadEditor() {
 }
 
 function uniqueId(editor, section) {
-    console.log(editor);
     AmagiLoader.show();
     let sectionEditors;
 
@@ -145,7 +144,6 @@ function destroyEditorToolbars() {
 }
 
 function getEditorHTML(editors) {
-    // console.log(editors);
     var editorHTML = [];
     for (var i = 0; i < editors.length; i++) {
         var html = document.querySelector(editors[i] + ' .ql-editor').innerHTML;
@@ -165,7 +163,6 @@ function updatePanelHeight(editors) {
 
         if (containerElem.getAttribute('class') === 'panel') {
             let editorContainerHeight = editorContainerElem.clientHeight;
-            console.log(editorContainerHeight);
             containerElem.setAttribute('style', 'max-height: ' + editorContainerHeight + 1000 + 'px');
         }
     }
@@ -254,6 +251,18 @@ function removeTime(condition) {
 
     button.addEventListener('click', function () {
         condition.remove();
+
+        let conditions = document.querySelectorAll('#time-input-container:not(:first-child)');
+        var i = 1;
+
+        conditions.forEach(function (condition) {
+            let dayInput = condition.querySelector('.day-select input');
+            let timeInput = condition.querySelector('.time-input input');
+            let counter = i++;
+
+            dayInput.setAttribute('name', 'date[daytime-condition' + counter + ']' + '[day]');
+            timeInput.setAttribute('name', 'date[daytime-condition' + counter + ']' + '[time]');
+        });
     });
 }
 
@@ -376,13 +385,6 @@ function addSection() {
        uniqueId(containerCloneEditor, container);
 
        let controlsDiv = containerClone.firstElementChild;
-       // let panels = containerClone.querySelectorAll(['.video-upload-container', '.text-upload-container']);
-       // panels.forEach(function (panel) {
-       //     if (!panel.getAttribute('hidden')) {
-       //         panel.setAttribute('hidden', '');
-       //     }
-       // });
-
        let removeDiv = document.createElement('div');
         removeDiv.setAttribute('class', 'remove-condition');
         removeDiv.innerHTML = '<i class="fa fa-times" aria-hidden="true"></i>';
@@ -460,6 +462,16 @@ function removeSkill(clone) {
 
     button.addEventListener('click', function () {
         clone.remove();
+
+        let conditions = document.querySelectorAll('.skills-card:not(:first-child)');
+        var i = 1;
+
+        conditions.forEach(function (condition) {
+            let skillInput = condition.querySelector('input');
+            let counter = i++;
+
+            skillInput.setAttribute('name', 'skill[skill-condition' + counter + ']');
+        });
     });
 }
 
@@ -468,6 +480,25 @@ function removeInstructor(clone) {
 
     button.addEventListener('click', function () {
         clone.remove();
+
+        let conditions = document.querySelectorAll('.instructor-card:not(:first-child)');
+        var i = 1;
+
+        conditions.forEach(function (condition) {
+            let counter = i++;
+            let instructorImg = condition.querySelector('.upload-container input');
+            let instructorEditor = condition.querySelector('.ql-container');
+            let editorInput = instructorEditor.nextElementSibling;
+            let elementInput = editorInput.nextElementSibling;
+
+            instructorImg.setAttribute('name', 'instructor[instructor-condition' + counter + ']' + '[img]');
+            instructorEditor.setAttribute('id', 'instructor-descr' + counter);
+            editorInput.setAttribute('id', 'instructor-descr' + counter);
+            editorInput.setAttribute('name', 'instructor[instructor-condition' + counter + ']' + '[instructor-descr-body]');
+            elementInput.setAttribute('name', 'instructor[instructor-condition' + counter + ']' + '[element-name]');
+            elementInput.value = instructorEditor.getAttribute('id');
+        });
+        removeEditorInstance();
     });
 }
 
@@ -476,6 +507,44 @@ function removeSection(clone) {
 
     button.addEventListener('click', function () {
         clone.remove();
+
+        let conditions = document.querySelectorAll('.syllabus-content:not(:first-child)');
+        var i = 1;
+
+        conditions.forEach(function (condition) {
+            let counter = i++;
+            let titleInput = condition.querySelector('input');
+            let instructorEditor = condition.querySelector('.ql-container');
+            let editorInput = instructorEditor.nextElementSibling;
+            let elementInput = editorInput.nextElementSibling;
+
+            titleInput.setAttribute('name', 'syllabus[syllabus-condition' + counter + '][syllabus-name]');
+            instructorEditor.setAttribute('id', 'syllabus-descr' + counter);
+            editorInput.setAttribute('id', 'syllabus-descr' + counter);
+            editorInput.setAttribute('name', 'syllabus[syllabus-condition' + counter + ']' + '[syllabus-descr-body]');
+            elementInput.setAttribute('name', 'syllabus[syllabus-condition' + counter + ']' + '[element-name]');
+            elementInput.setAttribute('value', 'syllabus-descr' + counter);
+        });
+        removeEditorInstance();
+    });
+}
+
+function removeEditorInstance() {
+    let editorArray = [];
+    let instructorEditors = document.querySelectorAll('.ql-container');
+
+    instructorEditors.forEach(function (instructorEditor) {
+        let editorId = '#' + instructorEditor.getAttribute('id');
+        editorArray.push(editorId);
+    });
+    editors.forEach(function (editorId) {
+        let existFactor = editorArray.includes(editorId);
+
+        if (existFactor !== true) {
+            let index = editors.indexOf(editorId);
+
+            editors.splice(index, 1);
+        }
     });
 }
 

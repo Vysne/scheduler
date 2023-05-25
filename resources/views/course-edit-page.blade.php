@@ -142,9 +142,6 @@
                                             <a href="#" id="popup-remove" class="ol-popup-remove"><i class="fa fa-trash" aria-hidden="true"></i></a>
                                             <div id="popup-content"></div>
                                         </div>
-                                        <div class="location">
-                                            <h1>Test</h1>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -351,7 +348,6 @@
         condition.remove();
 
         let conditions = document.querySelectorAll('.instructor-card');
-        console.log(conditions);
         var i = 1;
 
         conditions.forEach(function (condition, index) {

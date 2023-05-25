@@ -14,7 +14,6 @@ import {toStringHDMS} from 'ol/coordinate.js';
 // import {toStringHDMS} from "ol/coordinate";
 
 // useGeographic();
-
 function initMap() {
     const key = 'IxMPj55LDxu47ASU0B8D';
     const source = new ol.source.TileJSON({
@@ -72,13 +71,20 @@ function initMap() {
             var point = map.getCoordinateFromPixel(event.pixel);
             var lonLat = ol.proj.toLonLat(point);
 
+            map.getLayers().forEach(function (layer) {
+               if (layer.get('name') === 'marker') {
+                   map.removeLayer(layer);
+               }
+            });
+
             const marker = new ol.layer.Vector({
                 source: new ol.source.Vector({
                     features: [
                         new ol.Feature({
                             geometry: new ol.geom.Point(
                                 ol.proj.fromLonLat(lonLat),
-                            )
+                            ),
+                            id: Math.floor((Math.random() * 100) + 1)
                         })
                     ],
                 }),
@@ -89,9 +95,13 @@ function initMap() {
                     })
                 })
             });
+            let longitude = document.getElementById('lon');
+            let latitude = document.getElementById('lat');
+            longitude.value = lonLat[0];
+            latitude.value = lonLat[1];
 
+            marker.set('name', 'marker');
             map.addLayer(marker);
-            deleteMarker(marker);
         }
     });
 
@@ -103,19 +113,11 @@ function initMap() {
         if (feature) {
             const markerCordinates = evt.coordinate;
             const hdms = toStringHDMS(toLonLat(markerCordinates));
-
             const coordinates = feature.getGeometry().getCoordinates();
-            content.innerHTML = '<p>You clicked here:</p><code>' + hdms + '</code>';
+
+            content.innerHTML = '<p>You clicked here:</p><a href="https://www.google.com/maps/place/' + hdms + '" target="_blank">' + hdms + '</a>';
             overlay.setPosition(coordinates);
         }
-        // deleteMarker(evt);
-    }
-
-    function deleteMarker(evt) {
-        let button = document.getElementById('popup-remove');
-        button.addEventListener('click', function () {
-            evt.removeLayer();
-        });
     }
 }
 

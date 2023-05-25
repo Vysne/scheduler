@@ -79,7 +79,6 @@
             reader.readAsDataURL(this.files[0]);
         });
     }
-
     function accordion(elem) {
         let contentDiv = elem.parentElement;
 
