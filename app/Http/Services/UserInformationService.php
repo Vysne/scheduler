@@ -14,10 +14,6 @@ class UserInformationService
 
         $userInfoData = $this->getUserInformation($userId);
 
-//        if (!$userInfoData) {
-//            $userInfoData = $this->userInformationAutomization($userId);
-//        }
-
         return $userInfoData;
     }
 

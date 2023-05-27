@@ -27,7 +27,7 @@
     'resources/sass/sidebar.scss', 'resources/js/sidebar.js',
     'resources/sass/page-title.scss',
     'resources/sass/notifiers.scss', 'resources/js/notifiers.js',
-    'resources/sass/table.scss', 'resources/js/table.js',
+    'resources/sass/table.scss',
     'resources/sass/profile.scss', 'resources/js/profile.js'
     ])
 
@@ -39,10 +39,15 @@
         <x-navbar-layout></x-navbar-layout>
         <x-page-title-layout></x-page-title-layout>
         @foreach($user as $data)
-            <form action="{{ url('/update') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('update-profile') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="container">
                     <div class="main-body">
+                        <div class="profile-action-buttons">
+                            <button type="button" id="edit-button">Edit</button>
+                            <button type="submit" id="update-button" hidden>Update</button>
+                            <button type="button" id="cancel-button" hidden>Cancel</button>
+                        </div>
                         <div class="row gutters-sm">
                             <div class="col-md-4 mb-3">
                                 <div class="card">
@@ -129,16 +134,11 @@
                             </div>
                             <div class="card-body card">
                                 <div class="about-me-container">
-                                    <h2>About me</h2>
+                                    <h2>{{ Auth::user()->name }}'s bio</h2>
                                     <div id="about-me"></div>
                                     <input type="hidden" id="about-me-descr" name="aboutme-descr-body" value="{{ $data['aboutme-descr-body'] }}"/>
                                 </div>
                             </div>
-                        </div>
-                        <div class="profile-action-buttons">
-                            <button type="button" id="edit-button">Edit</button>
-                            <button type="submit" id="update-button" hidden>Update</button>
-                            <button type="button" id="cancel-button" hidden>Cancel</button>
                         </div>
                     </div>
                 </div>

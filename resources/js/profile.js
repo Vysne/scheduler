@@ -39,7 +39,6 @@ function loadEditor() {
 }
 
 function getEditorHTML(editor) {
-    // console.log(editors);
     var editorHTML = [];
     var html = document.querySelector(editor + ' .ql-editor').innerHTML;
     let input = document.querySelector(`input[id="${editor.substring(1)}-descr"]`);
@@ -70,7 +69,7 @@ function getUserLocation() {
             `https://nominatim.openstreetmap.org/reverse?lat=${position.coords.latitude}&lon=${position.coords.longitude}&format=json`
         );
         let data = await response.json();
-        console.log(data);
+
         locationInput.value = `${data.address.city}, ${data.address.country}`;
         locationDiv.innerHTML = locationInput.value;
     }
@@ -96,9 +95,12 @@ function uploadImg(elem) {
         let reader = new FileReader();
 
         reader.addEventListener('load', function () {
+            let image = document.querySelector('.card-body img');
             let imgDiv = elem.parentElement.previousElementSibling;
             uploaded_image = reader.result;
             imgDiv.style.backgroundImage = `url(${uploaded_image})`;
+            imgDiv.removeAttribute('hidden');
+            image.setAttribute('hidden', '');
         });
         reader.readAsDataURL(this.files[0]);
     });
@@ -117,15 +119,10 @@ function editAction() {
         let updateButton = document.getElementById('update-button');
         let cancelButton = document.getElementById('cancel-button');
 
-
         button.classList.add('disabled-button');
         updateButton.removeAttribute('hidden');
         cancelButton.removeAttribute('hidden');
         upload.removeAttribute('hidden');
-        display.removeAttribute('hidden');
-        image.setAttribute('hidden', '');
-
-
 
         fields.forEach(function (field) {
            let span = field.firstElementChild;
@@ -148,7 +145,6 @@ function editAction() {
 }
 
 function cancelAction(cancelButton, editButton, updateButton, fields, inputs, upload, display, image, gutter) {
-    console.log(display);
     cancelButton.addEventListener('click', function () {
        inputs.forEach(function (input) {
           input.setAttribute('hidden', '');

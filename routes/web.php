@@ -26,7 +26,7 @@ Auth::routes();
 Route::get('/search/', [\App\Http\Controllers\SearchController::class, 'search'])->name('search');
 
 Route::get('/profile', [App\Http\Controllers\UserProfileController::class, 'index'])->name('profile');
-Route::post('/update', [App\Http\Controllers\UserProfileController::class, 'update'])->name('update');
+Route::post('/update-profile', [App\Http\Controllers\UserProfileController::class, 'update'])->name('update-profile');
 
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
 Route::post('/disable/{id}', [App\Http\Controllers\HomeController::class, 'disableAction'])->name('/disable/{id}');
