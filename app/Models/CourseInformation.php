@@ -20,6 +20,7 @@ class CourseInformation extends Model
         'day',
         'time',
         'skill',
+        'location',
         'img',
         'visible',
         'created_at',

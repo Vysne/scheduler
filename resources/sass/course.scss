@@ -95,6 +95,9 @@ html {
     flex-direction: row;
     justify-content: space-evenly;
     width: 30%;
+    & .course-join-icon {
+        padding: .3rem;
+    }
     & .enrollment-button-container {
         width: 100%;
         margin-top: .35rem;

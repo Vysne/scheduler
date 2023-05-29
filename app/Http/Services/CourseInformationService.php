@@ -4,6 +4,7 @@ namespace App\Http\Services;
 
 use Illuminate\Http\Request;
 use App\Models\CourseInformation;
+use App\Models\Course;
 
 class CourseInformationService
 {
@@ -13,6 +14,18 @@ class CourseInformationService
         shuffle($numbers);
 
         return array_slice($numbers, 0, 1);
+    }
+
+    public function storeCourseLoaction($courseLocation, $courseId)
+    {
+        $courseInformation = new CourseInformation;
+
+        foreach ($courseLocation as $key => $location) {
+            $location['course_id'] = $courseId[0];
+            $location['key'] = $key;
+
+            $courseInformation::insert($location);
+        }
     }
 
     public function storeCourseDates($courseDates, $courseId)
@@ -66,6 +79,24 @@ class CourseInformationService
             $syllabus['key'] = $key;
 
             $courseInformation::insert($syllabus);
+        }
+    }
+
+    public function updateCourseLocation($courseLocation, $courseId)
+    {
+        if ($courseLocation !== null) {
+            foreach($courseLocation as $key => $location) {
+                CourseInformation::updateOrCreate(
+                    [
+                        'course_id' => $courseId,
+                        'key' => $key
+                    ],
+                    [
+                        'course_id' => $courseId,
+                        'location' => $location['location']
+                    ]
+                );
+            }
         }
     }
 

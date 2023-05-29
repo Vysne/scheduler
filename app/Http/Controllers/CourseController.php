@@ -26,6 +26,7 @@ class CourseController extends Controller
 
     public function create(Request $request)
     {
+//        dd($request);
         $course = new Course;
         $courseInfoService = new CourseInformationService;
 
@@ -39,8 +40,10 @@ class CourseController extends Controller
         $course->type = request('course-type');
         $course->requirements = request('course-requirements');
         $course->course_descr_body = request('course-descr-body');
+        $course->limit = request('limit');
         $course->save();
 
+        $courseInfoService->storeCourseLoaction(request('location'), $courseId);
         $courseInfoService->storeCourseDates(request('date'), $courseId);
         $courseInfoService->storeCourseSkills(request('skill'), $courseId);
         $courseInfoService->storeInstructors(request('instructor'), $courseId, $request);
@@ -70,6 +73,7 @@ class CourseController extends Controller
                 'visible' => 2
             ]);
 
+        $courseInfoService->updateCourseLocation(request('location'), request('course_id'));
         $courseInfoService->updateCourseDates(request('date'), request('course_id'));
         $courseInfoService->updateCourseSkills(request('skill'), request('course_id'));
         $courseInfoService->updateCourseInstructors(request('instructor'), request('course_id'), $request);
@@ -89,8 +93,15 @@ class CourseController extends Controller
     public function getSelectedCourse($courseId)
     {
         $course = DB::table('courses')
-            ->select('courses.id', 'courses.course_name', 'courses.author', 'courses.image', 'courses.type', 'courses.requirements', 'courses.course_descr_body', 'courses.enlistments')
+            ->select('courses.id', 'courses.course_name', 'courses.author', 'courses.image', 'courses.type', 'courses.requirements', 'courses.course_descr_body', 'courses.limit', 'courses.enlistments')
             ->where('courses.id', '=', $courseId)
+            ->get()
+            ->toArray();
+
+        $courseLocation = DB::table('course_information')
+            ->select('course_information.id', 'course_information.key', 'course_information.location')
+            ->where('course_information.course_id', '=', $courseId)
+            ->whereNotNull(['course_information.key', 'course_information.location'])
             ->get()
             ->toArray();
 
@@ -142,6 +153,7 @@ class CourseController extends Controller
         $courseData = [
             'about-course' => $course,
             'course-rating' => $calculatedRating,
+            'course-location' => $courseLocation,
             'course-dates' => $courseDates,
             'course-skills' => $courseSkills,
             'course-instructors' => $courseInstructors,

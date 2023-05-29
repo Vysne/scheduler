@@ -1,3 +1,6 @@
+import {toStringHDMS} from "ol/coordinate";
+import {toLonLat} from "ol/proj";
+
 var editors = ['#course-descr'];
 
 function loadCourseEditor() {
@@ -87,13 +90,13 @@ function checkEnrollment() {
     return input.value;
 }
 
-let status = document.querySelector('.course-join-icon span');
+let status = document.querySelector('.enrollment-button span');
 let ratDisplay = document.querySelector('.course-content-rating p');
 let stars = document.querySelectorAll('.fa-star');
 let totalStar = 0;
 
 stars.forEach(function (star, index) {
-    if (status.innerHTML === 'Accepted') {
+    if (status.innerHTML === 'Joined') {
         star.dataset.rating = index + 1;
         star.addEventListener('mouseover', onMouseOver);
         star.addEventListener('click', onClick);
@@ -153,4 +156,99 @@ function ratingLoad() {
     ratingText.innerHTML = ratingValue.value + '/5 stars';
 }
 
-window.onload = [loadCourseEditor(), loadInstructorEditors(), loadSyllabusEditors(), hideSyllabus(), ratingLoad()];
+function loadMapMarker() {
+    const key = 'IxMPj55LDxu47ASU0B8D';
+    const source = new ol.source.TileJSON({
+        url: `https://api.maptiler.com/maps/basic-v2/tiles.json?key=${key}`,
+        tileSize: 512,
+        crossOrigin: 'anonymous'
+    });
+
+    const attribution = new ol.control.Attribution({
+        collapsible: false,
+    });
+
+    const content = document.getElementById('popup-content');
+    const container = document.getElementById('popup');
+    const closer = document.getElementById('popup-closer');
+    let longitude = parseFloat(document.getElementById('lon').value);
+    let latitude = parseFloat(document.getElementById('lat').value);
+
+    var overlay = new ol.Overlay({
+        element: container,
+        autoPan: {
+            animation: {
+                duration: 250,
+            },
+        },
+    });
+
+    closer.onclick = function () {
+        overlay.setPosition(undefined);
+        closer.blur();
+        return false;
+    };
+
+    const map = new ol.Map({
+        layers: [
+            new ol.layer.Tile({
+                source: source,
+            }),
+        ],
+        controls: ol.control.defaults.defaults({attribution: false}).extend([attribution]),
+        overlays: [overlay],
+        target: 'map',
+        view: new ol.View({
+            constrainResolution: true,
+            center: ol.proj.fromLonLat([23.90, 54.90]),
+            zoom: 10
+        })
+    });
+
+    const marker = new ol.layer.Vector({
+        source: new ol.source.Vector({
+            features: [
+                new ol.Feature({
+                    geometry: new ol.geom.Point(
+                        ol.proj.fromLonLat([longitude, latitude]),
+                    ),
+                    // id: Math.floor((Math.random() * 100) + 1)
+                })
+            ]
+        }),
+        style: new ol.style.Style({
+            image: new ol.style.Icon({
+                src: 'https://docs.maptiler.com/openlayers/default-marker/marker-icon.png',
+                anchor: [0.5, 1],
+            })
+        })
+    });
+    marker.set('name', 'marker');
+    map.addLayer(marker);
+
+    map.on('click', function (event) {
+        const feature = map.forEachFeatureAtPixel(event.pixel, function (feature) {
+            return feature;
+        });
+        if (feature) {
+            enabledPopup(event);
+        }
+    });
+
+    function enabledPopup(evt) {
+        const feature = map.forEachFeatureAtPixel(evt.pixel, function (feature) {
+            return feature;
+        });
+
+        if (feature) {
+            const markerCordinates = evt.coordinate;
+            const hdms = toStringHDMS(toLonLat(markerCordinates));
+            const coordinates = feature.getGeometry().getCoordinates();
+
+            content.innerHTML = '<p>You clicked here:</p><a href="https://www.google.com/maps/place/' + hdms + '" target="_blank">' + hdms + '</a>';
+            overlay.setPosition(coordinates);
+        }
+    }
+}
+
+window.onload = [loadCourseEditor(), loadInstructorEditors(), loadSyllabusEditors(), hideSyllabus(), ratingLoad(), loadMapMarker()];

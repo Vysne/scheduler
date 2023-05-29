@@ -64,8 +64,8 @@
                     <a id="popup-closer" class="ol-popup-closer"></a>
                     <div id="popup-content"></div>
                 </div>
-                <input type="hidden" id="lon" name="location[longitude]" value="">
-                <input type="hidden" id="lat" name="location[latitude]" value="">
+                <input type="hidden" id="lon" name="location[longitude][location]" value="">
+                <input type="hidden" id="lat" name="location[latitude][location]" value="">
             </div>
         </div>
     </div>

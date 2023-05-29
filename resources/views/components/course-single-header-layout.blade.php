@@ -64,6 +64,7 @@
         </div>
         <div class="enrollment-statistics-container">
             <h5>Enrolled users: {{ $courseSingleData['enlistments'] }}</h5>
+            <h5>Members limit: {{ $courseSingleData['limit'] }}</h5>
         </div>
     </div>
     <?php else : ?>
