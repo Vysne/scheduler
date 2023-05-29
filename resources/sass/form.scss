@@ -60,6 +60,17 @@
             & .course-name-and-type-container {
                 display: block;
                 width: 50%;
+                & .course-type-and-limit {
+                    display: flex;
+                    flex-direction: row;
+                    & .course-limit-wrap {
+                        margin-left: 1rem;
+                        & input {
+                            width: 50%;
+                            padding: 11px 13px;
+                        }
+                    }
+                }
                 & .course-name-wrap {
                     margin-bottom: 1rem;
                     & input {

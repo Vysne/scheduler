@@ -17,9 +17,15 @@
                         <span>Course title</span>
                         <input type="text" id="course-title" name="course-name">
                     </div>
-                    <div class="course-type-wrap">
-                        <span>Course type</span>
-                        <x-course-type-dropdown-content-layout></x-course-type-dropdown-content-layout>
+                    <div class="course-type-and-limit">
+                        <div class="course-type-wrap">
+                            <span>Course type</span>
+                            <x-course-type-dropdown-content-layout></x-course-type-dropdown-content-layout>
+                        </div>
+                        <div class="course-limit-wrap">
+                            <span>Members limit</span>
+                            <input type="number" id="course-limit" name="limit">
+                        </div>
                     </div>
                     <div class="course-requirements-wrap">
                         <span>Course requirements</span>

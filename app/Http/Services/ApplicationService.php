@@ -32,4 +32,16 @@ class ApplicationService
             return $applicationData;
         }
     }
+
+    public function getUserApplication($userId)
+    {
+        $userApplication = DB::table('applications')
+            ->where('user_id', $userId)
+            ->get('status')
+            ->toArray();
+
+        foreach($userApplication as $data) {
+            return $data->status;
+        }
+    }
 }

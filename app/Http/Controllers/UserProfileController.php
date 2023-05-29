@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Services\ApplicationService;
 use Illuminate\Http\Request;
 use App\Http\Services\UserInformationService;
 use Illuminate\Support\Facades\Auth;
@@ -16,8 +17,9 @@ class UserProfileController extends Controller
     public function index()
     {
         $userInformationSerivce = new UserInformationService;
+        $applicationService = new ApplicationService;
 
-        return view('profile-page', ['user' => $userInformationSerivce->loadUserInformation()]);
+        return view('profile-page', ['user' => $userInformationSerivce->loadUserInformation(), 'applicationData' => $applicationService->getUserApplication(Auth::id())]);
     }
 
     public function update(Request $request)

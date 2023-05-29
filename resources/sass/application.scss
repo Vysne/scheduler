@@ -38,3 +38,32 @@
     cursor: pointer;
     border: solid 1px #BA68C8;
 }
+
+.modal-header {
+    & button {
+        background-color: unset;
+        box-shadow: unset;
+        pointer-events: none;
+        &:hover {
+            background-color: unset;
+        }
+        & span {
+            color: black;
+            transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out, border-color 0.3s ease-in-out, box-shadow 0.13s ease-in-out;
+            pointer-events: all;
+            &:hover {
+                background-color: unset;
+                color: #0f6cbd;
+            }
+        }
+    }
+}
+
+.modal-footer {
+    & .application-close {
+        width: 20%;
+    }
+    & .cancel-application {
+        width: 40%;
+    }
+}

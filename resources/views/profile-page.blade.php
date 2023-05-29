@@ -28,7 +28,8 @@
     'resources/sass/page-title.scss',
     'resources/sass/notifiers.scss', 'resources/js/notifiers.js',
     'resources/sass/table.scss',
-    'resources/sass/profile.scss', 'resources/js/profile.js'
+    'resources/sass/profile.scss', 'resources/js/profile.js',
+    'resources/sass/application.scss'
     ])
 
 </head>
@@ -38,13 +39,19 @@
     <div class="catalog-wrap">
         <x-navbar-layout></x-navbar-layout>
         <x-page-title-layout></x-page-title-layout>
+{{--        {{ dd($applicationData) }}--}}
         @foreach($user as $data)
             <form action="{{ route('update-profile') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="container">
                     <div class="main-body">
                         <div class="profile-action-buttons">
-                            <button type="button" id="edit-button">Edit</button>
+                            @if($applicationData === 'processing')
+                                <button type="button" data-toggle="modal" data-target="#applicationModalNotice">Edit</button>
+                                <x-application-notice-modal></x-application-notice-modal>
+                            @else
+                                <button type="button" id="edit-button">Edit</button>
+                            @endif
                             <button type="submit" id="update-button" hidden>Update</button>
                             <button type="button" id="cancel-button" hidden>Cancel</button>
                         </div>
