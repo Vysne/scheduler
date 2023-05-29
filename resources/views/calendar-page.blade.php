@@ -23,7 +23,7 @@
     'resources/sass/login.scss', 'resources/js/login.js',
     'resources/sass/content.scss', 'resources/js/content.js',
     'resources/sass/page-title.scss',
-    'resources/sass/filter.scss', 'resources/js/filter.js',
+    'resources/sass/filter.scss',
     'resources/sass/calendar.scss', 'resources/js/calendar.js'
     ])
 
@@ -91,13 +91,13 @@
                             </td>
                             <td>
                                 <div class="action-buttons-wrap">
-                                    <button class="event-update-button" type="submit" data-toggle="modal" data-target="#calendarEventEditModal">
+                                    <button class="event-update-button" type="submit" data-toggle="modal" data-target="#{{ $event['id'] }}calendarEventEditModal">
                                         <i class="fa fa-pencil" aria-hidden="true"></i>
                                     </button>
                                     <form action="{{ url('api/google/update/' . $event['id']) }}" method="POST">
                                         @method('PUT')
                                         @csrf
-                                        <div class="modal fade-scale" id="calendarEventEditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                        <div class="modal fade-scale event-edit-modal" id="{{ $event['id'] }}calendarEventEditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">

@@ -58,7 +58,7 @@
             <tbody>
             @foreach($applications as $application)
 {{--                {{ dd($application) }}--}}
-{{--                <x-user-profile-modal-layout :enlistment="$enlistment"></x-user-profile-modal-layout>--}}
+{{--                <x-user-profile-modal-layout :enlistments="$application"></x-user-profile-modal-layout>--}}
                 <tr>
                     <td>
                         <div class="d-flex align-items-center">

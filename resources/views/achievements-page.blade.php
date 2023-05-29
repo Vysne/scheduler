@@ -41,7 +41,7 @@
                         <x-achievement-modal-layout :achievement="$achievement"></x-achievement-modal-layout>
                         <li>
                             <div class="course-card" data-type="">
-                                <a data-toggle="modal" data-target="#{{ $achievement->user_id }}userAchievementModal">
+                                <a data-toggle="modal" data-target="#{{ $achievement->id }}userAchievementModal">
                                     <div class="course-image">
                                         <img src="{{ asset($achievement->image) }}">
                                     </div>

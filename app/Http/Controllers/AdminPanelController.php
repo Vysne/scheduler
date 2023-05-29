@@ -71,6 +71,7 @@ class AdminPanelController extends Controller
                 'user_information.email'
             )
             ->where('courses.visible', '=', 0)
+            ->orWhere('courses.visible', '=', 2)
             ->get();
 
         return json_decode(json_encode($result), true);

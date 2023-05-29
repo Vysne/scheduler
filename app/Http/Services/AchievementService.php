@@ -15,6 +15,7 @@ class AchievementService
             ->join('users', 'achievements.user_id', '=', 'users.id')
             ->join('courses', 'achievements.course_id', '=', 'courses.id')
             ->select(
+                'achievements.id',
                 'achievements.course_id',
                 'achievements.user_id',
                 'achievements.achievement_creator',

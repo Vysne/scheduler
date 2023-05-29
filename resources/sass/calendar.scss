@@ -63,7 +63,7 @@
     }
 }
 
-#calendarEventAddModal, #calendarEventEditModal {
+#calendarEventAddModal, .event-edit-modal {
     & .modal-body {
         & label {
             position: unset;
