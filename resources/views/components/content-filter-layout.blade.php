@@ -23,13 +23,11 @@
             </li>
             <li>
                 <div class="dropdown" id="course-date">
-                    <input type="text" readonly placeholder="Select date" value="" name="filters[courses-date]" onclick="dropdownActivate(this)">
+                    <input type="text" readonly placeholder="Select limit" value="" name="filters[courses-limit]" onclick="dropdownActivate(this)">
                     <div class="option">
-                        <div onmouseover="showSelected(this)" data-set="default">Select date</div>
-                        <div onmouseover="showSelected(this)">Date 1</div>
-                        <div onmouseover="showSelected(this)">Date 2</div>
-                        <div onmouseover="showSelected(this)">Date 3</div>
-                        <div onmouseover="showSelected(this)">Date 4</div>
+                        <div onclick="showSelected(this)" data-set="default">Select limit</div>
+                        <div onclick="showSelected(this)">Course with members limit</div>
+                        <div onclick="showSelected(this)">Course without members limit</div>
                     </div>
                 </div>
             </li>

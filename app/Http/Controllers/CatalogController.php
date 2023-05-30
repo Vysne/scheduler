@@ -24,8 +24,7 @@ class CatalogController extends Controller
         if (array_key_exists('filters', $_GET)) {
             foreach($_GET['filters'] as $key => $filter ) {
                 if ($filter != "") {
-                    $filterValues['filters'] = [str_replace('-', '.', $key) => $filter];
-//                    $filterValues['filters'] = [$key => $filter];
+                    $filterValues[str_replace('-', '.', $key)] = $filter;
                 }
             }
         }
@@ -58,13 +57,24 @@ class CatalogController extends Controller
 
     public function filterCourses($filterValues)
     {
+//        dd($filterValues);
         return DB::table('courses')
             ->join('users', 'courses.author', '=', 'users.id')
-            ->select('courses.id', 'courses.course_name', 'courses.author', 'courses.image', 'courses.type', 'courses.enlistments', 'courses.rating', 'users.name')
+            ->select('courses.id', 'courses.course_name', 'courses.author', 'courses.image', 'courses.type', 'courses.limit', 'courses.enlistments', 'courses.rating', 'users.name')
             ->where('courses.visible', '=', 1)
             ->where(function($query) use($filterValues) {
-                foreach ($filterValues['filters'] as $key => $filter) {
-                    $query->where($key, '=', $filter);
+                foreach ($filterValues as $key => $filter) {
+                    if ($key == 'courses.limit') {
+                        if ($filter === 'Course with members limit') {
+                            $query->where('courses.limit', '>', 0);
+                        } else {
+                            $query->where('courses.limit', '=', 0);
+                        }
+                    }
+
+                    if ($key == 'courses.type') {
+                        $query->where('courses.type', '=', $filter);
+                    }
                 }
             })->paginate(3);
     }

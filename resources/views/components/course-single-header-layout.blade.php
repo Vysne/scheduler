@@ -64,7 +64,11 @@
         </div>
         <div class="enrollment-statistics-container">
             <h5>Enrolled users: {{ $courseSingleData['enlistments'] }}</h5>
-            <h5>Members limit: {{ $courseSingleData['limit'] }}</h5>
+            @if ($courseSingleData['limit'] != 0)
+                <h5>Members limit: {{ $courseSingleData['limit'] }}</h5>
+            @else
+                <h5>Members limit: No limit</h5>
+            @endif
         </div>
     </div>
     <?php else : ?>

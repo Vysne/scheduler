@@ -29,6 +29,8 @@ function initMap() {
     const content = document.getElementById('popup-content');
     const container = document.getElementById('popup');
     const closer = document.getElementById('popup-closer');
+    let longitude = document.getElementById('lon');
+    let latitude = document.getElementById('lat');
 
     var overlay = new ol.Overlay({
         element: container,
@@ -95,8 +97,6 @@ function initMap() {
                     })
                 })
             });
-            let longitude = document.getElementById('lon');
-            let latitude = document.getElementById('lat');
             longitude.value = lonLat[0];
             latitude.value = lonLat[1];
 
@@ -111,12 +111,26 @@ function initMap() {
         });
 
         if (feature) {
+            let removeBtn = document.getElementById('popup-remove');
             const markerCordinates = evt.coordinate;
             const hdms = toStringHDMS(toLonLat(markerCordinates));
             const coordinates = feature.getGeometry().getCoordinates();
 
             content.innerHTML = '<p>You clicked here:</p><a href="https://www.google.com/maps/place/' + hdms + '" target="_blank">' + hdms + '</a>';
             overlay.setPosition(coordinates);
+
+            removeBtn.addEventListener('click', function () {
+                map.getLayers().forEach(function (layer) {
+                    if (layer.get('name') === 'marker') {
+                        map.removeLayer(layer);
+                    }
+                });
+                longitude.value = '';
+                latitude.value = '';
+                overlay.setPosition(undefined);
+                closer.blur();
+                return false;
+            });
         }
     }
 }

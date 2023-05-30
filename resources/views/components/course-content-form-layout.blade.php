@@ -62,6 +62,7 @@
             <div id="map" class="map">
                 <div id="popup" class="ol-popup">
                     <a id="popup-closer" class="ol-popup-closer"></a>
+                    <a href="#" id="popup-remove" class="ol-popup-remove"><i class="fa fa-trash" aria-hidden="true"></i></a>
                     <div id="popup-content"></div>
                 </div>
                 <input type="hidden" id="lon" name="location[longitude][location]" value="">

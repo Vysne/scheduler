@@ -628,12 +628,28 @@ function loadMapMarker() {
         });
 
         if (feature) {
+            let removeBtn = document.getElementById('popup-remove');
+            let longitude = document.getElementById('lon');
+            let latitude = document.getElementById('lat');
             const markerCordinates = evt.coordinate;
             const hdms = toStringHDMS(toLonLat(markerCordinates));
             const coordinates = feature.getGeometry().getCoordinates();
 
             content.innerHTML = '<p>You clicked here:</p><a href="https://www.google.com/maps/place/' + hdms + '" target="_blank">' + hdms + '</a>';
             overlay.setPosition(coordinates);
+
+            removeBtn.addEventListener('click', function () {
+                map.getLayers().forEach(function (layer) {
+                    if (layer.get('name') === 'marker') {
+                        map.removeLayer(layer);
+                    }
+                });
+                longitude.value = 0;
+                latitude.value = 0;
+                overlay.setPosition(undefined);
+                closer.blur();
+                return false;
+            });
         }
     }
 }
