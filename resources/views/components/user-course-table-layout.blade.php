@@ -136,16 +136,16 @@
                             </form>
                             @endif
                         </div>
-                        <?php $user = auth()->user(); if ($user['status'] == 'admin') : ?>
-                        <form action="{{ url('/delete/' . $userContent->id) }}" method="POST" id="delete-form">
-                            @csrf
-                            <div class="delete-button-wrap">
-                                <a href="#" onclick="" title="Delete">
-                                    <i class="fa fa-trash" aria-hidden="true"></i>
-                                </a>
-                            </div>
-                        </form>
-                        <?php endif; ?>
+{{--                        <?php $user = auth()->user(); if ($user['status'] == 'admin') : ?>--}}
+{{--                        <form action="{{ url('/delete/' . $userContent->id) }}" method="POST" id="delete-form">--}}
+{{--                            @csrf--}}
+{{--                            <div class="delete-button-wrap">--}}
+{{--                                <a href="#" onclick="" title="Delete">--}}
+{{--                                    <i class="fa fa-trash" aria-hidden="true"></i>--}}
+{{--                                </a>--}}
+{{--                            </div>--}}
+{{--                        </form>--}}
+{{--                        <?php endif; ?>--}}
                     </div>
                 </td>
             </tr>

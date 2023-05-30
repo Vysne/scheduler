@@ -82,6 +82,9 @@ class CatalogController extends Controller
                             $query->where('courses.virtual', 0);
                         }
                     }
+                    if ($key == 'courses.rating') {
+                        $query->where('courses.rating', $filter);
+                    }
                 }
             })->paginate(3);
     }

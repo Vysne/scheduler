@@ -43,13 +43,14 @@
             </li>
             <li>
                 <div class="dropdown" id="course-enlistment">
-                    <input type="text" readonly placeholder="Select enlistments" value="" name="filters[courses-enlistment]" onclick="dropdownActivate(this)">
+                    <input type="text" readonly placeholder="Select rating" value="" name="filters[courses-rating]" onclick="dropdownActivate(this)">
                     <div class="option">
-                        <div onmouseover="showSelected(this)" data-set="default">Select enlistments</div>
-                        <div onmouseover="showSelected(this)">Enlistments 1</div>
-                        <div onmouseover="showSelected(this)">Enlistments 2</div>
-                        <div onmouseover="showSelected(this)">Enlistments 3</div>
-                        <div onmouseover="showSelected(this)">Enlistments 4</div>
+                        <div onclick="showSelected(this)" data-set="default">Select rating</div>
+                        <div onclick="showSelected(this)"><span class="fa fa-star star-checked"></span> 1</div>
+                        <div onclick="showSelected(this)"><span class="fa fa-star star-checked"></span><span class="fa fa-star star-checked"></span> 2</div>
+                        <div onclick="showSelected(this)"><span class="fa fa-star star-checked"></span><span class="fa fa-star star-checked"></span><span class="fa fa-star star-checked"></span> 3</div>
+                        <div onclick="showSelected(this)"><span class="fa fa-star star-checked"></span><span class="fa fa-star star-checked"></span><span class="fa fa-star star-checked"></span><span class="fa fa-star star-checked"></span> 4</div>
+                        <div onclick="showSelected(this)"><span class="fa fa-star star-checked"></span><span class="fa fa-star star-checked"></span><span class="fa fa-star star-checked"></span><span class="fa fa-star star-checked"></span><span class="fa fa-star star-checked"></span> 5</div>
                     </div>
                 </div>
             </li>
