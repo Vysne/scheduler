@@ -38,6 +38,21 @@
         background-color: #4e73df
     }
 }
+.course-limit-wrap {
+    display: flex;
+    justify-content: end;
+    margin-bottom: 1rem;
+    & .limit-update-button {
+        border-radius: 0.35rem;
+        background-color: #858796;
+        border-color: #858796;
+        transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out, border-color 0.3s ease-in-out, box-shadow 0.13s ease-in-out;
+        color: #ffffff;
+        &:hover {
+            background-color: #0f6cbd;
+        }
+    }
+}
 .enlistment-status-wrap {
     width: 50%;
     border-radius: 1rem;

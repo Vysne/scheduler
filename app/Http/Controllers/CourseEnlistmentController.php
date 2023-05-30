@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Http\Services\EnlistmentService;
+use App\Models\Course;
 
 class CourseEnlistmentController extends Controller
 {
@@ -13,7 +14,7 @@ class CourseEnlistmentController extends Controller
     {
         $enlistmentService = new EnlistmentService;
 
-        return view('course-members-page', ['enlistments' => $enlistmentService->getCourseEnlistments($courseId), 'members' => $enlistmentService->getCourseMembers($courseId)]);
+        return view('course-members-page', ['enlistments' => $enlistmentService->getCourseEnlistments($courseId), 'members' => $enlistmentService->getCourseMembers($courseId), 'course' => $enlistmentService->getCourseLimit($courseId)]);
     }
 
     public function acceptAction($courseId, $userId)
@@ -39,6 +40,16 @@ class CourseEnlistmentController extends Controller
         $enlistmentService = new EnlistmentService;
 
         $enlistmentService->assignAchievement($courseId, $userId, $request);
+
+        return redirect('/members/' . $courseId);
+    }
+
+    public function updateLimit($courseId, Request $request)
+    {
+        Course::where('id', $courseId)
+            ->update([
+                'limit' => $request['course-limit']
+            ]);
 
         return redirect('/members/' . $courseId);
     }

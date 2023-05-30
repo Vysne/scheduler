@@ -114,4 +114,13 @@ class EnlistmentService
                 'achievement_descr_body' => $request['achievement-body']
             ]);
     }
+
+    public function getCourseLimit($courseId)
+    {
+        return DB::table('courses')
+            ->where('courses.id', '=', $courseId)
+            ->select('courses.id', 'courses.limit')
+            ->get()
+            ->first();
+    }
 }

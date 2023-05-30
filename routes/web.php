@@ -33,6 +33,7 @@ Route::post('/disable/{id}', [App\Http\Controllers\HomeController::class, 'disab
 Route::post('/enable/{id}', [App\Http\Controllers\HomeController::class, 'enableAction'])->name('/enable/{id}');
 Route::post('/delete/{id}', [App\Http\Controllers\HomeController::class, 'deleteAction'])->name('/delete/{id}');
 Route::get('/members/{id}', [App\Http\Controllers\CourseEnlistmentController::class, 'index'])->name('/members/{id}');
+Route::post('/members/{id}/update-limit', [App\Http\Controllers\CourseEnlistmentController::class, 'updateLimit'])->name('/members/{id}/update-limit');
 Route::post('/members/{id}/accept/{user_id}', [App\Http\Controllers\CourseEnlistmentController::class, 'acceptAction'])->name('/members/{id}/accept/{user_id}');
 Route::post('/members/{id}/decline/{user_id}', [App\Http\Controllers\CourseEnlistmentController::class, 'declineAction'])->name('/members/{id}/decline/{user_id}');
 Route::post('/members/{id}/achievement/{user_id}', [App\Http\Controllers\CourseEnlistmentController::class, 'achievementAction'])->name('/members/{id}/achievement/{user_id}');

@@ -24,7 +24,7 @@
                         </div>
                         <div class="course-limit-wrap">
                             <span>Members limit</span>
-                            <input type="number" id="course-limit" name="limit">
+                            <input type="number" id="course-limit" name="limit" min="0" max="100" required>
                         </div>
                     </div>
                     <div class="course-requirements-wrap">

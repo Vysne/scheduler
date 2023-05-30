@@ -548,5 +548,18 @@ function removeEditorInstance() {
     });
 }
 
-window.onload = [loadEditor(), addTime(), addSkill(), addInstructor(), addSection(), syllabusTypeVideo(), syllabusTypeText()];
+function limit() {
+    let limitElem = document.getElementById('course-limit');
+
+    limitElem.addEventListener('change', function() {
+        var limitValue = parseInt(limitElem.value);
+
+        if (limitValue === 0) {
+            limitElem.value = '';
+            limitElem.placeholder = 'No limit';
+        }
+    });
+}
+
+window.onload = [loadEditor(), addTime(), addSkill(), addInstructor(), addSection(), syllabusTypeVideo(), syllabusTypeText(), limit()];
 

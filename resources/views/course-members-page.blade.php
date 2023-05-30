@@ -49,6 +49,16 @@
                 <span>Course members</span>
             </button>
         </div>
+        <div class="course-limit-wrap">
+            <form action="{{ url('/members/' . $course->id . '/update-limit') }}" method="POST">
+                @csrf
+                <span>Course limit:</span>
+                &nbsp;
+                <input type="number" id="course-limit" value="{{ $course->limit }}" name="course-limit" min="0" max="100">
+                &nbsp;
+                <button type="submit" class="limit-update-button">Update</button>
+            </form>
+        </div>
         <table class="table align-middle mb-0 bg-white" id="enlistments-table" hidden>
             <thead class="bg-light">
                 <tr>

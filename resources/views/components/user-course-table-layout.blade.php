@@ -55,7 +55,17 @@
             <tr>
                 <td><a href="{{ url('/course-single/' . $userContent->id) }}" class="table-course-name">{{ $userContent->course_name }}</a></td>
                 <td>{{ $userContent->type }}</td>
-                <td></td>
+{{--                <td>{{ $userContent->rating }}</td>--}}
+                <td>
+                    <div class="course-rating">
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <input type="hidden" value="{{ $userContent->rating }}">
+                    </div>
+                </td>
                 <td>
                     <div class="action-buttons-wrap">
                         @if ($userContent->visible === 2)

@@ -28,4 +28,42 @@ function createdCoursesTable() {
     });
 }
 
-window.onload = [myCoursesTable(), createdCoursesTable()]
+function ratingLoad() {
+    let ratingValues = document.querySelectorAll('.course-rating input');
+    ratingValues.forEach(function (ratingValue) {
+        if (ratingValue.value !== 0) {
+            let starContainer = ratingValue.parentElement;
+            let starsNodeList = starContainer.querySelectorAll('.fa-star');
+            let starsArray = Array.from(starsNodeList);
+            let selectedStars = starsArray.slice(0, ratingValue.value);
+
+            selectedStars.forEach(function (star) {
+                star.classList.add('star-checked');
+            });
+        }
+    });
+}
+
+function loadLimit() {
+    let limitElem = document.getElementById('course-limit');
+
+    if (limitElem.value === '0') {
+        limitElem.setAttribute('placeholder', 'No limit');
+        limitElem.removeAttribute('value');
+    }
+}
+
+function changeLimit() {
+    let limitElem = document.getElementById('course-limit');
+
+    limitElem.addEventListener('change', function() {
+        var limitValue = parseInt(limitElem.value);
+
+        if (limitValue === 0) {
+            limitElem.value = '';
+            limitElem.placeholder = 'No limit';
+        }
+    });
+}
+
+window.onload = [myCoursesTable(), createdCoursesTable(), ratingLoad(), loadLimit(), changeLimit()]

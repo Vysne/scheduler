@@ -15,7 +15,7 @@ class DashboardTableService
         $this->generateDefaultProfileInfo($userId);
 
         return DB::table('courses')
-            ->select('id', 'course_name', 'type', 'visible')
+            ->select('id', 'course_name', 'type', 'rating', 'visible')
             ->where('author', '=', $userId)
             ->get()
             ->toArray();
