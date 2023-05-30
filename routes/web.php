@@ -29,6 +29,7 @@ Route::get('/profile', [App\Http\Controllers\UserProfileController::class, 'inde
 Route::post('/update-profile', [App\Http\Controllers\UserProfileController::class, 'update'])->name('update-profile');
 
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
+Route::post('/leave/{id}', [App\Http\Controllers\HomeController::class, 'leaveAction'])->name('/leave/{id}');
 Route::post('/disable/{id}', [App\Http\Controllers\HomeController::class, 'disableAction'])->name('/disable/{id}');
 Route::post('/enable/{id}', [App\Http\Controllers\HomeController::class, 'enableAction'])->name('/enable/{id}');
 Route::post('/delete/{id}', [App\Http\Controllers\HomeController::class, 'deleteAction'])->name('/delete/{id}');
@@ -37,6 +38,7 @@ Route::post('/members/{id}/update-limit', [App\Http\Controllers\CourseEnlistment
 Route::post('/members/{id}/accept/{user_id}', [App\Http\Controllers\CourseEnlistmentController::class, 'acceptAction'])->name('/members/{id}/accept/{user_id}');
 Route::post('/members/{id}/decline/{user_id}', [App\Http\Controllers\CourseEnlistmentController::class, 'declineAction'])->name('/members/{id}/decline/{user_id}');
 Route::post('/members/{id}/achievement/{user_id}', [App\Http\Controllers\CourseEnlistmentController::class, 'achievementAction'])->name('/members/{id}/achievement/{user_id}');
+Route::get('/members/{id}/drop/{user_id}', [App\Http\Controllers\CourseEnlistmentController::class, 'dropMember'])->name('/members/{id}/drop/{user_id}');
 
 Route::get('/courses', [App\Http\Controllers\CatalogController::class, 'index'])->name('courses');
 Route::post('/join/{id}', [App\Http\Controllers\CatalogController::class, 'joinAction'])->name('/join/{id}');
@@ -58,6 +60,7 @@ Route::get('/achievements', [App\Http\Controllers\AchievementsController::class,
 
 Route::get('/terms-and-conditions', [App\Http\Controllers\TermsAndConditionsController::class, 'index'])->name('terms-and-conditions');
 Route::post('/apply', [App\Http\Controllers\ApplicationController::class, 'index'])->name('apply');
+Route::get('/cancel/{id}', [App\Http\Controllers\ApplicationController::class, 'cancelApplication'])->name('cancel/{id}');
 
 Route::get('/admin-panel', [App\Http\Controllers\AdminPanelController::class, 'index'])->name('admin-panel');
 Route::post('/admin-panel/accept/{user_id}', [App\Http\Controllers\AdminPanelController::class, 'acceptAction'])->name('/admin-panel/accept/{user_id}');

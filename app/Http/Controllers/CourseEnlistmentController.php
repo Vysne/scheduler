@@ -53,4 +53,14 @@ class CourseEnlistmentController extends Controller
 
         return redirect('/members/' . $courseId);
     }
+
+    public function dropMember($courseId, $userId)
+    {
+        DB::table('enlistments')
+            ->where('course_id', $courseId)
+            ->where('user_id', $userId)
+            ->delete();
+
+        return redirect('/members/' . $courseId);
+    }
 }

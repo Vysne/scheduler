@@ -12,8 +12,8 @@
                 <p>Your profile can not be edited or updated as <b>Course creator application</b> was sent and is still in processing status.</p>
             </div>
             <div class="modal-footer">
+                <a href="{{ url('cancel/' . Auth::id()) }}" class="btn btn-secondary">Cancel request</a>
                 <button type="button" class="btn btn-secondary application-close" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary cancel-application">Cancel application</button>
             </div>
         </div>
     </div>

@@ -193,7 +193,7 @@
                             <a href="#" id="disable-button">
                                 <i class="fa fa-commenting" aria-hidden="true"></i>
                             </a>
-                            <a href="#" id="disable-button">
+                            <a href="{{ url('/members/' . $course->id . '/drop/' . $member['user_id']) }}" id="disable-button">
                                 <i class="fa fa-times" aria-hidden="true"></i>
                             </a>
                         </div>

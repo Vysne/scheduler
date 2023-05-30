@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Services\DashboardTableService;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -50,6 +52,18 @@ class HomeController extends Controller
         $dashboardTableService = new DashboardTableService;
 
         $dashboardTableService->deleteCourse($courseId);
+
+        return redirect('dashboard');
+    }
+
+    public function leaveAction($courseId)
+    {
+        $userId = Auth::id();
+
+        DB::table('enlistments')
+            ->where('course_id', $courseId)
+            ->where('user_id', $userId)
+            ->delete();
 
         return redirect('dashboard');
     }

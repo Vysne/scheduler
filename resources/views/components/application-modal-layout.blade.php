@@ -31,10 +31,15 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <a href="{{ url('cancel/' . Auth::id()) }}" class="btn btn-secondary">Cancel request</a>
                     </div>
                 @endif
             </div>
         </div>
     </div>
     @endforeach
+{{--        <form action="{{ url('cancel/' . Auth::id()) }}" method="POST">--}}
+{{--            @csrf--}}
+{{--            <button type="submit" class="btn btn-secondary">Cancel request</button>--}}
+{{--        </form>--}}
 </form>

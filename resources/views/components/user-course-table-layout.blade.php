@@ -7,6 +7,7 @@
                     <th scope="col">Type</th>
                     <th scope="col">Progress</th>
                     <th scope="col">Status</th>
+                    <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -27,7 +28,7 @@
                                 @if($enlistment->status === 'accepted')
                                     <a href="{{ url('/course-single/' . $enlistment->id) }}" class="process-notifier">
                                         <i class="fa fa-check" aria-hidden="true"></i>
-                                        <span>Already joined</span>
+                                        <span>Joined</span>
                                     </a>
                                 @elseif($enlistment->status === 'processing')
                                     <a href="{{ url('/course-single/' . $enlistment->id) }}" class="process-notifier">
@@ -35,6 +36,14 @@
                                         <span>{{ ucfirst($enlistment->status) }}</span>
                                     </a>
                                 @endif
+                            </td>
+                            <td style="display: table-cell">
+                                <form action="{{ url('/leave/' . $enlistment->id) }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="leave-course-button" title="Leave course">
+                                        <i class="fa fa-sign-out" aria-hidden="true"></i>
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                     @endif

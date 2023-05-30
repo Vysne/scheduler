@@ -142,3 +142,16 @@ table {
 .star-checked {
     color: yellow;
 }
+
+.leave-course-button {
+    border: unset;
+    background-color: unset;
+    transition: .15s;
+    color: #4e73df;
+    & i {
+        font-size: 1.5rem;
+    }
+    &:hover {
+        color: #0f548c;
+    }
+}
