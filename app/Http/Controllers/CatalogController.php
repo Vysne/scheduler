@@ -57,7 +57,6 @@ class CatalogController extends Controller
 
     public function filterCourses($filterValues)
     {
-//        dd($filterValues);
         return DB::table('courses')
             ->join('users', 'courses.author', '=', 'users.id')
             ->select('courses.id', 'courses.course_name', 'courses.author', 'courses.image', 'courses.type', 'courses.limit', 'courses.enlistments', 'courses.rating', 'users.name')
@@ -74,6 +73,14 @@ class CatalogController extends Controller
 
                     if ($key == 'courses.type') {
                         $query->where('courses.type', '=', $filter);
+                    }
+
+                    if ($key == 'courses.virtual') {
+                        if ($filter === 'Virtual courses') {
+                            $query->where('courses.virtual', 1);
+                        } else {
+                            $query->where('courses.virtual', 0);
+                        }
                     }
                 }
             })->paginate(3);

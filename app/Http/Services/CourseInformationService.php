@@ -18,14 +18,24 @@ class CourseInformationService
 
     public function storeCourseLoaction($courseLocation, $courseId)
     {
+        $virtual = false;
         $courseInformation = new CourseInformation;
+        $course = new Course;
 
         foreach ($courseLocation as $key => $location) {
             $location['course_id'] = $courseId[0];
             $location['key'] = $key;
 
             $courseInformation::insert($location);
+
+            if ($location['location'] != '0') {
+                $virtual = true;
+            } else {
+                $virtual = false;
+            }
         }
+
+        $course::where('id', $courseId)->update(['virtual' => $virtual]);
     }
 
     public function storeCourseDates($courseDates, $courseId)
@@ -84,6 +94,9 @@ class CourseInformationService
 
     public function updateCourseLocation($courseLocation, $courseId)
     {
+        $virtual = false;
+        $course = new Course;
+
         if ($courseLocation !== null) {
             foreach($courseLocation as $key => $location) {
                 CourseInformation::updateOrCreate(
@@ -96,8 +109,16 @@ class CourseInformationService
                         'location' => $location['location']
                     ]
                 );
+
+                if ($location['location'] != '0') {
+                    $virtual = true;
+                } else {
+                    $virtual = false;
+                }
             }
         }
+//        dd($virtual);
+        $course::where('id', $courseId)->update(['virtual' => $virtual]);
     }
 
     public function updateCourseDates($courseDates, $courseId)

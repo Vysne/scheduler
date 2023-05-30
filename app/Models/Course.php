@@ -17,6 +17,7 @@ class Course extends Model
         'requirements',
         'course-descr-body',
         'limit',
+        'virtual',
         'enlistments',
         'rating',
         'visible',

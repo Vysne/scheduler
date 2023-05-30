@@ -33,13 +33,11 @@
             </li>
             <li>
                 <div class="dropdown" id="course-rating">
-                    <input type="text" readonly placeholder="Select rating" value="" name="filters[courses-rating]" onclick="dropdownActivate(this)">
+                    <input type="text" readonly placeholder="Select method" value="" name="filters[courses-virtual]" onclick="dropdownActivate(this)">
                     <div class="option">
-                        <div onmouseover="showSelected(this)" data-set="default">Select rating</div>
-                        <div onmouseover="showSelected(this)">Rating 1</div>
-                        <div onmouseover="showSelected(this)">Rating 2</div>
-                        <div onmouseover="showSelected(this)">Rating 3</div>
-                        <div onmouseover="showSelected(this)">Rating 4</div>
+                        <div onclick="showSelected(this)" data-set="default">Select method</div>
+                        <div onclick="showSelected(this)">Virtual courses</div>
+                        <div onclick="showSelected(this)">Physical courses</div>
                     </div>
                 </div>
             </li>
