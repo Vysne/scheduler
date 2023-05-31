@@ -63,4 +63,16 @@ class CourseEnlistmentController extends Controller
 
         return redirect('/members/' . $courseId);
     }
+
+    public function messageAction($courseId, $userId, Request $request)
+    {
+        DB::table('messages')
+            ->insert([
+                'sender_id' => request('sender_id'),
+                'receiver_id' => request('receiver_id'),
+                'message' => request('message')
+            ]);
+
+        return redirect('/members/' . $courseId);
+    }
 }

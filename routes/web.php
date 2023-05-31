@@ -25,6 +25,9 @@ Auth::routes();
 
 Route::get('/search/', [\App\Http\Controllers\SearchController::class, 'search'])->name('search');
 
+Route::get('/messages/{user_id}', [App\Http\Controllers\MessageController::class, 'index'])->name('messages/{user_id}');
+Route::post('/messages/{user_id}/send', [App\Http\Controllers\MessageController::class, 'sendMessage'])->name('messages/{user_id}/send');
+
 Route::get('/profile', [App\Http\Controllers\UserProfileController::class, 'index'])->name('profile');
 Route::post('/update-profile', [App\Http\Controllers\UserProfileController::class, 'update'])->name('update-profile');
 
@@ -39,6 +42,7 @@ Route::post('/members/{id}/accept/{user_id}', [App\Http\Controllers\CourseEnlist
 Route::post('/members/{id}/decline/{user_id}', [App\Http\Controllers\CourseEnlistmentController::class, 'declineAction'])->name('/members/{id}/decline/{user_id}');
 Route::post('/members/{id}/achievement/{user_id}', [App\Http\Controllers\CourseEnlistmentController::class, 'achievementAction'])->name('/members/{id}/achievement/{user_id}');
 Route::get('/members/{id}/drop/{user_id}', [App\Http\Controllers\CourseEnlistmentController::class, 'dropMember'])->name('/members/{id}/drop/{user_id}');
+Route::post('/members/{id}/message/{user_id}', [App\Http\Controllers\CourseEnlistmentController::class, 'messageAction'])->name('/members/{id}/message/{user_id}');
 
 Route::get('/courses', [App\Http\Controllers\CatalogController::class, 'index'])->name('courses');
 Route::post('/join/{id}', [App\Http\Controllers\CatalogController::class, 'joinAction'])->name('/join/{id}');

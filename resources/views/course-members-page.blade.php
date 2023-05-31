@@ -154,6 +154,7 @@
             <tbody>
             @foreach($members as $member)
                 <x-achievement-form-modal-layout :member="$member"></x-achievement-form-modal-layout>
+                <x-message-form-modal-layout :member="$member"></x-message-form-modal-layout>
                 <tr>
                     <td>
                         <div class="d-flex align-items-center">
@@ -190,7 +191,7 @@
                             <a href="#" id="disable-button" data-toggle="modal" data-target="#{{ $member['user_id'] }}achievementModal">
                                 <i class="fa fa-certificate" aria-hidden="true"></i>
                             </a>
-                            <a href="#" id="disable-button">
+                            <a href="#" id="disable-button" data-toggle="modal" data-target="#{{ $member['user_id'] }}messageModal">
                                 <i class="fa fa-commenting" aria-hidden="true"></i>
                             </a>
                             <a href="{{ url('/members/' . $course->id . '/drop/' . $member['user_id']) }}" id="disable-button">

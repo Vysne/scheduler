@@ -26,7 +26,7 @@
                     <li class="navbar-menu-item">
                         <a role="button" id="alertsDropdown" data-toggle="dropdown" class="item-link" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-bell" aria-hidden="true" target="shrinked"></i>
-                            <span class="item-badge">0+</span>
+{{--                            <span class="item-badge">0+</span>--}}
                         </a>
                         <div class="dropdown-list-menu dropdown-menu-disabled" id="alerts-dropdown-list">
                             <h6 class="dropdown-header">Alerts Center</h6>
@@ -39,14 +39,21 @@
                     <li class="navbar-menu-item">
                         <a role="button" id="messagesDropdown" data-toggle="dropdown" class="item-link" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-envelope" aria-hidden="true" target="shrinked"></i>
-                            <span class="item-badge">0+</span>
+{{--                            <span class="item-badge">0+</span>--}}
                         </a>
                         <div class="dropdown-list-menu dropdown-menu-disabled" id="messages-dropdown-list">
                             <h6 class="dropdown-header">Message Center</h6>
-                            <a href="" class="dropdown-list-item"></a>
-                            <a href="" class="dropdown-list-item"></a>
-                            <a href="" class="dropdown-list-item"></a>
-                            <a href="" class="dropdown-list-item">Read More Messages</a>
+                            @if (empty($messages))
+                                <a href="" class="dropdown-list-item">No messages</a>
+                            @else
+                                @foreach($messages as $message)
+                                    <a href="{{ url('messages/' . $message['sender_id']) }}" class="dropdown-list-item">
+                                        <img src="{{ asset($message['user-image']) }}" style="width: 30px; height: 30px; border-radius: 50%;">
+                                        <span>{{ $message['name'] }}</span>
+                                    </a>
+                                @endforeach
+                            @endif
+{{--                            <a href="" class="dropdown-list-item">Read More Messages</a>--}}
                         </div>
                     </li>
                     <div class="navbar-divider"></div>

@@ -25,6 +25,7 @@ export default defineConfig({
                 'resources/sass/profile.scss',
                 'resources/sass/courseMembers.scss',
                 'resources/sass/achievement.scss',
+                'resources/sass/messages.scss',
                 'resources/js/app.js',
                 'resources/js/login.js',
                 'resources/js/navbar.js',

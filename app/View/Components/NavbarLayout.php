@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\Component;
 use App\Models\UserInformation;
+use App\Http\Controllers\MessageController;
 
 class navbarLayout extends Component
 {
@@ -26,7 +27,9 @@ class navbarLayout extends Component
      */
     public function render()
     {
-        return view('components.navbar-layout', ['userData' => $this->getUserLogo()]);
+        $messageController = new MessageController;
+
+        return view('components.navbar-layout', ['userData' => $this->getUserLogo(), 'messages' => $messageController->showMessages()]);
     }
 
     private function getUserLogo()
