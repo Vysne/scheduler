@@ -147,6 +147,7 @@
             <tr>
                 <th>User Name</th>
                 <th>Course</th>
+                <th>Progress</th>
                 <th>Join Date</th>
                 <th>Actions</th>
             </tr>
@@ -178,10 +179,18 @@
                             </div>
                         </div>
                     </td>
-                    <td>
+                    <td style="width: 30%">
                         <a href="{{ url('course-single/' . $member['id']) }}" class="course-page-link">
                             {{ $member['course_name'] }}
                         </a>
+                    </td>
+                    <td>
+                        <div class="progress-bar-wrapper">
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="{{ $member['progress'] }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $member['progress'] }}%"></div>
+                            </div>
+                            <span>{{ $member['progress'] }}%</span>
+                        </div>
                     </td>
                     <td>
                         <p class="fw-normal mb-1">{{ date('M d, Y', strtotime($member['updated_at'])) }}</p>

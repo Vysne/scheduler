@@ -48,6 +48,8 @@ Route::get('/courses', [App\Http\Controllers\CatalogController::class, 'index'])
 Route::post('/join/{id}', [App\Http\Controllers\CatalogController::class, 'joinAction'])->name('/join/{id}');
 Route::get('/course-single/{id}', [App\Http\Controllers\CourseSingleController::class, 'index'])->name('course-single/{id}');
 Route::post('/course-single/{id}/rate', [App\Http\Controllers\CourseSingleController::class, 'rateCourse'])->name('course-single/{id}/rate');
+Route::get('/course-single/{id}/mark-complete/{condition_id}', [App\Http\Controllers\CourseSingleController::class, 'markComplete'])->name('course-single/{id}/mark-complete/{condition_id}');
+Route::get('/course-single/{id}/mark-not-complete/{condition_id}', [App\Http\Controllers\CourseSingleController::class, 'markNotComplete'])->name('course-single/{id}/mark-not-complete/{condition_id}');
 
 Route::get('/create-course', [App\Http\Controllers\CourseController::class, 'index'])->name('create-course');
 Route::post('/create', [App\Http\Controllers\CourseController::class, 'create'])->name('create');

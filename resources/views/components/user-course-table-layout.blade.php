@@ -19,9 +19,9 @@
                             <td>
                                 <div class="progress-bar-wrapper">
                                     <div class="progress">
-                                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 50%"></div>
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="{{ $enlistment->progress }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $enlistment->progress }}%"></div>
                                     </div>
-                                    <span>50%</span>
+                                    <span>{{ $enlistment->progress }}%</span>
                                 </div>
                             </td>
                             <td>

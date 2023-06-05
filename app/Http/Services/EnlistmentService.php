@@ -2,6 +2,7 @@
 
 namespace App\Http\Services;
 
+use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -24,20 +25,37 @@ class EnlistmentService
         return $availability;
     }
 
-//    TODO WILL ADD PROGRESS VALUE
     public function getEnlistments()
     {
         $userId = Auth::id();
 
         $userEnlistments = DB::table('enlistments')
             ->join('courses', 'enlistments.course_id', '=', 'courses.id')
-//            ->join('users', 'enlistments.user_id', '=', 'users.id')
             ->select('courses.id', 'courses.course_name', 'courses.type', 'enlistments.status')
             ->where('enlistments.user_id', '=', $userId)
             ->where('courses.visible', '=', 1)
             ->get();
 
+        foreach($userEnlistments as $enlistment) {
+            $enlistment->progress = $this->progressValue($userId, $enlistment->id);
+        }
+
         return $userEnlistments;
+    }
+
+    public function progressValue($userId, $courseId)
+    {
+        $courseSyllabusCount = DB::table('course_information')
+            ->where('course_id', $courseId)
+            ->whereNotNull('syllabus-name')
+            ->get();
+
+        $userMarkedSyllabus = DB::table('progress')
+            ->where('user_id', $userId)
+            ->where('course_id', $courseId)
+            ->get();
+
+        return count($userMarkedSyllabus) / count($courseSyllabusCount) * 100;
     }
 
     public function getCourseEnlistments($courseId)
@@ -63,6 +81,10 @@ class EnlistmentService
             ->where('enlistments.course_id', '=', $courseId)
             ->where('enlistments.status', '=', 'accepted')
             ->get();
+
+        foreach($courseMembers as $member) {
+            $member->progress = $this->progressValue($member->user_id, $member->id);
+        }
 
         return json_decode(json_encode($courseMembers), true);
     }

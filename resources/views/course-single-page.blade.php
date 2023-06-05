@@ -162,6 +162,11 @@
                                     <div id="syllabus-descr"></div>
                                     <input type="hidden" name="{{ $courseSingleSyllabus['key'] }}" value="{{ $courseSingleSyllabus['syllabus-descr-body'] }}"/>
                                 </div>
+                                @if(array_key_exists($courseSingleSyllabus['id'], $marks))
+                                    <a href="{{ url('/course-single/' . $courseSingleSyllabus['course_id'] . '/mark-not-complete/' . $courseSingleSyllabus['id']) }}" class="mark-not-complete">Mark as not complete</a>
+                                @else
+                                    <a href="{{ url('/course-single/' . $courseSingleSyllabus['course_id'] . '/mark-complete/' . $courseSingleSyllabus['id']) }}" class="mark-complete">Mark as completed</a>
+                                @endif
                             </div>
                         </div>
                         @endforeach
@@ -192,6 +197,12 @@
                 panel.style.maxHeight = panel.scrollHeight + 'px';
             }
         }
+    }
+    function markComplete(elem) {
+        let syllabusContainer = elem.parentElement.parentElement;
+
+
+        console.log(syllabusContainer);
     }
 </script>
 </body>

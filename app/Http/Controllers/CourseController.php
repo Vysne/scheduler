@@ -26,7 +26,6 @@ class CourseController extends Controller
 
     public function create(Request $request)
     {
-//        dd($request);
         $course = new Course;
         $courseInfoService = new CourseInformationService;
 
@@ -128,7 +127,7 @@ class CourseController extends Controller
 
         $courseSyllabuses = DB::table('course_information')
             ->join('courses', 'course_information.course_id', '=', 'courses.id')
-            ->select('course_information.id', 'courses.author', 'course_information.key', 'course_information.syllabus-name', 'course_information.element-name', 'course_information.syllabus-descr-body')
+            ->select('course_information.course_id', 'course_information.id', 'courses.author', 'course_information.key', 'course_information.syllabus-name', 'course_information.element-name', 'course_information.syllabus-descr-body')
             ->where('course_information.course_id', '=', $courseId)
             ->whereNotNull(['course_information.key', 'course_information.syllabus-name', 'course_information.element-name', 'course_information.syllabus-descr-body'])
             ->get()

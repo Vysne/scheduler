@@ -71,7 +71,7 @@ table {
     }
     & .progress-bar-wrapper {
         display: flex;
-        justify-content: space-evenly;
+        //justify-content: space-evenly;
         flex-direction: row;
         & .progress {
             display: flex;
@@ -80,6 +80,12 @@ table {
             & .progress-bar-animated {
                 animation: 1s linear infinite progress-bar-stripes;
             }
+        }
+        & span {
+            display: flex;
+            flex-wrap: wrap;
+            align-content: space-around;
+            margin-left: 0.5rem;
         }
     }
 }

@@ -28,6 +28,6 @@ class UserCourseTableLayout extends Component
         $userCreatedCourses = new DashboardTableService;
         $enlistmentService = new EnlistmentService;
 
-        return view('components.user-course-table-layout', ['userContents' => $userCreatedCourses->showCreatedCourses(), 'enlistments' => $enlistmentService->getEnlistments()]);
+        return view('components.user-course-table-layout', ['userContents' => $userCreatedCourses->showCreatedCourses(), 'enlistments' => $enlistmentService->getEnlistments(), 'test']);
     }
 }

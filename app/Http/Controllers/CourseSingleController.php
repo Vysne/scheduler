@@ -16,7 +16,7 @@ class CourseSingleController extends Controller
         $course = new CourseController;
         $enlistmentService = new EnlistmentService;
 
-        return view('course-single-page', ['course' => $course->getSelectedCourse($courseId), 'availability' => $enlistmentService->checkEnlistment(), 'rating' => $course->getUserRating($courseId)]);
+        return view('course-single-page', ['course' => $course->getSelectedCourse($courseId), 'availability' => $enlistmentService->checkEnlistment(), 'rating' => $course->getUserRating($courseId), 'marks' => $this->getMarks($courseId)]);
     }
 
     public function rateCourse($courseId)
@@ -52,6 +52,49 @@ class CourseSingleController extends Controller
         );
 
         return redirect('course-single/' . $courseId);
+    }
+
+    public function markComplete($courseId, $conditionId)
+    {
+        DB::table('progress')
+            ->insert(
+                [
+                    'course_id' => $courseId,
+                    'user_id' => Auth::id(),
+                    'condition_id' => $conditionId
+                ]
+            );
+
+        return redirect('/course-single/' . $courseId);
+    }
+
+    public function markNotComplete($courseId, $conditionId)
+    {
+        DB::table('progress')
+            ->where('course_id', $courseId)
+            ->where('user_id', Auth::id())
+            ->where('condition_id', $conditionId)
+            ->delete();
+
+        return redirect('/course-single/' . $courseId);
+    }
+
+    public function getMarks($courseId)
+    {
+        $marksWithKey = [];
+        $userId = Auth::id();
+
+        $marks = DB::table('progress')
+            ->where('course_id', $courseId)
+            ->where('user_id', $userId)
+            ->get()
+            ->toArray();
+
+        foreach ($marks as $mark) {
+            $marksWithKey[$mark->condition_id] = $mark;
+        }
+
+        return json_decode(json_encode($marksWithKey), true);
     }
 
 // TODO VIDEO PLAYBACK WORKS BUT NEED TO SOLVE THE POSITIONING FOR CODE

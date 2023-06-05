@@ -329,5 +329,31 @@ html {
         }
     }
 }
+.mark-complete, .mark-not-complete {
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    font-weight: 900;
+    cursor: pointer;
+    transition: .3s;
+    color: dodgerblue;
+    &:hover {
+        color: #0a58ca;
+    }
+}
+.syllabus-complete {
+    display: flex;
+    justify-content: space-between;
+    background-color: yellowgreen !important;
+    & a {
+        & i {
+            font-size: 1.5rem;
+            transition: .3s;
+            &:hover {
+                color: #0a58ca;
+            }
+        }
+    }
+}
 
 
