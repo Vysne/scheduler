@@ -26,6 +26,7 @@
     'resources/sass/page-title.scss',
     'resources/sass/notifiers.scss', 'resources/js/notifiers.js',
     'resources/sass/table.scss', 'resources/js/table.js',
+    'resources/sass/actionNotifier.scss', 'resources/js/actionNotifier.js',
     ])
 
 </head>
@@ -35,7 +36,6 @@
         <div class="catalog-wrap">
             <x-navbar-layout></x-navbar-layout>
             <x-page-title-layout></x-page-title-layout>
-{{--            <x-notifiers-layout></x-notifiers-layout>--}}
             <div class="table-switch-wrap">
                 <button type="button" id="enlistment-button">
                     <span>Created courses</span>
@@ -46,6 +46,9 @@
                 </button>
             </div>
             <x-user-course-table-layout></x-user-course-table-layout>
+            @if(session('notifier'))
+                <x-action-notifier-layout :notifier="session('notifier')"></x-action-notifier-layout>
+            @endif
         </div>
         <x-application-modal-layout></x-application-modal-layout>
     </div>

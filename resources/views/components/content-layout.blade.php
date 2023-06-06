@@ -72,6 +72,9 @@
             @endforeach
         </ul>
     </div>
+    @if(session('notifier'))
+        <x-action-notifier-layout :notifier="session('notifier')"></x-action-notifier-layout>
+    @endif
     <div class="content-pagination-container">
         {{ $courses->appends(request()->all())->links() }}
     </div>

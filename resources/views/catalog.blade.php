@@ -20,7 +20,8 @@
     'resources/sass/login.scss', 'resources/js/login.js',
     'resources/sass/content.scss', 'resources/js/content.js',
     'resources/sass/page-title.scss',
-    'resources/sass/filter.scss', 'resources/js/filter.js'
+    'resources/sass/filter.scss', 'resources/js/filter.js',
+    'resources/sass/actionNotifier.scss', 'resources/js/actionNotifier.js',
     ])
 
 </head>

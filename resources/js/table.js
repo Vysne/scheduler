@@ -47,23 +47,27 @@ function ratingLoad() {
 function loadLimit() {
     let limitElem = document.getElementById('course-limit');
 
-    if (limitElem.value === '0') {
-        limitElem.setAttribute('placeholder', 'No limit');
-        limitElem.removeAttribute('value');
+    if (limitElem) {
+        if (limitElem.value === '0') {
+            limitElem.setAttribute('placeholder', 'No limit');
+            limitElem.removeAttribute('value');
+        }
     }
 }
 
 function changeLimit() {
     let limitElem = document.getElementById('course-limit');
 
-    limitElem.addEventListener('change', function() {
-        var limitValue = parseInt(limitElem.value);
+    if (limitElem) {
+        limitElem.addEventListener('change', function() {
+            var limitValue = parseInt(limitElem.value);
 
-        if (limitValue === 0) {
-            limitElem.value = '';
-            limitElem.placeholder = 'No limit';
-        }
-    });
+            if (limitValue === 0) {
+                limitElem.value = '';
+                limitElem.placeholder = 'No limit';
+            }
+        });
+    }
 }
 
 window.onload = [myCoursesTable(), createdCoursesTable(), ratingLoad(), loadLimit(), changeLimit()]

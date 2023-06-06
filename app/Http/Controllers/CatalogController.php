@@ -52,7 +52,7 @@ class CatalogController extends Controller
                 'user_id' => $userId,
                 ]);
 
-        return redirect('courses');
+        return redirect('courses')->with(['notifier' => ['notifier_id' => 4 ,'notifier_title' => 'Request sent', 'notifier_detail' => 'Request to join a course was sent.']]);
     }
 
     public function filterCourses($filterValues)

@@ -29,7 +29,8 @@
     'resources/sass/notifiers.scss', 'resources/js/notifiers.js',
     'resources/sass/table.scss',
     'resources/sass/profile.scss', 'resources/js/profile.js',
-    'resources/sass/application.scss'
+    'resources/sass/application.scss',
+    'resources/sass/actionNotifier.scss', 'resources/js/actionNotifier.js',
     ])
 
 </head>
@@ -39,7 +40,6 @@
     <div class="catalog-wrap">
         <x-navbar-layout></x-navbar-layout>
         <x-page-title-layout></x-page-title-layout>
-{{--        {{ dd($applicationData) }}--}}
         @foreach($user as $data)
             <form action="{{ route('update-profile') }}" method="POST" enctype="multipart/form-data">
                 @csrf
@@ -151,6 +151,9 @@
                 </div>
             </form>
         @endforeach
+        @if(session('notifier'))
+            <x-action-notifier-layout :notifier="session('notifier')"></x-action-notifier-layout>
+        @endif
     </div>
     <x-application-modal-layout></x-application-modal-layout>
 </div>

@@ -48,7 +48,7 @@ class CourseController extends Controller
         $courseInfoService->storeInstructors(request('instructor'), $courseId, $request);
         $courseInfoService->storeSyllabuses(request('syllabus'), $courseId);
 
-        return redirect('dashboard');
+        return redirect('dashboard')->with(['notifier' => ['notifier_id' => 5 ,'notifier_title' => 'Course created', 'notifier_detail' => 'Course was created and sent for approval.']]);
     }
 
     public function update(Request $request)

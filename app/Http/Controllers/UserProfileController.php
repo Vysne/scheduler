@@ -30,6 +30,6 @@ class UserProfileController extends Controller
 
         $userInformationSerivce->updateUserInformation($request, $userId);
 
-        return redirect('profile');
+        return redirect('profile')->with(['notifier' => ['notifier_id' => 3 ,'notifier_title' => 'Updated successfully', 'notifier_detail' => 'Your profile was updated.']]);
     }
 }
