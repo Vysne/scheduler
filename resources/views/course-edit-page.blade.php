@@ -209,7 +209,7 @@
                                         @csrf
                                         <input type="hidden" name="conditionId" value="{{ $data['id'] }}">
                                         <div class="syllabus-content">
-                                            <button type="button" onclick="accordion(this)" class="accordion"><input type="text" name="syllabus[{{ $data['key'] }}][syllabus-name]" value="{{ $data['syllabus-name'] }}" required>Give the section a name.</button>
+                                            <button type="button" ondblclick="accordion(this)" class="accordion"><input type="text" name="syllabus[{{ $data['key'] }}][syllabus-name]" value="{{ $data['syllabus-name'] }}" required>Give the section a name.</button>
                                             <div class="panel">
                                                 <div class="text-upload-container">
                                                     <div id="{{ $data['element-name'] }}"></div>
