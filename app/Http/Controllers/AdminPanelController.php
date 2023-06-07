@@ -85,7 +85,7 @@ class AdminPanelController extends Controller
                 'visible' => 1
             ]);
 
-        return redirect('/admin-panel')->with(['notifier' => ['notifier_id' => 12 ,'notifier_title' => 'Request approved', 'notifier_detail' => 'Course was approved and published.']]);
+        return redirect('/admin-panel')->with(['notifier' => ['notifier_id' => 13 ,'notifier_title' => 'Request approved', 'notifier_detail' => 'Course was approved and published.']]);
     }
 
     public function declineCourseAction($courseId)
@@ -96,6 +96,6 @@ class AdminPanelController extends Controller
                 'visible' => 3
             ]);
 
-        return redirect('/admin-panel')->with(['notifier' => ['notifier_id' => 13 ,'notifier_title' => 'Request denied', 'notifier_detail' => 'Course was not approved.']]);
+        return redirect('/admin-panel')->with(['notifier' => ['notifier_id' => 14 ,'notifier_title' => 'Request denied', 'notifier_detail' => 'Course was not approved.']]);
     }
 }

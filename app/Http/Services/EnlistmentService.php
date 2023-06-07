@@ -140,6 +140,7 @@ class EnlistmentService
     public function getCourseLimit($courseId)
     {
         return DB::table('courses')
+            ->where('courses.id', $courseId)
             ->select('courses.id', 'courses.limit')
             ->get()
             ->first();
