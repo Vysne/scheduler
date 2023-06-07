@@ -90,12 +90,14 @@
                 @elseguest
                     @if (Route::has('login'))
                         <li class="navbar-menu-item">
-                            <a href="{{ route('login') }}" role="button" id="alertsDropdown" data-toggle="dropdown" class="item-link" aria-haspopup="true" aria-expanded="false">Login</a>
+{{--                            <a href="{{ route('login') }}" role="button" id="alertsDropdown" data-toggle="dropdown" class="item-link" aria-haspopup="true" aria-expanded="false">Login</a>--}}
+                            <a href="{{ route('login') }}" role="button" class="item-link">Login</a>
                         </li>
                     @endif
                     @if (Route::has('register'))
                         <li class="navbar-menu-item">
-                            <a href="{{ route('register') }}" role="button" id="alertsDropdown" data-toggle="dropdown" class="item-link" aria-haspopup="true" aria-expanded="false">Register</a>
+{{--                            <a href="{{ route('register') }}" role="button" id="alertsDropdown" data-toggle="dropdown" class="item-link" aria-haspopup="true" aria-expanded="false">Register</a>--}}
+                            <a href="{{ route('register') }}" role="button" class="item-link">Register</a>
                         </li>
                     @endif
                 @endguest

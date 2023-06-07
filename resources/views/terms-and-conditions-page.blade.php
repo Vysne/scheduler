@@ -66,7 +66,6 @@
             <p>If you have any questions, concerns, or complaints regarding this Agreement, we encourage you to contact us using the details below:</p>
             <p><a href="&#109;&#097;&#105;&#108;&#116;&#111;&#058;v&#121;sniu&#115;&#50;&#55;&#50;&#64;gma&#105;&#108;&#46;&#99;&#111;m">&#118;&#121;&#115;ni&#117;s&#50;&#55;2&#64;&#103;&#109;&#97;i&#108;.&#99;om</a></p>
             <p>This document was last updated on May 9, 2023</p>
-            <p class="madewith"><a href="https://www.websitepolicies.com/terms-and-conditions-generator?via=madewithbadge" target="_blank"><img width="200" height="25" alt="Made with WebsitePolicies terms and conditions generator" src="https://cdn.websitepolicies.io/img/badge.png" srcset="https://cdn.websitepolicies.io/img/badge_2x.png 2x"></a></p>
         </div>
     </div>
     <x-application-modal-layout></x-application-modal-layout>

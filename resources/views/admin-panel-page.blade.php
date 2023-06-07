@@ -135,7 +135,6 @@
             </thead>
             <tbody>
             @foreach($courses as $course)
-{{--                                {{ dd($course) }}--}}
                 <tr>
                     <td>
                         <div class="d-flex align-items-center">

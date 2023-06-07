@@ -54,7 +54,9 @@
             <thead class="bg-light">
             <tr>
                 <th scope="col">Course</th>
-                <th scope="col">Type</th>
+{{--                <th scope="col">Type</th>--}}
+                <th scope="col">Members</th>
+                <th scope="col">Enlistments</th>
                 <th scope="col">Rating</th>
                 <th scope="col">Actions</th>
             </tr>
@@ -62,9 +64,26 @@
             <tbody>
             @foreach($userContents as $userContent)
             <tr>
-                <td><a href="{{ url('/course-single/' . $userContent->id) }}" class="table-course-name">{{ $userContent->course_name }}</a></td>
-                <td>{{ $userContent->type }}</td>
-{{--                <td>{{ $userContent->rating }}</td>--}}
+                <td>
+                    <div class="d-flex align-items-center">
+                        <a href="{{ url('/course-single/' . $userContent->id) }}" class="table-course-name" style="display: flex; width: auto;">
+                            <img
+                                src="{{ asset($userContent->image) }}"
+                                alt=""
+                                style="width: 200px; height: 80px"
+                                class="rounded mx-auto d-block"
+                            />
+                            <div class="ms-3" style="display: block;">
+                                <h5 class="fw-bold mb-1">{{ $userContent->course_name }}</h5>
+                                <p class="mb-1">{{ $userContent->type }}</p>
+                            </div>
+
+                        </a>
+                    </div>
+                </td>
+{{--                <td>{{ $userContent->type }}</td>--}}
+                <td>{{ $userContent->members }}</td>
+                <td>{{ $userContent->enlistments }}</td>
                 <td>
                     <div class="course-rating">
                         <span class="fa fa-star"></span>

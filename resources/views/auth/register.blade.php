@@ -56,7 +56,7 @@
                                 <span></span>
                             </span>
                             I agree all statements in
-                            <a href="#" class="term-service">Terms of service</a>
+                            <a href="{{ route('terms-and-conditions') }}" class="term-service">Terms of service</a>
                         </label>
                     </div>
                     <div class="form-group form-button">

@@ -14,11 +14,29 @@ class DashboardTableService
 
         $this->generateDefaultProfileInfo($userId);
 
-        return DB::table('courses')
-            ->select('id', 'course_name', 'type', 'rating', 'visible')
+        $courses = DB::table('courses')
+            ->select('id', 'course_name', 'image', 'type', 'rating', 'visible')
             ->where('author', '=', $userId)
             ->get()
             ->toArray();
+
+        foreach ($courses as $course) {
+            $membersCount = DB::table('enlistments')
+                ->where('course_id', $course->id)
+                ->where('status', 'accepted')
+                ->get()
+                ->toArray();
+            $enlistmentsCount = DB::table('enlistments')
+                ->where('course_id', $course->id)
+                ->where('status', 'processing')
+                ->get()
+                ->toArray();
+
+            $course->members = count($membersCount);
+            $course->enlistments = count($enlistmentsCount);
+        }
+
+        return $courses;
     }
 
     public function disableCourse($courseId)
