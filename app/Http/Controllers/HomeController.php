@@ -35,7 +35,7 @@ class HomeController extends Controller
 
         $dashboardTableService->disableCourse($courseId);
 
-        return redirect('dashboard');
+        return redirect('dashboard')->with(['notifier' => ['notifier_id' => 10 ,'notifier_title' => 'Update successful', 'notifier_detail' => 'The course was disabled.']]);
     }
 
     public function enableAction($courseId)
@@ -44,7 +44,7 @@ class HomeController extends Controller
 
         $dashboardTableService->enableCourse($courseId);
 
-        return redirect('dashboard');
+        return redirect('dashboard')->with(['notifier' => ['notifier_id' => 9 ,'notifier_title' => 'Update successful', 'notifier_detail' => 'The course was published.']]);
     }
 
     public function deleteAction($courseId)
@@ -65,6 +65,6 @@ class HomeController extends Controller
             ->where('user_id', $userId)
             ->delete();
 
-        return redirect('dashboard');
+        return redirect('dashboard')->with(['notifier' => ['notifier_id' => 8 ,'notifier_title' => 'Update successful', 'notifier_detail' => 'You left the course.']]);
     }
 }

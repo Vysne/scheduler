@@ -46,12 +46,22 @@ class CourseEnlistmentController extends Controller
 
     public function updateLimit($courseId, Request $request)
     {
-        Course::where('id', $courseId)
-            ->update([
-                'limit' => $request['course-limit']
-            ]);
+        $currentMembersCount = DB::table('enlistments')
+            ->where('course_id', $courseId)
+            ->where('status', 'accepted')
+            ->count();
 
-        return redirect('/members/' . $courseId);
+        if ($currentMembersCount <= $request['course-limit'] || $request['course-limit'] === null) {
+            Course::where('id', $courseId)
+                ->update([
+                    'limit' => $request['course-limit'] ?? 0
+                ]);
+        } else {
+
+            return redirect('/members/' . $courseId)->with(['notifier' => ['notifier_id' => 6 ,'notifier_title' => 'Change unsuccessful', 'notifier_detail' => 'Course limit is lower than current members count.']]);
+        }
+
+        return redirect('/members/' . $courseId)->with(['notifier' => ['notifier_id' => 7 ,'notifier_title' => 'Change successful', 'notifier_detail' => 'Course limit was updated.']]);
     }
 
     public function dropMember($courseId, $userId)

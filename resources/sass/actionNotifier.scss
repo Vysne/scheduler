@@ -5,7 +5,7 @@
     bottom: -5em;
     left: 50%;
     margin-left: -175px;
-    width: 350px;
+    width: 450px;
     height: 65px;
     color: #fff;
     font-size: 16px;
@@ -23,7 +23,7 @@
 .ach .text_wrap {
     position: absolute;
     left: 65px;
-    width: 250px;
+    width: 330px;
     top: 0.7em;
     overflow: hidden;
 }
@@ -80,13 +80,13 @@
     }
     92% {
         bottom: 1em;
-        width: 380px;
+        width: 430px;
         margin-left: -190px;
         border-radius: 0;
     }
     100% {
         bottom: 1em;
-        width: 350px;
+        width: 400px;
         margin-left: -175px;
         border-radius: 0;
     }
@@ -95,12 +95,12 @@
 @keyframes ach_current {
     0% {
         bottom: 1em;
-        width: 350px;
+        width: 400px;
         margin-left: -175px;
     }
     100% {
         bottom: 1em;
-        width: 350px;
+        width: 400px;
         margin-left: -175px;
     }
 }
@@ -108,7 +108,7 @@
 @keyframes ach_out_anim {
     0% {
         bottom: 1em;
-        width: 350px;
+        width: 400px;
         margin-left: -175px;
         border-radius: 50%;
     }

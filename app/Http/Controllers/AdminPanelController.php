@@ -43,7 +43,7 @@ class AdminPanelController extends Controller
                 'status' => 'creator'
             ]);
 
-        return redirect('/admin-panel');
+        return redirect('/admin-panel')->with(['notifier' => ['notifier_id' => 11 ,'notifier_title' => 'Request approved', 'notifier_detail' => 'User received course creator status.']]);
     }
 
     public function declineAction($userId)
@@ -52,7 +52,7 @@ class AdminPanelController extends Controller
             ->where('applications.user_id', '=', $userId)
             ->delete();
 
-        return redirect('/admin-panel');
+        return redirect('/admin-panel')->with(['notifier' => ['notifier_id' => 12 ,'notifier_title' => 'Request denied', 'notifier_detail' => 'User did not receive course creator status.']]);
     }
 
     public function getCoursesWithCreatorData()
@@ -85,7 +85,7 @@ class AdminPanelController extends Controller
                 'visible' => 1
             ]);
 
-        return redirect('/admin-panel');
+        return redirect('/admin-panel')->with(['notifier' => ['notifier_id' => 12 ,'notifier_title' => 'Request approved', 'notifier_detail' => 'Course was approved and published.']]);
     }
 
     public function declineCourseAction($courseId)
@@ -93,9 +93,9 @@ class AdminPanelController extends Controller
         DB::table('courses')
             ->where('courses.id', '=', $courseId)
             ->update([
-                'visible' => 2
+                'visible' => 3
             ]);
 
-        return redirect('/admin-panel');
+        return redirect('/admin-panel')->with(['notifier' => ['notifier_id' => 13 ,'notifier_title' => 'Request denied', 'notifier_detail' => 'Course was not approved.']]);
     }
 }

@@ -29,7 +29,8 @@
     'resources/sass/notifiers.scss', 'resources/js/notifiers.js',
     'resources/sass/table.scss', 'resources/js/table.js',
     'resources/sass/courseMembers.scss', 'resources/js/courseMembers.js',
-    'resources/js/achievementForm.js'
+    'resources/js/achievementForm.js',
+    'resources/sass/actionNotifier.scss', 'resources/js/actionNotifier.js'
     ])
 
 </head>
@@ -215,6 +216,9 @@
             @endforeach
             </tbody>
         </table>
+        @if(session('notifier'))
+            <x-action-notifier-layout :notifier="session('notifier')"></x-action-notifier-layout>
+        @endif
         <x-application-modal-layout></x-application-modal-layout>
     </div>
 </div>

@@ -186,6 +186,10 @@
                                         </a>
                                     </form>
                                 @endif
+                            @elseif ($userContent->visible === 3)
+                                <div class="processing-button">
+                                    <i class="fa fa-eye-slash" aria-hidden="true" title="Needs updated"></i>
+                                </div>
                             @else
                             <form action="{{ url('/enable/' . $userContent->id) }}" method="POST" id="enable-form">
                                 @csrf
