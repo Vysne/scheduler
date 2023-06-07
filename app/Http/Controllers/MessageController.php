@@ -45,7 +45,22 @@ class MessageController extends Controller
             ->get()
             ->toArray();
 
-        return json_decode(json_encode($messages), true);
+        $messagesArray = json_decode(json_encode($messages), true);
+        $senderIds = array_column($messagesArray, 'sender_id');
+        $uniqueSenderIds = array_unique($senderIds);
+
+        $uniqueResult = [];
+        foreach ($uniqueSenderIds as $senderId) {
+            foreach ($messagesArray as $item) {
+                if ($item['sender_id'] === $senderId) {
+                    $uniqueResult[] = $item;
+                    break;
+                }
+            }
+        }
+
+        return $uniqueResult;
+//        return json_decode(json_encode($messages), true);
     }
 
     public function sendMessage(Request $request)
