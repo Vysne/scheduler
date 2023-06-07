@@ -48,6 +48,7 @@ export default defineConfig({
                 'resources/js/achievement.js',
                 'resources/js/admin.js',
                 'resources/js/actionNotifier.js',
+                'resources/js/editor.js',
             ],
             refresh: true,
         }),

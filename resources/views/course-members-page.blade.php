@@ -71,11 +71,10 @@
             </thead>
             <tbody>
             @foreach($enlistments as $enlistment)
-                <x-user-profile-modal-layout :enlistment="$enlistment"></x-user-profile-modal-layout>
                 <tr>
                     <td>
                         <div class="d-flex align-items-center">
-                            <a href="#" class="user-profile-link" data-toggle="modal" data-target="#{{ $enlistment['user_id'] }}userProfileModal">
+                            <a href="#" class="user-profile-link" data-toggle="modal" data-target="#{{ $enlistment['user_id'] }}userProfileModal" style="pointer-events: all; cursor: pointer;">
                                 @if($enlistment['user-image'] != 'user-profile.svg')
                                 <img
                                     src="{{ asset($enlistment['user-image']) }}"
@@ -95,6 +94,7 @@
                                     <p class="fw-bold mb-1">{{ $enlistment['name'] }}</p>
                                 </div>
                             </a>
+                            <x-user-profile-modal-layout :enlistment="$enlistment"></x-user-profile-modal-layout>
                         </div>
                     </td>
                     <td>
@@ -159,24 +159,27 @@
                 <tr>
                     <td>
                         <div class="d-flex align-items-center">
-                            @if($member['user-image'] != 'user-profile.svg')
-                                <img
-                                    src="{{ asset($member['user-image']) }}"
-                                    alt=""
-                                    style="width: 45px; height: 45px"
-                                    class="rounded-circle"
-                                />
-                            @else
-                                <img
-                                    src="{{ asset('/img/' . $member['user-image']) }}"
-                                    alt=""
-                                    style="width: 45px; height: 45px"
-                                    class="rounded-circle"
-                                />
-                            @endif
-                            <div class="ms-3" style="display: flex; align-items: center">
-                                <p class="fw-bold mb-1">{{ $member['name'] }}</p>
-                            </div>
+                            <a class="user-profile-link" id="disable-button" data-toggle="modal" data-target="#{{ $member['user_id'] }}userProgressModal" style="pointer-events: all; cursor: pointer;">
+                                @if($member['user-image'] != 'user-profile.svg')
+                                    <img
+                                        src="{{ asset($member['user-image']) }}"
+                                        alt=""
+                                        style="width: 45px; height: 45px"
+                                        class="rounded-circle"
+                                    />
+                                @else
+                                    <img
+                                        src="{{ asset('/img/' . $member['user-image']) }}"
+                                        alt=""
+                                        style="width: 45px; height: 45px"
+                                        class="rounded-circle"
+                                    />
+                                @endif
+                                <div class="ms-3" style="display: flex; align-items: center; font-size: 1rem;">
+                                    <p class="fw-bold mb-1">{{ $member['name'] }}</p>
+                                </div>
+                            </a>
+                            <x-course-member-progress-modal-layout :memberId="$member['user_id']" :courseId="$member['id']"></x-course-member-progress-modal-layout>
                         </div>
                     </td>
                     <td style="width: 30%">

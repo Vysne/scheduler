@@ -4,18 +4,42 @@
             <thead class="bg-light">
                 <tr>
                     <th scope="col">Course</th>
-                    <th scope="col">Type</th>
                     <th scope="col">Progress</th>
                     <th scope="col">Status</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
+            @if(count($enlistments) === 0)
+                <tr>
+                    <td colspan="4">
+                        <div style="padding: 3rem">
+                            <i class="fa fa-search" aria-hidden="true" style="display: flex; justify-content: center; font-size: 5rem"></i>
+                            <h1 style="display: flex; justify-content: center;">No enlisted courses found.</h1>
+                        </div>
+                    </td>
+                </tr>
+            @endif
                 @foreach($enlistments as $enlistment)
                     @if($enlistment->status !== 'declined')
                         <tr>
-                            <td><a href="{{ url('/course-single/' . $enlistment->id) }}" class="table-course-name">{{ $enlistment->course_name }}</a></td>
-                            <td>{{ $enlistment->type }}</td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <a href="{{ url('/course-single/' . $enlistment->id) }}" class="table-course-name" style="display: flex; width: auto;">
+                                        <img
+                                            src="{{ asset($enlistment->image) }}"
+                                            alt=""
+                                            style="width: 200px; height: 80px"
+                                            class="rounded mx-auto d-block"
+                                        />
+                                        <div class="ms-3" style="display: block;">
+                                            <h5 class="fw-bold mb-1">{{ $enlistment->course_name }}</h5>
+                                            <p class="mb-1">{{ $enlistment->type }}</p>
+                                        </div>
+
+                                    </a>
+                                </div>
+                            </td>
                             <td>
                                 <div class="progress-bar-wrapper">
                                     <div class="progress">
@@ -54,7 +78,6 @@
             <thead class="bg-light">
             <tr>
                 <th scope="col">Course</th>
-{{--                <th scope="col">Type</th>--}}
                 <th scope="col">Members</th>
                 <th scope="col">Enlistments</th>
                 <th scope="col">Rating</th>
@@ -62,6 +85,16 @@
             </tr>
             </thead>
             <tbody>
+            @if(count($userContents) === 0)
+                <tr>
+                    <td colspan="5">
+                        <div style="padding: 3rem">
+                            <i class="fa fa-search" aria-hidden="true" style="display: flex; justify-content: center; font-size: 5rem"></i>
+                            <h1 style="display: flex; justify-content: center;">No created courses found.</h1>
+                        </div>
+                    </td>
+                </tr>
+            @endif
             @foreach($userContents as $userContent)
             <tr>
                 <td>
@@ -77,11 +110,9 @@
                                 <h5 class="fw-bold mb-1">{{ $userContent->course_name }}</h5>
                                 <p class="mb-1">{{ $userContent->type }}</p>
                             </div>
-
                         </a>
                     </div>
                 </td>
-{{--                <td>{{ $userContent->type }}</td>--}}
                 <td>{{ $userContent->members }}</td>
                 <td>{{ $userContent->enlistments }}</td>
                 <td>
@@ -164,16 +195,6 @@
                             </form>
                             @endif
                         </div>
-{{--                        <?php $user = auth()->user(); if ($user['status'] == 'admin') : ?>--}}
-{{--                        <form action="{{ url('/delete/' . $userContent->id) }}" method="POST" id="delete-form">--}}
-{{--                            @csrf--}}
-{{--                            <div class="delete-button-wrap">--}}
-{{--                                <a href="#" onclick="" title="Delete">--}}
-{{--                                    <i class="fa fa-trash" aria-hidden="true"></i>--}}
-{{--                                </a>--}}
-{{--                            </div>--}}
-{{--                        </form>--}}
-{{--                        <?php endif; ?>--}}
                     </div>
                 </td>
             </tr>

@@ -31,7 +31,7 @@ class EnlistmentService
 
         $userEnlistments = DB::table('enlistments')
             ->join('courses', 'enlistments.course_id', '=', 'courses.id')
-            ->select('courses.id', 'courses.course_name', 'courses.type', 'enlistments.status')
+            ->select('courses.id', 'courses.course_name', 'courses.type', 'courses.image', 'enlistments.status')
             ->where('enlistments.user_id', '=', $userId)
             ->where('courses.visible', '=', 1)
             ->get();

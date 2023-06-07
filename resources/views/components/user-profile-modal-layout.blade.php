@@ -16,7 +16,7 @@
                                     <div class="card-body">
                                         <div class="d-flex flex-column align-items-center text-center">
                                             @if($enlistment['user-image'] != 'user-profile.svg')
-                                                <img src="{{ asset($enlistment['user-image']) }}" class="rounded-circle" width="100%" height="100%">
+                                                <img src="{{ asset($enlistment['user-image']) }}" class="rounded-circle" width="100%" height="150px">
                                             @else
                                                 <img src="{{ asset('/img/' . $enlistment['user-image']) }}" class="rounded-circle" width="100%" height="100%">
                                             @endif
@@ -76,9 +76,9 @@
                             </div>
                             <div class="card-body card">
                                 <div class="about-me-container">
-                                    <h2>About me</h2>
-                                    <div id="{{ $enlistment['id'] }}-about-me"></div>
-                                    <input type="hidden" id="{{ $enlistment['id'] }}-descr-body" value="{{ $enlistment['aboutme-descr-body'] }}">
+                                    <h2>Bio</h2>
+                                    <div id="{{ $enlistment['user_id'] }}-about-me"></div>
+                                    <input type="hidden" id="{{ $enlistment['user_id'] }}-descr-body" value="{{ $enlistment['aboutme-descr-body'] }}">
                                 </div>
                             </div>
                         </div>

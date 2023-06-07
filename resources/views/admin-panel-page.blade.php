@@ -27,7 +27,8 @@
     'resources/sass/notifiers.scss', 'resources/js/notifiers.js',
     'resources/sass/table.scss',
     'resources/sass/courseMembers.scss',
-    'resources/js/admin.js'
+    'resources/js/admin.js',
+    'resources/js/editor.js'
     ])
 
 </head>
@@ -57,12 +58,10 @@
             </thead>
             <tbody>
             @foreach($applications as $application)
-{{--                {{ dd($application) }}--}}
-{{--                <x-user-profile-modal-layout :enlistments="$application"></x-user-profile-modal-layout>--}}
                 <tr>
                     <td>
                         <div class="d-flex align-items-center">
-                            <a href="#" class="user-profile-link" data-toggle="modal" data-target="#{{ $application['user_id'] }}userProfileModal">
+                            <a class="user-profile-link" data-toggle="modal" data-target="#{{ $application['user_id'] }}userProfileModal" style="pointer-events: all; cursor: pointer;">
                                 @if($application['user-image'] != 'user-profile.svg')
                                     <img
                                         src="{{ asset($application['user-image']) }}"
@@ -82,6 +81,7 @@
                                     <p class="fw-bold mb-1">{{ $application['title'] }}</p>
                                 </div>
                             </a>
+                            <x-user-profile-modal-layout :enlistment="$application"></x-user-profile-modal-layout>
                         </div>
                     </td>
                     <td>
@@ -190,5 +190,6 @@
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 </body>
 </html>

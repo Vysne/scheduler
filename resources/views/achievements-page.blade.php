@@ -37,6 +37,12 @@
         <div class="content-container">
             <div class="courses-container">
                 <ul class="course-box">
+                    @if(empty($achievements->items()))
+                        <div style="padding: 3rem">
+                            <i class="fa fa-search" aria-hidden="true" style="display: flex; justify-content: center; font-size: 5rem"></i>
+                            <h1>No achievements found.</h1>
+                        </div>
+                    @endif
                     @foreach($achievements as $achievement)
                         <x-achievement-modal-layout :achievement="$achievement"></x-achievement-modal-layout>
                         <li>

@@ -31,7 +31,7 @@
         <x-navbar-layout></x-navbar-layout>
         <x-page-title-layout></x-page-title-layout>
         <x-content-filter-layout></x-content-filter-layout>
-        @if(!empty($courses))
+        @if(count($courses->items()) > 0)
             <div class="content-container">
                 <div class="courses-container">
                     <ul class="course-box">
@@ -104,21 +104,18 @@
                                 </div>
                             </li>
                         @endforeach
-{{--                            @endif--}}
-{{--                        @endforeach--}}
                     </ul>
                 </div>
                 <div class="content-pagination-container">
                     {{ $courses->appends(request()->all())->links() }}
                 </div>
             </div>
-{{--            <div class="post-list">--}}
-{{--                <p>{{ $course['course_name'] }}</p>--}}
-{{--                <img src="{{ $course['image'] }}">--}}
-{{--            </div>--}}
         @else
             <div class="search-response">
-                <h2>No posts found</h2>
+                <div style="padding: 3rem">
+                    <i class="fa fa-search" aria-hidden="true" style="display: flex; justify-content: center; font-size: 5rem; color: black;"></i>
+                    <h1 style="display: flex; justify-content: center; color: black;">No courses found.</h1>
+                </div>
             </div>
         @endif
     </div>
