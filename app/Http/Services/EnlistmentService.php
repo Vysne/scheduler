@@ -140,9 +140,69 @@ class EnlistmentService
     public function getCourseLimit($courseId)
     {
         return DB::table('courses')
-            ->where('courses.id', '=', $courseId)
             ->select('courses.id', 'courses.limit')
             ->get()
             ->first();
+    }
+
+    private function getCoursesLimit()
+    {
+        return DB::table('courses')
+            ->select('courses.id', 'courses.limit')
+            ->get()
+            ->toArray();
+    }
+
+    public function limitCheck()
+    {
+        $result = [];
+        $courseLimit = $this->getCoursesLimit();
+        $membersCount = $this->currentCourseMembersCount($courseLimit);
+
+        foreach ($membersCount as $data) {
+            if ($data->limit > $data->members) {
+                $data->limit_check = true;
+            } elseif ($data->limit === 0) {
+                $data->limit_check = true;
+            } else {
+                $data->limit_check = false;
+            }
+            $result[$data->id] = $data;
+        }
+
+        return json_decode(json_encode($result), true);
+    }
+
+    private function currentCourseMembersCount($courses)
+    {
+        foreach ($courses as $course) {
+            $course->members = count(DB::table('enlistments')
+                ->where('course_id', $course->id)
+                ->where('status', 'accepted')
+                ->get());
+        }
+
+        return $courses;
+    }
+
+    public function currentCourseLimitCheck($courseId)
+    {
+        $courseCurrentLimit = DB::table('courses')
+            ->where('courses.id', $courseId)
+            ->select('courses.limit')
+            ->first();
+
+        $courseCurrentMemberCount = count(DB::table('enlistments')
+            ->where('course_id', $courseId)
+            ->where('status', 'accepted')
+            ->get());
+
+        if ($courseCurrentLimit->limit > $courseCurrentMemberCount) {
+            $limit = true;
+        } else {
+            $limit = false;
+        }
+
+        return $limit;
     }
 }

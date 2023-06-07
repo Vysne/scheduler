@@ -28,6 +28,6 @@ class ContentLayout extends Component
         $courses = new CatalogController;
         $enlistmentService = new EnlistmentService;
 
-        return view('components.content-layout', ['courses' => $courses->getCourses(), 'availability' => $enlistmentService->checkEnlistment()]);
+        return view('components.content-layout', ['courses' => $courses->getCourses(), 'availability' => $enlistmentService->checkEnlistment(), 'limit' => $enlistmentService->limitCheck()]);
     }
 }

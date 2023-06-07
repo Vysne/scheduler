@@ -32,24 +32,33 @@
                                 <input type="hidden" value="{{ $course->rating }}">
                             </div>
                             <div class="course-join">
-                                @if ($course->author != Auth::id() && array_key_exists($course->id, $availability) == false)
-                                <form action="{{ url('/join/' . $course->id) }}" method="POST">
-                                    @csrf
-                                    <button type="submit">
-                                        <div class="course-join-icon">
-                                            <i></i>
-                                            <span>Join course</span>
-                                        </div>
-                                    </button>
-                                </form>
-                                @elseif (array_key_exists($course->id, $availability) == true)
-                                    @if($availability[$course->id] !== 'accepted')
-                                    <button type="submit">
-                                        <div class="course-join-icon">
-                                            <i></i>
-                                            <span>{{ ucfirst($availability[$course->id]) }}</span>
-                                        </div>
-                                    </button>
+                                @if ($limit[$course->id]['limit_check'] == true)
+                                    @if ($course->author != Auth::id() && array_key_exists($course->id, $availability) == false)
+                                    <form action="{{ url('/join/' . $course->id) }}" method="POST">
+                                        @csrf
+                                        <button type="submit">
+                                            <div class="course-join-icon">
+                                                <i></i>
+                                                <span>Join course</span>
+                                            </div>
+                                        </button>
+                                    </form>
+                                    @elseif (array_key_exists($course->id, $availability) == true)
+                                        @if($availability[$course->id] !== 'accepted')
+                                        <button type="submit">
+                                            <div class="course-join-icon">
+                                                <i></i>
+                                                <span>{{ ucfirst($availability[$course->id]) }}</span>
+                                            </div>
+                                        </button>
+                                        @else
+                                            <button type="submit">
+                                                <div class="course-join-icon">
+                                                    <i></i>
+                                                    <span>Joined</span>
+                                                </div>
+                                            </button>
+                                        @endif
                                     @else
                                         <button type="submit">
                                             <div class="course-join-icon">
@@ -62,7 +71,7 @@
                                     <button type="submit">
                                         <div class="course-join-icon">
                                             <i></i>
-                                            <span>Joined</span>
+                                            <span>Limit reached</span>
                                         </div>
                                     </button>
                                 @endif

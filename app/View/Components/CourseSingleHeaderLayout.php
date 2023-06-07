@@ -7,17 +7,18 @@ use Illuminate\View\Component;
 class CourseSingleHeaderLayout extends Component
 {
     public $courseSingleData;
-
     public $availability;
+    public $courseLimit;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($courseSingleData, $availability)
+    public function __construct($courseSingleData, $availability, $courseLimit)
     {
         $this->courseSingleData = $courseSingleData;
         $this->availability = $availability;
+        $this->courseLimit = $courseLimit;
     }
 
     /**

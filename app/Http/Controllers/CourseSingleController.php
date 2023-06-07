@@ -16,7 +16,7 @@ class CourseSingleController extends Controller
         $course = new CourseController;
         $enlistmentService = new EnlistmentService;
 
-        return view('course-single-page', ['course' => $course->getSelectedCourse($courseId), 'availability' => $enlistmentService->checkEnlistment(), 'rating' => $course->getUserRating($courseId), 'marks' => $this->getMarks($courseId)]);
+        return view('course-single-page', ['course' => $course->getSelectedCourse($courseId), 'availability' => $enlistmentService->checkEnlistment(), 'rating' => $course->getUserRating($courseId), 'marks' => $this->getMarks($courseId), 'courseLimit' => $enlistmentService->currentCourseLimitCheck($courseId)]);
     }
 
     public function rateCourse($courseId)

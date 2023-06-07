@@ -40,7 +40,7 @@
         <div class="course-single-wrapper">
             <div class="course-single-container">
                 @foreach($course['about-course'] as $courseSingleData)
-                <x-course-single-header-layout :availability="$availability" :courseSingleData="$courseSingleData"></x-course-single-header-layout>
+                <x-course-single-header-layout :availability="$availability" :courseSingleData="$courseSingleData" :courseLimit="$courseLimit"></x-course-single-header-layout>
                 @if(array_key_exists($courseSingleData['id'], $availability))
                     <input type="hidden" id="enroll-check" value="{{ $availability[$courseSingleData['id']] }}">
                 @else
