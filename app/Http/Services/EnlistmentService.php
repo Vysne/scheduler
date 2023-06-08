@@ -200,6 +200,8 @@ class EnlistmentService
 
         if ($courseCurrentLimit->limit > $courseCurrentMemberCount) {
             $limit = true;
+        } elseif($courseCurrentLimit->limit === 0) {
+            $limit = true;
         } else {
             $limit = false;
         }

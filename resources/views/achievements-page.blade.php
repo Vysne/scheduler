@@ -39,8 +39,8 @@
                 <ul class="course-box">
                     @if(empty($achievements->items()))
                         <div style="padding: 3rem">
-                            <i class="fa fa-search" aria-hidden="true" style="display: flex; justify-content: center; font-size: 5rem"></i>
-                            <h1>No achievements found.</h1>
+                            <i class="fa fa-search" aria-hidden="true" style="display: flex; justify-content: center; font-size: 5rem; color: black;"></i>
+                            <h1 style="color: black;">No achievements found.</h1>
                         </div>
                     @endif
                     @foreach($achievements as $achievement)

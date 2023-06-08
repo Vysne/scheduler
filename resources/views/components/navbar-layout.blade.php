@@ -24,9 +24,9 @@
             <ul class="navbar-menu">
                 @auth
                     <li class="navbar-menu-item">
-                        <a role="button" id="alertsDropdown" data-toggle="dropdown" class="item-link" aria-haspopup="true" aria-expanded="false">
+                        <a role="button" id="alertsDropdown" data-toggle="dropdown" class="item-link" aria-haspopup="true" aria-expanded="false" hidden>
                             <i class="fa fa-bell" aria-hidden="true" target="shrinked"></i>
-{{--                            <span class="item-badge">0+</span>--}}
+                            <span class="item-badge">0+</span>
                         </a>
                         <div class="dropdown-list-menu dropdown-menu-disabled" id="alerts-dropdown-list">
                             <h6 class="dropdown-header">Alerts Center</h6>

@@ -22,7 +22,7 @@ class ApplicationController extends Controller
 
         $applicationService->storeApplication($userId);
 
-        return redirect('dashboard');
+        return redirect('dashboard')->with(['notifier' => ['notifier_id' => 20 ,'notifier_title' => 'Request sent', 'notifier_detail' => 'Course creator status request sent.']]);
     }
 
     public function cancelApplication($userId)
@@ -31,6 +31,6 @@ class ApplicationController extends Controller
             ->where('user_id', $userId)
             ->delete();
 
-        return redirect('dashboard');
+        return redirect('dashboard')->with(['notifier' => ['notifier_id' => 21 ,'notifier_title' => 'Request cancelled', 'notifier_detail' => 'Course creator status request was cancelled.']]);
     }
 }
